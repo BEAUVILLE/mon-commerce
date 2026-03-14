@@ -2,106 +2,72 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>MON COMMERCE — Caisse boutique moderne</title>
+  <title>MON COMMERCE — Caisse boutique simple et moderne</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="MON COMMERCE by DIGIY — caisse boutique simple, moderne, 0% commission, pensée pour le terrain.">
-  <meta name="theme-color" content="#07140f">
+  <meta name="description" content="MON COMMERCE by DIGIY — caisse boutique simple, rapide, moderne et pensée pour le terrain.">
+  <meta name="theme-color" content="#0b1410">
   <meta name="robots" content="index,follow">
-
-  <script>
-    window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
-    window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
-    window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
-    window.DIGIY_MODULE = "POS";
-
-    function digiyBasePath(){
-      const parts = location.pathname.split("/").filter(Boolean);
-      const isGh = /\.github\.io$/i.test(location.hostname);
-      if(isGh && parts.length > 0) return "/" + parts[0] + "/";
-      return "/";
-    }
-
-    function digiyLocal(path){
-      path = String(path || "").replace(/^\/+/,"");
-      return digiyBasePath() + path;
-    }
-  </script>
 
   <style>
     :root{
-      --bg:#04110d;
-      --bg2:#071a14;
-      --card:rgba(8,24,18,.76);
-      --card2:rgba(9,28,21,.92);
-      --line:rgba(255,255,255,.09);
+      --bg:#07110d;
+      --bg2:#0d1b15;
+      --panel:#112118;
+      --panel2:#16291f;
+      --card:#14241c;
+      --soft:#1b3025;
+      --line:rgba(255,255,255,.08);
       --line2:rgba(255,255,255,.14);
-      --text:#f7fbf8;
-      --muted:#bfd3c8;
-      --gold:#facc15;
-      --gold2:#f59e0b;
-      --green:#22c55e;
-      --shadow:0 22px 56px rgba(0,0,0,.28);
-      --shadow-soft:0 14px 34px rgba(0,0,0,.22);
-      --radius:26px;
+      --text:#f4fbf7;
+      --muted:#b6c8bd;
+      --gold:#f4c95d;
+      --gold2:#d9a93d;
+      --green:#33c36b;
+      --green2:#1e9b51;
+      --orange:#ff9e45;
+      --red:#ff6b57;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --radius-sm:16px;
       --max:1180px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
+    *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      min-height:100vh;
-      color:var(--text);
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(250,204,21,.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(96,165,250,.08), transparent 22%),
-        linear-gradient(180deg, #07140f 0%, #04110d 42%, #020906 100%);
-    }
-
-    a{text-decoration:none;color:inherit}
-
-    .page{
-      width:min(100%, var(--max));
-      margin:0 auto;
-      padding:18px 16px 90px;
-    }
-
-    .floating-site-btn{
-      position:fixed;
-      left:16px;
-      bottom:calc(16px + env(safe-area-inset-bottom, 0px));
-      z-index:80;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      min-height:48px;
-      padding:14px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(5,16,12,.88);
-      backdrop-filter:blur(10px);
+        radial-gradient(circle at top right, rgba(244,201,93,.10), transparent 28%),
+        radial-gradient(circle at left center, rgba(51,195,107,.08), transparent 25%),
+        linear-gradient(180deg, #09130f 0%, #07110d 100%);
       color:var(--text);
-      font-size:13px;
-      font-weight:900;
-      box-shadow:0 16px 36px rgba(0,0,0,.28);
-      transition:.14s ease;
+      line-height:1.55;
     }
-    .floating-site-btn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(250,204,21,.28);
-      background:rgba(8,20,15,.94);
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .wrap{
+      width:min(var(--max), calc(100% - 28px));
+      margin:0 auto;
     }
 
     .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(14px);
+      background:rgba(7,17,13,.76);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .topbar-inner{
+      min-height:72px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:14px;
-      flex-wrap:wrap;
-      padding:12px 0 18px;
-      border-bottom:1px solid rgba(255,255,255,.07);
-      margin-bottom:14px;
     }
 
     .brand{
@@ -112,976 +78,986 @@
     }
 
     .brand-badge{
-      width:48px;
-      height:48px;
-      border-radius:18px;
+      width:42px;
+      height:42px;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      font-size:24px;
-      background:linear-gradient(135deg, rgba(250,204,21,.16), rgba(245,158,11,.08));
-      border:1px solid rgba(250,204,21,.16);
-      box-shadow:0 16px 34px rgba(250,204,21,.10);
+      background:linear-gradient(135deg, var(--gold), var(--green));
+      color:#09110d;
+      font-size:20px;
+      font-weight:900;
+      box-shadow:var(--shadow);
       flex:0 0 auto;
     }
 
-    .brand-kicker{
-      color:var(--gold);
-      font-size:12px;
-      font-weight:950;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      margin-bottom:3px;
+    .brand-text{
+      min-width:0;
     }
 
-    .brand-title{
-      font-size:20px;
-      font-weight:1000;
-      line-height:1.08;
-      letter-spacing:-.02em;
+    .brand-text strong{
+      display:block;
+      font-size:15px;
+      letter-spacing:.2px;
     }
 
-    .brand-sub{
+    .brand-text span{
+      display:block;
       color:var(--muted);
       font-size:12px;
-      font-weight:800;
-      margin-top:3px;
     }
 
-    .top-actions{
+    .nav{
       display:flex;
+      align-items:center;
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 13px;
+    .nav a{
+      padding:10px 14px;
       border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
       color:var(--muted);
-      font-weight:900;
-      font-size:12px;
+      border:1px solid transparent;
+      font-size:14px;
+      transition:.2s ease;
     }
 
-    .btn,
-    .btn-outline,
-    .btn-ghost{
+    .nav a:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.06);
+    }
+
+    .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:46px;
-      padding:12px 16px;
+      min-height:50px;
+      padding:0 18px;
       border-radius:999px;
-      font-weight:900;
-      font-size:13px;
+      border:1px solid transparent;
+      font-weight:800;
+      font-size:15px;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
       white-space:nowrap;
-      transition:.14s ease;
     }
 
-    .btn:hover,
-    .btn-outline:hover,
-    .btn-ghost:hover{
-      transform:translateY(-1px);
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      background:linear-gradient(135deg, var(--gold), #ffd97a);
+      color:#101611;
+      box-shadow:0 16px 40px rgba(244,201,93,.22);
     }
 
-    .btn{
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      color:#07110d;
-      box-shadow:0 14px 30px rgba(250,204,21,.18);
-    }
-
-    .btn-outline{
+    .btn-secondary{
       background:rgba(255,255,255,.04);
-      border:1px solid var(--line2);
+      border-color:rgba(255,255,255,.10);
       color:var(--text);
     }
 
-    .btn-ghost{
-      background:transparent;
-      border:1px solid var(--line2);
-      color:var(--muted);
+    .btn-green{
+      background:linear-gradient(135deg, var(--green), #68da92);
+      color:#08110c;
+      box-shadow:0 16px 40px rgba(51,195,107,.22);
     }
 
     .hero{
+      padding:42px 0 24px;
+    }
+
+    .hero-grid{
       display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:18px;
-      align-items:stretch;
-      margin-top:18px;
+      grid-template-columns:1.08fr .92fr;
+      gap:28px;
+      align-items:center;
     }
 
-    .panel{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-        var(--card);
-      border:1px solid var(--line);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .hero-main{
-      padding:28px 24px 24px;
-      position:relative;
-    }
-
-    .hero-main::after{
-      content:"";
-      position:absolute;
-      right:-90px;
-      bottom:-110px;
-      width:240px;
-      height:240px;
-      border-radius:999px;
-      background:radial-gradient(circle, rgba(34,197,94,.14), transparent 70%);
-      pointer-events:none;
-    }
-
-    .hero-badge{
+    .eyebrow{
       display:inline-flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
       padding:8px 12px;
       border-radius:999px;
-      background:rgba(250,204,21,.10);
-      border:1px solid rgba(250,204,21,.18);
-      color:var(--gold);
-      font-size:12px;
-      font-weight:950;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:16px;
-    }
-
-    .hero-title{
-      font-size:clamp(34px, 6vw, 66px);
-      line-height:.95;
-      letter-spacing:-.04em;
-      font-weight:1000;
-      max-width:11ch;
-    }
-
-    .hero-title .accent{
-      color:var(--gold);
-    }
-
-    .hero-sub{
-      margin-top:16px;
-      font-size:17px;
-      line-height:1.75;
-      color:var(--muted);
+      background:rgba(244,201,93,.10);
+      border:1px solid rgba(244,201,93,.18);
+      color:#ffe7a5;
+      font-size:13px;
       font-weight:700;
-      max-width:64ch;
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(34px, 5vw, 66px);
+      line-height:.98;
+      letter-spacing:-1.6px;
+    }
+
+    .hero p.lead{
+      margin:0 0 22px;
+      max-width:680px;
+      font-size:18px;
+      color:var(--muted);
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:22px;
     }
 
     .hero-points{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:18px;
     }
 
-    .hero-point{
-      padding:10px 13px;
+    .chip{
+      padding:9px 12px;
       border-radius:999px;
-      font-size:13px;
-      font-weight:900;
-      color:var(--muted);
       background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:22px;
-    }
-
-    .hero-note{
-      margin-top:14px;
+      border:1px solid rgba(255,255,255,.08);
+      color:#d9e7de;
       font-size:13px;
+      font-weight:700;
+    }
+
+    .showcase{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .showcase-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.03);
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      opacity:.9;
+    }
+
+    .dot.red{background:#ff6b57}
+    .dot.orange{background:#ffb14a}
+    .dot.green{background:#31d26e}
+
+    .showcase-title{
       color:var(--muted);
-      line-height:1.65;
-      font-weight:800;
+      font-size:13px;
+      font-weight:700;
     }
 
-    .hero-side{
+    .shop-ui{
       padding:18px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:14px;
       background:
-        radial-gradient(circle at top right, rgba(96,165,250,.08), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
-        var(--card2);
+        radial-gradient(circle at top right, rgba(244,201,93,.07), transparent 30%),
+        radial-gradient(circle at left bottom, rgba(51,195,107,.08), transparent 26%);
     }
 
-    .preview-card{
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
       border:1px solid rgba(255,255,255,.08);
       border-radius:22px;
       padding:16px;
-      background:rgba(255,255,255,.03);
     }
 
-    .preview-head{
+    .cash-head{
       display:flex;
-      justify-content:space-between;
       align-items:center;
+      justify-content:space-between;
       gap:10px;
       margin-bottom:14px;
-      flex-wrap:wrap;
     }
 
-    .preview-title{
+    .cash-title{
+      font-weight:900;
       font-size:18px;
-      font-weight:950;
     }
 
-    .preview-chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
+    .cash-badge{
+      padding:8px 10px;
       border-radius:999px;
-      border:1px solid rgba(34,197,94,.22);
-      background:rgba(34,197,94,.10);
-      color:#d7ffe1;
-      font-size:11px;
-      font-weight:950;
-      text-transform:uppercase;
-      letter-spacing:.08em;
+      font-size:12px;
+      font-weight:800;
+      background:rgba(51,195,107,.14);
+      color:#8ef3b2;
+      border:1px solid rgba(51,195,107,.22);
     }
 
-    .kpis{
+    .products{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:repeat(2, minmax(0,1fr));
       gap:10px;
-      margin-bottom:12px;
     }
 
-    .kpi{
+    .product{
       padding:12px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
     }
 
-    .kpi-label{
+    .product .thumb{
+      height:86px;
+      border-radius:14px;
+      margin-bottom:10px;
+      background:
+        linear-gradient(135deg, rgba(244,201,93,.16), rgba(51,195,107,.08)),
+        #18261f;
+      display:grid;
+      place-items:center;
+      font-size:28px;
+    }
+
+    .product strong{
+      display:block;
+      font-size:14px;
+      margin-bottom:3px;
+    }
+
+    .product span{
+      display:block;
       color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
+      font-size:12px;
+      margin-bottom:8px;
+    }
+
+    .price-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .price{
+      font-weight:900;
+      font-size:15px;
+    }
+
+    .mini-add{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.08);
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.04);
       font-weight:900;
     }
 
-    .kpi-value{
-      margin-top:6px;
-      font-size:22px;
-      font-weight:1000;
-      letter-spacing:-.03em;
+    .ticket{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
 
-    .preview-list{
+    .ticket-box{
+      background:#fbf8ef;
+      color:#172018;
+      border-radius:22px;
+      padding:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,.18);
+    }
+
+    .ticket-box h3{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:-.3px;
+    }
+
+    .ticket-meta{
+      font-size:12px;
+      color:#516055;
+      margin-bottom:12px;
+    }
+
+    .line{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:8px 0;
+      border-bottom:1px dashed rgba(0,0,0,.12);
+      font-size:14px;
+    }
+
+    .line:last-of-type{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+
+    .total{
+      margin-top:12px;
+      padding-top:12px;
+      border-top:2px solid rgba(0,0,0,.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .pay-actions{
       display:grid;
-      gap:8px;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
       margin-top:12px;
     }
 
-    .preview-item{
-      padding:11px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .preview-item strong{
+    .pay-btn{
+      min-height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
       font-size:14px;
-      line-height:1.35;
+      border:1px solid rgba(0,0,0,.08);
     }
 
-    .preview-item small{
+    .pay-btn.wave{
+      background:#d7fbe7;
+      color:#125d31;
+    }
+
+    .pay-btn.cash{
+      background:#fff0d0;
+      color:#7a4a00;
+    }
+
+    .mini-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .stat{
+      padding:14px 12px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .stat strong{
       display:block;
-      color:var(--muted);
-      font-size:11px;
-      margin-top:4px;
-      line-height:1.55;
-      font-weight:700;
+      font-size:22px;
+      margin-bottom:3px;
     }
 
-    .preview-tag{
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid rgba(250,204,21,.20);
-      background:rgba(250,204,21,.08);
-      color:var(--gold);
-      font-size:10px;
-      font-weight:950;
-      white-space:nowrap;
+    .stat span{
+      color:var(--muted);
+      font-size:12px;
+      display:block;
     }
 
     .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      text-align:center;
-      margin-bottom:16px;
-    }
-
-    .section-kicker{
-      color:var(--gold);
-      font-size:12px;
-      font-weight:950;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      margin-bottom:8px;
+      padding:26px 0;
     }
 
     .section-title{
-      font-size:clamp(28px, 4vw, 44px);
-      font-weight:1000;
-      line-height:1.02;
-      letter-spacing:-.03em;
-      margin-bottom:8px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
     }
 
-    .section-sub{
+    .section-title h2{
+      margin:0;
+      font-size:clamp(26px, 3vw, 40px);
+      line-height:1.02;
+      letter-spacing:-1px;
+    }
+
+    .section-title p{
+      margin:0;
+      max-width:620px;
       color:var(--muted);
-      font-size:15px;
-      line-height:1.8;
-      max-width:760px;
-      margin:0 auto;
-      font-weight:700;
+      font-size:16px;
     }
 
     .cards{
       display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-columns:repeat(4, minmax(0,1fr));
       gap:14px;
     }
 
-    .info-card{
-      padding:20px 18px;
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
       border-radius:24px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-        var(--card);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow-soft);
+      padding:18px;
+      box-shadow:var(--shadow);
     }
 
-    .info-icon{
-      width:46px;
-      height:46px;
-      border-radius:14px;
+    .icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
       display:grid;
       place-items:center;
-      font-size:24px;
-      margin-bottom:12px;
-      background:rgba(250,204,21,.10);
-      border:1px solid rgba(250,204,21,.16);
+      font-size:22px;
+      margin-bottom:14px;
+      background:linear-gradient(135deg, rgba(244,201,93,.18), rgba(51,195,107,.14));
+      border:1px solid rgba(255,255,255,.08);
     }
 
-    .info-title{
-      font-size:20px;
-      font-weight:950;
-      margin-bottom:8px;
-      line-height:1.12;
+    .card h3{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:-.3px;
     }
 
-    .info-text{
+    .card p{
+      margin:0;
       color:var(--muted);
       font-size:14px;
-      line-height:1.8;
-      font-weight:700;
+    }
+
+    .duo{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .big-card{
+      border-radius:28px;
+      padding:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .big-card h3{
+      margin:0 0 10px;
+      font-size:24px;
+      letter-spacing:-.6px;
+    }
+
+    .big-card p{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .list{
+      display:grid;
+      gap:10px;
+    }
+
+    .list-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .list-item:first-child{border-top:none;padding-top:0}
+    .bullet{
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      font-size:13px;
+      font-weight:900;
+      background:rgba(244,201,93,.14);
+      color:#ffe59d;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    .list-item strong{
+      display:block;
+      margin-bottom:3px;
+      font-size:15px;
+    }
+
+    .list-item span{
+      color:var(--muted);
+      font-size:14px;
     }
 
     .cta{
-      margin-top:30px;
-      padding:24px 20px;
-      border-radius:30px;
-      border:1px solid rgba(250,204,21,.18);
+      padding:34px 0 52px;
+    }
+
+    .cta-box{
+      border-radius:32px;
+      padding:28px;
       background:
-        radial-gradient(circle at top, rgba(250,204,21,.12), transparent 38%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-        rgba(8,22,17,.76);
+        radial-gradient(circle at top right, rgba(244,201,93,.12), transparent 30%),
+        radial-gradient(circle at left bottom, rgba(51,195,107,.10), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
       box-shadow:var(--shadow);
-      text-align:center;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
-    .cta-title{
-      font-size:clamp(28px, 4vw, 42px);
-      line-height:1.03;
-      letter-spacing:-.03em;
-      font-weight:1000;
-      margin-bottom:10px;
+    .cta h2{
+      margin:0 0 8px;
+      font-size:clamp(28px, 4vw, 46px);
+      line-height:1;
+      letter-spacing:-1.2px;
     }
 
-    .cta-sub{
-      max-width:760px;
-      margin:0 auto 18px;
-      font-size:16px;
-      line-height:1.75;
+    .cta p{
+      margin:0;
       color:var(--muted);
-      font-weight:700;
+      max-width:700px;
+      font-size:16px;
     }
 
     .cta-actions{
       display:flex;
-      justify-content:center;
       gap:12px;
       flex-wrap:wrap;
     }
 
-    @media(max-width:980px){
-      .hero,
-      .cards{
+    footer{
+      border-top:1px solid rgba(255,255,255,.06);
+      padding:18px 0 34px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .float-home{
+      position:fixed;
+      left:16px;
+      bottom:16px;
+      z-index:25;
+      min-height:52px;
+      padding:0 16px;
+      border-radius:999px;
+      background:rgba(12,20,16,.86);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      font-size:14px;
+      backdrop-filter:blur(12px);
+    }
+
+    .float-home:hover{
+      transform:translateY(-1px);
+      background:rgba(18,30,24,.92);
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .duo,
+      .shop-ui{
         grid-template-columns:1fr;
       }
-      .hero-title{
-        max-width:none;
+
+      .cards{
+        grid-template-columns:repeat(2, minmax(0,1fr));
       }
     }
 
-    @media(max-width:700px){
-      .wrap{padding:12px 12px 92px}
-      .topbar-inner{padding:12px}
-      .brand-title{white-space:normal}
-      .kpis{grid-template-columns:1fr}
-      .floating-site-btn{
+    @media (max-width: 760px){
+      .topbar-inner{
+        padding:12px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .nav{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      .hero{
+        padding-top:24px;
+      }
+
+      h1{
+        font-size:40px;
+      }
+
+      .hero p.lead{
+        font-size:16px;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .products{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .mini-stats{
+        grid-template-columns:1fr;
+      }
+
+      .pay-actions{
+        grid-template-columns:1fr;
+      }
+
+      .cta-box{
+        padding:22px;
+      }
+
+      .float-home{
         left:12px;
         right:12px;
-        bottom:calc(12px + env(safe-area-inset-bottom, 0px));
-        min-height:46px;
-        padding:14px 14px;
-        font-size:12px;
+        justify-content:center;
+      }
+    }
+
+    @media (max-width: 520px){
+      .products{
+        grid-template-columns:1fr;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .hero-actions,
+      .cta-actions{
+        display:grid;
+        width:100%;
       }
     }
   </style>
 </head>
-
 <body>
-  <a
-    class="floating-site-btn"
-    href="https://digiylyfe.com/"
-    aria-label="Retour au site DIGIYLYFE"
-    title="Retour au site DIGIYLYFE"
-  >⬅️ Retour site DIGIYLYFE</a>
 
-  <div class="wrap">
-
-    <div class="topbar">
-      <div class="topbar-inner">
-        <div class="brand">
-          <div class="brand-badge">🏪</div>
-          <div>
-            <div class="brand-kicker">DIGIYLYFE</div>
-            <div id="brandTitle" class="brand-title">MON COMMERCE — Dashboard Pro</div>
-            <div id="brandSub" class="brand-sub">Pilotage abonnement, activité et boost</div>
-          </div>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="https://digiylyfe.com/">
+        <div class="brand-badge">🛒</div>
+        <div class="brand-text">
+          <strong>MON COMMERCE</strong>
+          <span>La caisse boutique by DIGIY</span>
         </div>
+      </a>
 
-        <div class="right">
-          <div class="pill" id="pillStatus">Statut : <b>…</b></div>
-          <a class="btn-outline" id="btnSettings" href="./admin.html">⚙️ Admin</a>
-        </div>
-      </div>
+      <nav class="nav">
+        <a href="#fonctionne">Comment ça marche</a>
+        <a href="#avantages">Avantages</a>
+        <a href="https://pro-caisse.digiylyfe.com/">Espace pro</a>
+        <a href="https://commencer-a-payer.digiylyfe.com/">Activer</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="navRow">
-      <a class="btn-ghost" id="btnHall" href="./index.html">🏠 Hall</a>
-      <a class="btn-ghost" id="btnCaisse" href="./caisse.html">🧾 Caisse</a>
-      <a class="btn-ghost" id="btnAdmin" href="./admin.html">⚙️ Admin</a>
-      <a class="btn-outline" id="btnAbosTop" href="https://commencer-a-payer.digiylyfe.com/">💳 Abonnement</a>
-      <a class="btn-outline" id="btnSupportTop" href="#" target="_blank" rel="noopener">💬 Support</a>
-    </div>
-
-    <div class="grid">
-
-      <div class="card" id="cardStatus">
-        <div class="heroBadge">dashboard pro • abonnement • argent • boost</div>
-        <h3>Statut & sécurité</h3>
-
-        <div class="row">
-          <div class="statusDot" id="dot"></div>
-          <div style="flex:1">
-            <div style="font-weight:1000;font-size:18px;line-height:1.15" id="statusLine">Chargement…</div>
-            <div class="muted" style="font-weight:800;font-size:13px;margin-top:3px" id="expiryLine">—</div>
-          </div>
-        </div>
-
-        <div class="subPills">
-          <div class="subPill">Slug : <b id="slugBox">—</b></div>
-          <div class="subPill">Téléphone : <b id="phoneBox">—</b></div>
-          <div class="subPill">Module : <b>POS</b></div>
-        </div>
-
-        <div class="hr"></div>
-
-        <div class="mini" id="metaLine">
-          <span>Plan : —</span>
-          <span>•</span>
-          <span>Paiement : —</span>
-        </div>
-
-        <div class="footer">
-          <button class="btn-outline" id="btnManageSub" type="button">Gérer mon abonnement</button>
-        </div>
-      </div>
-
-      <div class="card" id="cardMoney">
-        <h3>Argent</h3>
-
-        <div class="bigMoney" id="moneyMonth">— FCFA</div>
-        <div class="mini" id="moneyMeta">
-          <span id="txCount">— transactions</span>
-          <span>•</span>
-          <span id="todayHint">—</span>
-        </div>
-
-        <div class="hr"></div>
-
-        <div class="boostBox">
-          <div>
-            <b>🚀 BOOST visibilité</b>
-            <div class="muted" style="font-weight:800;font-size:13px" id="boostText">
-              +50% d’apparition • 7 jours • 5 000 FCFA
-            </div>
-            <div class="muted" style="font-weight:800;font-size:12px;margin-top:6px" id="boostStatus">
-              Statut boost : —
-            </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column;gap:8px;min-width:170px">
-            <button class="btn" id="btnBoost" type="button">Activer</button>
-            <button class="btn-outline" id="btnBoostInfo" type="button">Détails</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" id="cardAction" style="grid-column:1/-1">
-        <h3>Action principale</h3>
-        <div class="muted" style="font-weight:800;margin-bottom:10px" id="actionDesc">
-          Une action. Simple. Efficace.
-        </div>
-
-        <div class="row" style="justify-content:space-between">
-          <div class="muted" style="font-weight:900" id="actionHint">—</div>
-          <button class="btn" id="btnPrimaryAction" type="button">…</button>
-        </div>
-
-        <div class="hr"></div>
-
-        <h3>Notifications</h3>
-        <div class="notifList" id="notifList"></div>
-
-        <div class="footer">
-          <a class="smallLink" href="#" id="linkSupport">Support</a>
-          <a class="smallLink" href="#" id="linkPayments">Mes paiements</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-<script>
-(() => {
-  "use strict";
-
-  const MODULE_CODE = "POS";
-  const MODULE_LABEL = "MON COMMERCE";
-  const PRIMARY_ACTION_LABEL = "Ouvrir la caisse";
-  const PRIMARY_ACTION_HINT  = "Encaisse une vente, gère tes produits et ton stock.";
-
-  const SUPABASE_URL = String(window.DIGIY_SUPABASE_URL || "").trim();
-  const SUPABASE_ANON = String(window.DIGIY_SUPABASE_ANON_KEY || window.DIGIY_SUPABASE_ANON || "").trim();
-
-  const ABOS_URL = "https://commencer-a-payer.digiylyfe.com/";
-  const CAISSE_URL = digiyLocal("caisse.html");
-  const HALL_URL = digiyLocal("index.html");
-  const ADMIN_URL = digiyLocal("admin.html");
-
-  const BOOST = {
-    module: "BOOST",
-    plan: "boost_7d",
-    price_xof: 5000,
-    label: "BOOST visibilité",
-    duration_days: 7
-  };
-
-  const $ = (id) => document.getElementById(id);
-
-  function fmtDateFR(iso){
-    if(!iso) return "—";
-    const d = new Date(iso);
-    if(Number.isNaN(d.getTime())) return "—";
-    return d.toLocaleDateString("fr-FR", { year:"numeric", month:"long", day:"numeric" });
-  }
-
-  function cleanDigits(v){
-    return String(v || "").replace(/[^\d]/g, "");
-  }
-
-  function getSlug(){
-    const u = new URL(location.href);
-    return String(
-      u.searchParams.get("slug") ||
-      localStorage.getItem("digiy_pos_last_slug") ||
-      sessionStorage.getItem("digiy_pos_last_slug") ||
-      ""
-    ).trim().toLowerCase();
-  }
-
-  function getPhone(){
-    const u = new URL(location.href);
-    return cleanDigits(
-      u.searchParams.get("phone") ||
-      localStorage.getItem("digiy_pos_last_phone") ||
-      sessionStorage.getItem("digiy_pos_last_phone") ||
-      ""
-    );
-  }
-
-  function saveLocalAccess(slug, phone){
-    if(slug){
-      localStorage.setItem("digiy_pos_last_slug", slug);
-      sessionStorage.setItem("digiy_pos_last_slug", slug);
-    }
-    if(phone){
-      localStorage.setItem("digiy_pos_last_phone", phone);
-      sessionStorage.setItem("digiy_pos_last_phone", phone);
-    }
-  }
-
-  function buildUrl(base, params){
-    const u = new URL(base, location.href);
-    Object.entries(params || {}).forEach(([k, v]) => {
-      if(v !== null && v !== undefined && v !== "") u.searchParams.set(k, v);
-    });
-    return u.toString();
-  }
-
-  function buildSupportUrl(phone, slug){
-    const text = [
-      "Bonjour JB,",
-      "j’ai besoin d’aide pour MON COMMERCE by DIGIY.",
-      slug ? `Slug : ${slug}` : "",
-      phone ? `Téléphone : +${phone}` : ""
-    ].filter(Boolean).join(" ");
-    return `https://wa.me/221771342889?text=${encodeURIComponent(text)}`;
-  }
-
-  function setNotifs(items){
-    const box = $("notifList");
-    box.innerHTML = "";
-    if(!items.length){
-      box.innerHTML = `<div class="notif"><div><b>Rien à signaler</b><div class="muted" style="font-weight:800;margin-top:2px">Tout roule.</div></div><div class="tag ok">OK</div></div>`;
-      return;
-    }
-    for(const it of items){
-      const tagClass = it.level === "warn" ? "warn" : it.level === "ok" ? "ok" : "info";
-      const div = document.createElement("div");
-      div.className = "notif";
-      div.innerHTML = `
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
         <div>
-          <b>${it.title}</b>
-          <div class="muted" style="font-weight:800;margin-top:2px">${it.text}</div>
+          <div class="eyebrow">💳 Boutique • caisse • stock • tickets • terrain</div>
+          <h1>La caisse boutique<br>qui parle vrai.</h1>
+          <p class="lead">
+            MON COMMERCE aide les boutiques, points de vente, kiosques, mini-shops et commerces de quartier
+            à vendre vite, encaisser proprement et garder un vrai suivi, sans se perdre dans une usine à gaz.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://pro-caisse.digiylyfe.com/">Ouvrir l’espace pro</a>
+            <a class="btn btn-secondary" href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="chip">⚡ Vente rapide</div>
+            <div class="chip">📦 Stock simple</div>
+            <div class="chip">🧾 Ticket clair</div>
+            <div class="chip">🤝 Pensé pour le terrain</div>
+            <div class="chip">♾️ 0% commission</div>
+          </div>
         </div>
-        <div class="tag ${tagClass}">${it.tag}</div>
-      `;
-      box.appendChild(div);
-    }
-  }
 
-  function daysBetween(aIso, bIso){
-    const a = new Date(aIso).getTime();
-    const b = new Date(bIso).getTime();
-    if(Number.isNaN(a) || Number.isNaN(b)) return null;
-    return Math.ceil((b - a) / (1000 * 60 * 60 * 24));
-  }
+        <div class="showcase" aria-label="Aperçu caisse boutique">
+          <div class="showcase-top">
+            <div class="dots">
+              <span class="dot red"></span>
+              <span class="dot orange"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="showcase-title">MON COMMERCE — aperçu boutique caisse</div>
+          </div>
 
-  async function sbGetSubscriptionBySlug(slug){
-    const url = `${SUPABASE_URL}/rest/v1/digiy_subscriptions_public?select=phone,module,slug&slug=eq.${encodeURIComponent(slug)}&limit=1`;
-    const r = await fetch(url, {
-      headers: {
-        apikey: SUPABASE_ANON,
-        authorization: `Bearer ${SUPABASE_ANON}`
-      }
-    });
-    if(!r.ok) throw new Error("Cannot read digiy_subscriptions_public");
-    const data = await r.json();
-    return data[0] || null;
-  }
+          <div class="shop-ui">
+            <div class="panel">
+              <div class="cash-head">
+                <div class="cash-title">Rayon vente</div>
+                <div class="cash-badge">Caisse active</div>
+              </div>
 
-  async function sbRpc(name, payload){
-    const url = `${SUPABASE_URL}/rest/v1/rpc/${name}`;
-    const r = await fetch(url, {
-      method:"POST",
-      headers: {
-        "content-type":"application/json",
-        apikey: SUPABASE_ANON,
-        authorization: `Bearer ${SUPABASE_ANON}`
-      },
-      body: JSON.stringify(payload || {})
-    });
+              <div class="products">
+                <div class="product">
+                  <div class="thumb">🥤</div>
+                  <strong>Boisson fraîche</strong>
+                  <span>Catégorie snack</span>
+                  <div class="price-row">
+                    <div class="price">1 000 FCFA</div>
+                    <div class="mini-add">+</div>
+                  </div>
+                </div>
 
-    if(!r.ok){
-      const t = await r.text().catch(()=> "");
-      throw new Error(`RPC ${name} failed: ${t || r.status}`);
-    }
-    return r.json();
-  }
+                <div class="product">
+                  <div class="thumb">🍪</div>
+                  <strong>Biscuit</strong>
+                  <span>Petit comptoir</span>
+                  <div class="price-row">
+                    <div class="price">500 FCFA</div>
+                    <div class="mini-add">+</div>
+                  </div>
+                </div>
 
-  async function digiyHasAccess(phone, module){
-    const res = await sbRpc("digiy_has_access", { p_phone: phone, p_module: module });
-    if(typeof res === "boolean") return res;
-    if(res && typeof res.ok === "boolean") return res.ok;
-    if(res && typeof res.has_access === "boolean") return res.has_access;
-    return !!res;
-  }
+                <div class="product">
+                  <div class="thumb">🧴</div>
+                  <strong>Huile locale</strong>
+                  <span>Beauté / soin</span>
+                  <div class="price-row">
+                    <div class="price">3 500 FCFA</div>
+                    <div class="mini-add">+</div>
+                  </div>
+                </div>
 
-  async function digiyGetSubscriptionFull(phone, module){
-    try{
-      return await sbRpc("digiy_get_subscription_status", { p_phone: phone, p_module: module });
-    }catch(_){
-      return null;
-    }
-  }
+                <div class="product">
+                  <div class="thumb">🛍️</div>
+                  <strong>Sac client</strong>
+                  <span>Accessoire boutique</span>
+                  <div class="price-row">
+                    <div class="price">300 FCFA</div>
+                    <div class="mini-add">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  async function digiyGetDashboardStats(phone, module){
-    try{
-      return await sbRpc("digiy_get_dashboard_stats", { p_phone: phone, p_module: module });
-    }catch(_){
-      return { month_xof: null, tx_count: null, today_hint: "Aujourd’hui" };
-    }
-  }
+            <div class="ticket">
+              <div class="ticket-box">
+                <h3>Ticket du jour</h3>
+                <div class="ticket-meta">Boutique quartier • Vente rapide</div>
 
-  async function digiyGetBoostStatus(phone){
-    try{
-      return await sbRpc("digiy_get_boost_status", { p_phone: phone });
-    }catch(_){
-      return null;
-    }
-  }
+                <div class="line">
+                  <span>Boisson fraîche</span>
+                  <strong>1 000</strong>
+                </div>
+                <div class="line">
+                  <span>Biscuit × 2</span>
+                  <strong>1 000</strong>
+                </div>
+                <div class="line">
+                  <span>Huile locale</span>
+                  <strong>3 500</strong>
+                </div>
 
-  async function digiyBuildPayUrl(module, phone, plan){
-    return await sbRpc("digiy_build_pay_url", {
-      p_module: module,
-      p_phone: phone,
-      p_plan: plan
-    });
-  }
+                <div class="total">
+                  <span>Total</span>
+                  <span>5 500 FCFA</span>
+                </div>
 
-  function buildAbosParams(phone, slug){
-    return {
-      base_module: MODULE_CODE,
-      module: MODULE_CODE,
-      phone,
-      slug
-    };
-  }
+                <div class="pay-actions">
+                  <div class="pay-btn wave">Wave</div>
+                  <div class="pay-btn cash">Espèces</div>
+                </div>
+              </div>
 
-  function wireNav(phone, slug){
-    const q = { slug, phone, module: MODULE_CODE };
+              <div class="mini-stats">
+                <div class="stat">
+                  <strong>28</strong>
+                  <span>Ventes jour</span>
+                </div>
+                <div class="stat">
+                  <strong>154k</strong>
+                  <span>Chiffre du jour</span>
+                </div>
+                <div class="stat">
+                  <strong>12</strong>
+                  <span>Produits suivis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    $("btnHall").href = buildUrl(HALL_URL, q);
-    $("btnCaisse").href = buildUrl(CAISSE_URL, q);
-    $("btnAdmin").href = buildUrl(ADMIN_URL, q);
-    $("btnSettings").href = buildUrl(ADMIN_URL, q);
-    $("btnAbosTop").href = buildUrl(ABOS_URL, buildAbosParams(phone, slug));
-    $("btnSupportTop").href = buildSupportUrl(phone, slug);
-    $("linkSupport").href = buildSupportUrl(phone, slug);
-    $("linkPayments").href = buildUrl(ABOS_URL, buildAbosParams(phone, slug));
-  }
+    <section class="section" id="avantages">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Une vitrine qui montre<br>une vraie caisse boutique</h2>
+          <p>
+            Ici on ne vend pas du vent. On montre une ambiance de comptoir, de produits, de ticket,
+            d’encaissement et de gestion simple pour les commerçants.
+          </p>
+        </div>
 
-  (async function init(){
-    $("brandTitle").textContent = `${MODULE_LABEL} — Dashboard Pro`;
-    $("brandSub").textContent = "Pilotage abonnement, activité et boost";
-    $("btnPrimaryAction").textContent = PRIMARY_ACTION_LABEL;
-    $("actionHint").textContent = PRIMARY_ACTION_HINT;
-    $("actionDesc").textContent = "Entre dans la caisse, pilote tes produits et ton stock depuis une seule porte.";
-    $("pillStatus").innerHTML = `Statut : <b>…</b>`;
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🧾</div>
+            <h3>Caisse rapide</h3>
+            <p>Ajouter des articles, voir le total, encaisser sans tourner en rond.</p>
+          </article>
 
-    const slug = getSlug();
-    let phone = getPhone();
+          <article class="card">
+            <div class="icon">📦</div>
+            <h3>Suivi des produits</h3>
+            <p>Le commerçant garde une lecture claire de ce qu’il vend et de ce qu’il doit surveiller.</p>
+          </article>
 
-    $("slugBox").textContent = slug || "—";
-    $("phoneBox").textContent = phone ? `+${phone}` : "—";
-    wireNav(phone, slug);
+          <article class="card">
+            <div class="icon">💳</div>
+            <h3>Paiements terrain</h3>
+            <p>Espèces, Wave, et autres rails utiles selon le contexte du commerce.</p>
+          </article>
 
-    if(!slug){
-      $("statusLine").textContent = "Slug manquant";
-      $("expiryLine").textContent = "Repasse par le hall ou ajoute ?slug=…";
-      $("dot").classList.add("bad");
-      $("pillStatus").innerHTML = `Statut : <b>Bloqué</b>`;
-      setNotifs([{level:"warn",tag:"ACTION",title:"Lien incomplet",text:"Le dashboard a besoin d’un slug valide pour ouvrir le bon rail."}]);
+          <article class="card">
+            <div class="icon">🏪</div>
+            <h3>Fait pour les boutiques</h3>
+            <p>Kiosques, alimentations, mini-shops, points de vente locaux et commerces de quartier.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      $("btnManageSub").onclick = () => {
-        location.href = HALL_URL;
-      };
+    <section class="section" id="fonctionne">
+      <div class="wrap duo">
+        <article class="big-card">
+          <h3>Ce que le commerçant gagne</h3>
+          <p>
+            Un outil propre pour travailler, encaisser, garder la tête froide et faire tourner le commerce avec plus de tenue.
+          </p>
 
-      $("btnPrimaryAction").onclick = () => {
-        location.href = HALL_URL;
-      };
+          <div class="list">
+            <div class="list-item">
+              <div class="bullet">01</div>
+              <div>
+                <strong>Moins de désordre à la caisse</strong>
+                <span>Le parcours de vente reste simple, fluide et compréhensible.</span>
+              </div>
+            </div>
 
-      return;
-    }
+            <div class="list-item">
+              <div class="bullet">02</div>
+              <div>
+                <strong>Une image plus pro</strong>
+                <span>Quand la caisse est propre, le commerce respire déjà mieux.</span>
+              </div>
+            </div>
 
-    let subPublic = null;
-    try{
-      subPublic = await sbGetSubscriptionBySlug(slug);
-    }catch(_){
-      $("statusLine").textContent = "Erreur connexion";
-      $("expiryLine").textContent = "Impossible de vérifier le compte.";
-      $("dot").classList.add("bad");
-      $("pillStatus").innerHTML = `Statut : <b>Bloqué</b>`;
-      setNotifs([{level:"warn",tag:"RÉSEAU",title:"Connexion",text:"Vérifie internet ou la config Supabase."}]);
-      return;
-    }
+            <div class="list-item">
+              <div class="bullet">03</div>
+              <div>
+                <strong>Un outil qui suit le terrain</strong>
+                <span>Pas besoin d’un système trop lourd pour vendre correctement au quotidien.</span>
+              </div>
+            </div>
+          </div>
+        </article>
 
-    if(!subPublic || !subPublic.phone){
-      $("statusLine").textContent = "Compte introuvable";
-      $("expiryLine").textContent = "Ce slug n’existe pas.";
-      $("dot").classList.add("bad");
-      $("pillStatus").innerHTML = `Statut : <b>Inconnu</b>`;
-      setNotifs([{level:"warn",tag:"INFO",title:"Slug inconnu",text:"Demande un nouveau lien d’accès ou repasse par le hall."}]);
-      return;
-    }
+        <article class="big-card">
+          <h3>Ce que le client ressent</h3>
+          <p>
+            Une boutique plus nette, plus moderne et plus rassurante, sans casser le rythme naturel du commerce local.
+          </p>
 
-    phone = cleanDigits(subPublic.phone || phone);
-    saveLocalAccess(slug, phone);
-    $("phoneBox").textContent = phone ? `+${phone}` : "—";
-    wireNav(phone, slug);
+          <div class="list">
+            <div class="list-item">
+              <div class="bullet">✓</div>
+              <div>
+                <strong>Commande claire</strong>
+                <span>Le client comprend ce qu’il achète et ce qu’il paie.</span>
+              </div>
+            </div>
 
-    let ok = false;
-    try{
-      ok = await digiyHasAccess(phone, MODULE_CODE);
-    }catch(_){
-      ok = false;
-    }
+            <div class="list-item">
+              <div class="bullet">✓</div>
+              <div>
+                <strong>Encaissement plus propre</strong>
+                <span>Moins de flou, moins d’hésitation, plus de confiance.</span>
+              </div>
+            </div>
 
-    if(!ok){
-      $("statusLine").textContent = "Abonnement requis";
-      $("expiryLine").textContent = "Active ton accès pour ouvrir la caisse.";
-      $("dot").classList.add("bad");
-      $("pillStatus").innerHTML = `Statut : <b>Inactif</b>`;
+            <div class="list-item">
+              <div class="bullet">✓</div>
+              <div>
+                <strong>Boutique plus sérieuse</strong>
+                <span>Même petite, une boutique bien tenue envoie déjà un vrai signal.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      setNotifs([
-        {level:"warn",tag:"ABO",title:"Accès fermé",text:"Ton abonnement n’est pas actif sur ce module."}
-      ]);
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-box">
+          <div>
+            <h2>Prêt à poser ta caisse boutique ?</h2>
+            <p>
+              Ouvre ton espace pro ou active directement ton module MON COMMERCE.
+              On reste dans l’esprit DIGIY : simple, propre, utile, sans cinéma.
+            </p>
+          </div>
 
-      $("btnManageSub").onclick = () => {
-        location.href = buildUrl(ABOS_URL, buildAbosParams(phone, slug));
-      };
+          <div class="cta-actions">
+            <a class="btn btn-green" href="https://pro-caisse.digiylyfe.com/">Entrer dans l’espace pro</a>
+            <a class="btn btn-secondary" href="https://commencer-a-payer.digiylyfe.com/">Activer maintenant</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      $("btnPrimaryAction").onclick = () => {
-        location.href = buildUrl(ABOS_URL, buildAbosParams(phone, slug));
-      };
+  <footer>
+    <div class="wrap footer-row">
+      <div>MON COMMERCE by DIGIY — caisse boutique moderne, pensée pour le terrain.</div>
+      <div>
+        <a href="https://digiylyfe.com/">digiylyfe.com</a>
+      </div>
+    </div>
+  </footer>
 
-      return;
-    }
+  <a class="float-home" href="https://digiylyfe.com/" aria-label="Retour DIGIYLYFE">
+    ⬅ Retour DIGIYLYFE
+  </a>
 
-    const status = await digiyGetSubscriptionFull(phone, MODULE_CODE);
-    const expiresAt = status?.expires_at || status?.current_period_end || null;
-    const plan = status?.plan || status?.plan_code || "standard";
-    const pay = status?.payment_ref ? "validé" : "ok";
-
-    $("dot").classList.add("ok");
-    $("statusLine").textContent = "Abonnement actif";
-    $("expiryLine").textContent = expiresAt ? `Expire le ${fmtDateFR(expiresAt)}` : "Expiration : —";
-    $("pillStatus").innerHTML = `Statut : <b>Actif</b>`;
-    $("metaLine").innerHTML = `<span>Plan : ${plan}</span><span>•</span><span>Paiement : ${pay}</span>`;
-
-    const stats = await digiyGetDashboardStats(phone, MODULE_CODE);
-    const month = stats?.month_xof ?? null;
-    const tx = stats?.tx_count ?? null;
-
-    $("moneyMonth").textContent = month !== null ? `${Number(month).toLocaleString("fr-FR")} FCFA` : "— FCFA";
-    $("txCount").textContent = tx !== null ? `${tx} transactions` : "— transactions";
-    $("todayHint").textContent = stats?.today_hint || "Aujourd’hui";
-
-    const notifs = [];
-
-    if(expiresAt){
-      const d = daysBetween(new Date().toISOString(), expiresAt);
-      if(d !== null && d <= 3){
-        notifs.push({
-          level:"warn",
-          tag:"J-3",
-          title:"Abonnement bientôt expiré",
-          text:`Expire dans ${d} jour(s). Renouvelle pour éviter la coupure.`
-        });
-      } else {
-        notifs.push({
-          level:"ok",
-          tag:"OK",
-          title:"Abonnement",
-          text:"Actif — prochain contrôle : J-3."
-        });
-      }
-    }
-
-    const boost = await digiyGetBoostStatus(phone);
-    if(boost?.active){
-      $("boostStatus").textContent = `Statut boost : actif jusqu’au ${fmtDateFR(boost.expires_at)} • +${boost.views_today || 0} vues aujourd’hui`;
-      $("btnBoost").textContent = "Actif";
-      $("btnBoost").disabled = true;
-      notifs.push({level:"info",tag:"BOOST",title:"Boost actif",text:"Visibilité augmentée. Continue ton activité."});
-    } else {
-      $("boostStatus").textContent = "Statut boost : inactif";
-      notifs.push({level:"info",tag:"OPTION",title:"Boost disponible",text:"Active le BOOST si tu veux plus de visibilité."});
-    }
-
-    if(month === null || tx === null){
-      notifs.push({level:"info",tag:"DATA",title:"Stats à brancher",text:"Le dashboard vit déjà, mais les chiffres réels attendent la RPC stats si elle n’est pas encore posée."});
-    }
-
-    setNotifs(notifs);
-
-    $("btnManageSub").onclick = () => {
-      location.href = buildUrl(ABOS_URL, buildAbosParams(phone, slug));
-    };
-
-    $("btnPrimaryAction").onclick = () => {
-      location.href = buildUrl(CAISSE_URL, { slug, phone, module: MODULE_CODE });
-    };
-
-    $("btnBoostInfo").onclick = () => {
-      alert("BOOST : +50% d’apparition pendant 7 jours. Paiement direct. Aucun spam.");
-    };
-
-    $("btnBoost").onclick = async () => {
-      try{
-        $("btnBoost").disabled = true;
-        $("btnBoost").textContent = "…";
-
-        const payUrlPayload = await digiyBuildPayUrl(BOOST.module, phone, BOOST.plan);
-        const url = (typeof payUrlPayload === "string")
-          ? payUrlPayload
-          : (payUrlPayload?.url || payUrlPayload?.pay_url || null);
-
-        if(!url){
-          throw new Error("URL paiement BOOST manquante");
-        }
-
-        location.href = url;
-      }catch(e){
-        console.error(e);
-        alert("Impossible d’activer le BOOST. Vérifie la config ou la RPC digiy_build_pay_url.");
-        $("btnBoost").disabled = false;
-        $("btnBoost").textContent = "Activer";
-      }
-    };
-
-  })();
-})();
-</script>
 </body>
 </html>
