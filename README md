@@ -1,0 +1,56 @@
+# MON COMMERCE — Vitrine Caisse
+
+Vitrine publique du module **MON COMMERCE by DIGIY**.  
+Cette page sert à présenter la valeur du rail POS avant l’entrée dans les pages protégées.
+
+## Rôle du dossier
+
+Ce dossier vitrine sert à :
+
+- présenter la caisse au commerçant
+- montrer la valeur sans ouvrir les pages métier
+- rediriger proprement vers l’abonnement
+- envoyer vers les rails réels du module POS
+
+## Positionnement public
+
+**Nom public :** MON COMMERCE  
+**Nom module visible :** DIGIY CAISSE PRO  
+**Nom technique interne :** POS
+
+## Fichiers de base
+
+- `index.html` → vitrine publique du module
+- `README.md` → mémo du dossier
+
+## Liens métier du rail POS
+
+Quand le module complet est posé, la vitrine peut pointer vers :
+
+- `index.html` → hall POS
+- `pin.html` → porte PIN
+- `caisse.html` → salle de travail
+- `admin.html` → réglages / produits
+- `dashboard-pro.html` → cockpit pro
+
+## Doctrine DIGIY à respecter
+
+- garder **POS** en interne
+- afficher **MON COMMERCE / DIGIY CAISSE PRO** en façade
+- ne pas refaire le backend si le rail existe déjà
+- front uniquement tant que le backend est valide
+- zéro démo sale si un rail réel existe
+- navigation visible entre les pages clés
+- toujours transmettre `slug` et `phone` quand utile
+
+## Configuration front
+
+Dans les pages du module, utiliser la config officielle :
+
+```html
+<script>
+  window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+  window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
+  window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
+  window.DIGIY_MODULE = "POS";
+</script>
