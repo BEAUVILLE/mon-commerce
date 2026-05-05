@@ -11,6 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
 
+
+  <!-- DIGIY PUBLIC GALLERY — Supabase RPC publique -->
+  <script>
+    window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+    window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
+    window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     :root{
       --bg:#12100f;
@@ -404,6 +413,117 @@
     .list-item strong{display:block;margin-bottom:3px;font-size:15px;}
     .list-item span{color:var(--muted);font-size:14px;}
 
+
+
+    /* ── COMMERCES ÉQUIPÉS — galerie publique réelle ── */
+    .commerce-gallery{
+      padding:26px 0;
+    }
+
+    .commerce-gallery-panel{
+      border-radius:28px;
+      padding:20px;
+      background:
+        radial-gradient(circle at top right, rgba(214,168,95,.10), transparent 34%),
+        radial-gradient(circle at left bottom, rgba(95,143,116,.08), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .commerce-gallery-status{
+      margin-bottom:14px;
+      padding:13px 14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.035);
+      color:var(--muted);
+      font-size:14px;
+      font-weight:800;
+      line-height:1.65;
+    }
+
+    .commerce-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
+    }
+
+    .commerce-card{
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.035);
+      box-shadow:0 16px 42px rgba(0,0,0,.24);
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .commerce-photo{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      display:block;
+      background:#241f1b;
+    }
+
+    .commerce-body{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+
+    .commerce-title{
+      font-family:var(--fontB);
+      font-size:24px;
+      line-height:1.04;
+      font-weight:700;
+      color:var(--cream);
+    }
+
+    .commerce-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+    }
+
+    .commerce-chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:850;
+    }
+
+    .commerce-bio{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      font-weight:650;
+      flex:1;
+    }
+
+    .commerce-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .commerce-actions .btn,
+    .commerce-actions .btn-secondary{
+      flex:1;
+      min-width:132px;
+      min-height:44px;
+      padding:0 14px;
+      font-size:13px;
+    }
+
     .cta{padding:34px 0 52px;}
 
     .cta-box{
@@ -623,6 +743,7 @@
         <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">📦 Tarifs</a>
         <a href="#fonctionne">Comment ça marche</a>
         <a href="#avantages">Ce que tu gagnes</a>
+        <a href="#commerces-equipes">Commerces équipés</a>
         <a href="https://commerce-pro.digiylyfe.com/">Mon activité</a>
         <a class="nav-cta" href="https://commencer-a-payer.digiylyfe.com/">Rejoindre DIGIY →</a>
       </nav>
@@ -771,6 +892,29 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="section commerce-gallery" id="commerces-equipes">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Commerces équipés<br>par MON COMMERCE.</h2>
+            <p style="margin-top:10px;">
+              Les boutiques publiées apparaissent ici : photo, ville, WhatsApp direct et présence claire.
+              Le client contacte le commerce, puis paie le commerçant directement. DIGIY ne prend pas de commission.
+            </p>
+          </div>
+        </div>
+
+        <div class="commerce-gallery-panel">
+          <div class="commerce-gallery-status" id="commerceGalleryStatus">
+            Chargement des commerces publiés…
+          </div>
+          <div class="commerce-grid" id="commerceGallery" aria-live="polite"></div>
         </div>
       </div>
     </section>
@@ -958,6 +1102,123 @@
       <a href="https://commencer-a-payer.digiylyfe.com/"><span class="ico">🛍️</span><span>Rejoindre</span></a>
     </div>
   </nav>
+
+
+
+  <script>
+    (function(){
+      "use strict";
+
+      var FALLBACK_PHOTO = "https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg";
+      var SUPPORT_PHONE = "221771342889";
+      var galleryBox = document.getElementById("commerceGallery");
+      var galleryStatus = document.getElementById("commerceGalleryStatus");
+
+      function cleanDigits(value){
+        return String(value || "").replace(/[^\d]/g, "");
+      }
+
+      function escapeHtml(value){
+        return String(value == null ? "" : value)
+          .replace(/&/g,"&amp;")
+          .replace(/</g,"&lt;")
+          .replace(/>/g,"&gt;")
+          .replace(/"/g,"&quot;")
+          .replace(/'/g,"&#039;");
+      }
+
+      function normalizeItems(data){
+        if(Array.isArray(data)) return data;
+        if(Array.isArray(data && data.items)) return data.items;
+        if(Array.isArray(data && data.profiles)) return data.profiles;
+        if(Array.isArray(data && data.data)) return data.data;
+        return [];
+      }
+
+      function publicWhatsappUrl(phone, name){
+        var digits = cleanDigits(phone || SUPPORT_PHONE);
+        var text = "Bonjour, je viens de voir " + (name || "votre commerce") + " sur MON COMMERCE by DIGIY.";
+        return "https://wa.me/" + digits + "?text=" + encodeURIComponent(text);
+      }
+
+      function profileUrl(item){
+        var explicit = String((item && item.profile_url) || "").trim();
+        if(/^https?:\/\//i.test(explicit) && !/mon-commerce\.digiylyfe\.com\/?$/i.test(explicit.replace(/[?#].*$/, ""))){
+          return explicit;
+        }
+        return "#commerces-equipes";
+      }
+
+      function renderGallery(items){
+        if(!galleryBox || !galleryStatus) return;
+        galleryBox.innerHTML = "";
+
+        if(!items.length){
+          galleryStatus.textContent = "Aucun commerce publié pour le moment. Les boutiques validées apparaîtront ici.";
+          return;
+        }
+
+        galleryStatus.textContent = items.length + " commerce(s) publié(s) dans MON COMMERCE.";
+
+        items.forEach(function(item){
+          var name = item.display_name || "Commerce DIGIY";
+          var photo = item.photo_url || FALLBACK_PHOTO;
+          var category = item.category || "Commerce";
+          var city = item.city || "Ville non précisée";
+          var badge = item.badge || item.hub_badge || "💳 MON COMMERCE";
+          var bio = item.bio || "Commerce équipé avec MON COMMERCE by DIGIY.";
+          var wa = publicWhatsappUrl(item.whatsapp, name);
+          var link = profileUrl(item);
+
+          var card = document.createElement("article");
+          card.className = "commerce-card";
+          card.innerHTML =
+            '<img class="commerce-photo" src="' + escapeHtml(photo) + '" alt="' + escapeHtml(name) + '" loading="lazy" onerror="this.src=\'' + FALLBACK_PHOTO + '\'">' +
+            '<div class="commerce-body">' +
+              '<div class="commerce-title">' + escapeHtml(name) + '</div>' +
+              '<div class="commerce-meta">' +
+                '<span class="commerce-chip">' + escapeHtml(category) + '</span>' +
+                '<span class="commerce-chip">📍 ' + escapeHtml(city) + '</span>' +
+                '<span class="commerce-chip">' + escapeHtml(badge) + '</span>' +
+              '</div>' +
+              '<div class="commerce-bio">' + escapeHtml(bio) + '</div>' +
+              '<div class="commerce-actions">' +
+                '<a class="btn btn-primary" href="' + escapeHtml(wa) + '" target="_blank" rel="noopener">💬 WhatsApp</a>' +
+                '<a class="btn btn-secondary" href="' + escapeHtml(link) + '">👁️ Voir</a>' +
+              '</div>' +
+            '</div>';
+          galleryBox.appendChild(card);
+        });
+      }
+
+      async function loadCommerceGallery(){
+        if(!galleryStatus) return;
+
+        if(!window.supabase || !window.supabase.createClient || !window.DIGIY_SUPABASE_URL || !window.DIGIY_SUPABASE_ANON_KEY){
+          galleryStatus.textContent = "Galerie indisponible pour le moment : connexion non prête.";
+          return;
+        }
+
+        try{
+          var sb = window.supabase.createClient(window.DIGIY_SUPABASE_URL, window.DIGIY_SUPABASE_ANON_KEY, {
+            auth:{ persistSession:false, autoRefreshToken:false, detectSessionInUrl:false }
+          });
+          var res = await sb.rpc("digiy_pos_public_gallery");
+          if(res.error) throw res.error;
+          renderGallery(normalizeItems(res.data));
+        }catch(err){
+          console.warn("[DIGIY MON COMMERCE] Galerie indisponible", err && (err.message || err));
+          galleryStatus.textContent = "Impossible de charger les commerces publiés pour le moment.";
+        }
+      }
+
+      if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", loadCommerceGallery);
+      }else{
+        loadCommerceGallery();
+      }
+    })();
+  </script>
 
   <!-- ============================================================
      DIGIY AUDIO — MON COMMERCE
@@ -1251,4 +1512,4 @@ font-size:17px;
      ============================================================ -->
 
 </body>
-</html>
+</html>$
