@@ -460,6 +460,34 @@
       min-height:100%;
     }
 
+    .commerce-card.is-demo{
+      border-color:rgba(214,168,95,.22);
+      background:
+        radial-gradient(circle at top right, rgba(214,168,95,.10), transparent 34%),
+        rgba(255,255,255,.035);
+    }
+
+    .commerce-card.is-demo .commerce-photo{
+      filter:saturate(1.06) contrast(1.03);
+    }
+
+    .commerce-demo-label{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      gap:6px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(214,168,95,.24);
+      background:rgba(214,168,95,.10);
+      color:#f1d49c;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+
+
     .commerce-photo{
       width:100%;
       height:180px;
@@ -902,10 +930,10 @@
       <div class="wrap">
         <div class="section-title">
           <div>
-            <h2>Commerces équipés<br>par MON COMMERCE.</h2>
+            <h2>Boutiques visibles<br>et inspirations.</h2>
             <p style="margin-top:10px;">
-              Les boutiques publiées apparaissent ici : photo, ville, WhatsApp direct et présence claire.
-              Le client contacte le commerce, puis paie le commerçant directement. DIGIY ne prend pas de commission.
+              Les boutiques publiées apparaissent ici avec leurs photos, leur style, leurs produits et leur WhatsApp.
+              Les exemples montrent ce que chaque commerçant pourra faire : présenter ses arrivages, ses conseils, ses vidéos et sa personnalité.
             </p>
           </div>
         </div>
@@ -1111,6 +1139,39 @@
 
       var FALLBACK_PHOTO = "https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg";
       var SUPPORT_PHONE = "221771342889";
+
+      var DEMO_BOUTIQUES = [
+        {
+          is_demo:true,
+          slug:"exemple-sacs-saly",
+          display_name:"Exemple — Awa Sacs & Accessoires",
+          category:"Sacs · Accessoires · Arrivages",
+          city:"Saly",
+          address:"Saly centre",
+          whatsapp:SUPPORT_PHONE,
+          photo_url:"https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=80",
+          badge:"🎥 Exemple vidéo",
+          hub_badge:"👜 STYLE BOUTIQUE",
+          price_label:"Contact direct · 0% commission",
+          bio:"Une vendeuse de sacs peut montrer ses arrivages en vidéo : couleurs, matières, tailles, détails et conseils. Le client voit mieux, demande sur WhatsApp, puis choisit sans se perdre.",
+          tags:["sacs","arrivages","vidéo","saly"]
+        },
+        {
+          is_demo:true,
+          slug:"exemple-chaussures-telephone",
+          display_name:"Exemple — Chaussures & Téléphones",
+          category:"Chaussures · Téléphones · État réel",
+          city:"Dakar / Saly",
+          address:"Commerce de quartier",
+          whatsapp:SUPPORT_PHONE,
+          photo_url:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
+          badge:"📸 Exemple produit",
+          hub_badge:"👟 PRODUIT EN MAIN",
+          price_label:"WhatsApp direct · paiement commerçant",
+          bio:"Un vendeur peut faire tourner une paire à la main, montrer la semelle, la matière, ou présenter l’état réel d’un téléphone : écran, batterie, accessoires. Chaque commerce garde son style.",
+          tags:["chaussures","téléphone","produit","whatsapp"]
+        }
+      ];
       var galleryBox = document.getElementById("commerceGallery");
       var galleryStatus = document.getElementById("commerceGalleryStatus");
 
@@ -1142,25 +1203,50 @@
       }
 
       function profileUrl(item){
+        var slug = String((item && item.slug) || "").trim();
+
+        if(slug === "pos-221771342889"){
+          return "https://vas-chez-digiy.digiylyfe.com/";
+        }
+
+        if(slug){
+          return "./fiche.html?slug=" + encodeURIComponent(slug);
+        }
+
         var explicit = String((item && item.profile_url) || "").trim();
         if(/^https?:\/\//i.test(explicit) && !/mon-commerce\.digiylyfe\.com\/?$/i.test(explicit.replace(/[?#].*$/, ""))){
           return explicit;
         }
+
         return "#commerces-equipes";
+      }
+
+      function mergeDemoItems(items){
+        var live = Array.isArray(items) ? items : [];
+        var liveSlugs = live.map(function(x){ return String((x && x.slug) || ""); });
+        var demos = DEMO_BOUTIQUES.filter(function(x){ return liveSlugs.indexOf(x.slug) === -1; });
+        return live.concat(demos);
       }
 
       function renderGallery(items){
         if(!galleryBox || !galleryStatus) return;
         galleryBox.innerHTML = "";
 
-        if(!items.length){
+        var liveCount = Array.isArray(items) ? items.length : 0;
+        var viewItems = mergeDemoItems(items);
+
+        if(!viewItems.length){
           galleryStatus.textContent = "Aucun commerce publié pour le moment. Les boutiques validées apparaîtront ici.";
           return;
         }
 
-        galleryStatus.textContent = items.length + " commerce(s) publié(s) dans MON COMMERCE.";
+        if(liveCount > 0){
+          galleryStatus.textContent = liveCount + " commerce(s) publié(s) + 2 exemples d’inspiration pour montrer aux abonnés comment présenter leurs produits en photo ou vidéo.";
+        }else{
+          galleryStatus.textContent = "2 exemples d’inspiration sont affichés en attendant les premières boutiques publiées.";
+        }
 
-        items.forEach(function(item){
+        viewItems.forEach(function(item){
           var name = item.display_name || "Commerce DIGIY";
           var photo = item.photo_url || FALLBACK_PHOTO;
           var category = item.category || "Commerce";
@@ -1169,12 +1255,14 @@
           var bio = item.bio || "Commerce équipé avec MON COMMERCE by DIGIY.";
           var wa = publicWhatsappUrl(item.whatsapp, name);
           var link = profileUrl(item);
+          var isDemo = !!item.is_demo;
 
           var card = document.createElement("article");
-          card.className = "commerce-card";
+          card.className = "commerce-card" + (isDemo ? " is-demo" : "");
           card.innerHTML =
             '<img class="commerce-photo" src="' + escapeHtml(photo) + '" alt="' + escapeHtml(name) + '" loading="lazy" onerror="this.src=\'' + FALLBACK_PHOTO + '\'">' +
             '<div class="commerce-body">' +
+              (isDemo ? '<div class="commerce-demo-label">Exemple créatif</div>' : '') +
               '<div class="commerce-title">' + escapeHtml(name) + '</div>' +
               '<div class="commerce-meta">' +
                 '<span class="commerce-chip">' + escapeHtml(category) + '</span>' +
@@ -1184,7 +1272,7 @@
               '<div class="commerce-bio">' + escapeHtml(bio) + '</div>' +
               '<div class="commerce-actions">' +
                 '<a class="btn btn-primary" href="' + escapeHtml(wa) + '" target="_blank" rel="noopener">💬 WhatsApp</a>' +
-                '<a class="btn btn-secondary" href="' + escapeHtml(link) + '">👁️ Voir</a>' +
+                (isDemo ? '<a class="btn btn-secondary" href="' + escapeHtml(wa) + '" target="_blank" rel="noopener">🎥 Demander une vidéo</a>' : '<a class="btn btn-secondary" href="' + escapeHtml(link) + '">👁️ Voir la fiche</a>') +
               '</div>' +
             '</div>';
           galleryBox.appendChild(card);
@@ -1227,9 +1315,9 @@
 
 <script>
 window.DIGIY_AUDIO_CONFIG = {
-  label: "Écouter la boutique",
+  label: "Écouter Digiy",
   stopLabel: "Arrêter",
-  text: "Bienvenue. Ici, ta boutique encaisse avec plus de tenue. Tu vends, tu présentes mieux, et ta cliente paie dans un cadre plus clair et plus élégant. Mode, sacs, accessoires ou commerce raffiné, MON COMMERCE donne à ta caisse une image à la hauteur. Simple. Direct. Humain. DIGIYLYFE.",
+  text: "Bienvenue dans MON COMMERCE by Digiy. Ici, on ne vient pas seulement voir une caisse. On vient découvrir des commerces vivants, des visages, des produits, des styles, des voix. Chaque commerçant peut joindre à sa photo de présentation une vraie fiche vivante, une fiche d’expression personnelle. Il peut montrer ce qu’il vend, raconter son univers, présenter ses arrivages, ses conseils, ses matières, ses couleurs, ses nouveautés. Une vendeuse de sacs peut montrer ses arrivages en vidéo. Un vendeur de chaussures peut faire tourner la paire à la main pour montrer la forme, la matière et l’état réel. Une boutique cosmétique peut montrer un avant-après, donner un conseil, parler texture, parfum et confiance. Un tailleur peut montrer une coupe, un tissu, une finition. Une épicerie peut montrer les produits frais du jour. Un vendeur de téléphone peut montrer l’écran, les accessoires et l’état réel de l’appareil. Chacun garde son style, sa personnalité, sa manière de parler au client. Digiy apporte le cadre, mais ne vole pas la relation. Le client voit, il choisit, il contacte directement. Zéro commission. Paiement au commerçant. MON COMMERCE by Digiy, c’est une rue commerciale vivante qui entre dans la lumière du web.",
   buttonBg: "linear-gradient(135deg,#d4af37,#b78b34)",
   buttonColor: "#111827",
   bottom: "96px",
@@ -1302,9 +1390,9 @@ font-size:17px;
 }
 </style>
 
-<button id="digiy-audio-btn" type="button" aria-label="Écouter la boutique">
+<button id="digiy-audio-btn" type="button" aria-label="Écouter Digiy">
   <span class="digiy-audio-ico">&#9654;</span>
-  <span class="digiy-audio-lbl">Écouter la boutique</span>
+  <span class="digiy-audio-lbl">Écouter Digiy</span>
 </button>
 
 <div id="digiy-audio-progress-wrap" aria-hidden="true">
@@ -1512,4 +1600,4 @@ font-size:17px;
      ============================================================ -->
 
 </body>
-</html>$
+</html>
