@@ -240,20 +240,37 @@
     }
 
     .chips{
-      margin-top:18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:9px;
+      margin-top:22px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:11px;
+      max-width:760px;
     }
 
     .chip{
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.045);
-      color:#e8d9c9;
-      font-size:13px;
-      font-weight:850;
+      min-height:58px;
+      padding:13px 14px;
+      border-radius:18px;
+      border:1px solid rgba(214,168,95,.24);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.15),transparent 40%),
+        rgba(255,255,255,.055);
+      color:#f5e8d6;
+      font-size:15px;
+      font-weight:1000;
+      line-height:1.15;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+    }
+
+    .chip.gold{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#17120e;
+      border-color:transparent;
+      box-shadow:0 16px 34px rgba(214,168,95,.23);
     }
 
     .patchwork-card{
@@ -284,11 +301,14 @@
     }
 
     .audio-card{
-      margin-top:18px;
-      border-radius:24px;
-      border:1px solid rgba(214,168,95,.21);
-      background:rgba(214,168,95,.075);
-      padding:14px;
+      margin-top:20px;
+      border-radius:26px;
+      border:1px solid rgba(214,168,95,.30);
+      background:
+        radial-gradient(circle at top left,rgba(214,168,95,.18),transparent 42%),
+        rgba(214,168,95,.085);
+      padding:16px;
+      box-shadow:0 16px 38px rgba(0,0,0,.20);
     }
 
     .audio-top{
@@ -302,7 +322,8 @@
     .audio-title{
       font-weight:1000;
       color:#f5dca8;
-      font-size:16px;
+      font-size:20px;
+      letter-spacing:-.02em;
     }
 
     .audio-text{
@@ -615,11 +636,18 @@
       .hero{padding-top:24px}
       .lead{font-size:16px}
       .cards{grid-template-columns:1fr}
+      .chips{grid-template-columns:1fr 1fr}
+      .chip{min-height:54px;font-size:14px;padding:12px}
       .hero-actions{display:grid}
       .btn{width:100%}
       .patchwork-card{border-radius:26px;padding:10px}
       .patchwork-card img{border-radius:22px}
       .cta-box{padding:22px}
+    }
+
+    @media(max-width:460px){
+      .chips{grid-template-columns:1fr}
+      .chip{font-size:15px}
     }
   </style>
 </head>
@@ -657,14 +685,14 @@
           </p>
 
           <div class="hero-actions">
-            <button class="btn btn-primary" id="audioBtn" type="button">🎧 Écouter DIGIY</button>
+            <button class="btn btn-primary" id="audioBtn" type="button">🎙️ Lecteur terrain</button>
             <a class="btn btn-green" href="#commerces">Voir les commerces</a>
             <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20comprendre%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">WhatsApp DIGIY</a>
           </div>
 
-          <div class="chips">
-            <span class="chip">0% commission</span>
-            <span class="chip">Paiement direct</span>
+          <div class="chips" aria-label="Piliers MON COMMERCE">
+            <span class="chip gold">0% commission</span>
+            <span class="chip gold">Paiement direct</span>
             <span class="chip">WhatsApp direct</span>
             <span class="chip">QR boutique</span>
             <span class="chip">Photo par URL</span>
@@ -1082,7 +1110,7 @@ Même petit, un commerce peut être vu, compris et respecté.
 MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
 
         function setButton(){
-          btn.textContent = playing ? "⏹ Stop" : "🎧 Écouter DIGIY";
+          btn.textContent = playing ? "⏹ Stop" : "🎙️ Lecteur terrain";
         }
 
         function stopAudio(){
@@ -1127,4 +1155,5 @@ MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
   </script>
 </body>
 </html>
+
 
