@@ -183,9 +183,7 @@
       box-shadow:0 16px 38px rgba(111,162,126,.20);
     }
 
-    .hero{
-      padding:36px 0 20px;
-    }
+    .hero{padding:36px 0 20px}
 
     .hero-grid{
       display:grid;
@@ -375,9 +373,7 @@
       font-weight:750;
     }
 
-    .section{
-      padding:28px 0;
-    }
+    .section{padding:28px 0}
 
     .section-title{
       display:flex;
@@ -707,7 +703,7 @@
       </a>
 
       <nav class="nav" aria-label="Navigation principale">
-        <a href="#commerces">Commerces</a>
+        <a href="./galerie.html">Galerie partenaires</a>
         <a href="#pour-qui">Pour qui ?</a>
         <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a>
@@ -721,7 +717,9 @@
       <div class="wrap hero-grid">
         <div>
           <div class="eyebrow">🛒 MON COMMERCE by DIGIYLYFE</div>
+
           <h1>La vitrine n’est pas réservée aux grands. <em>Elle appartient au terrain.</em></h1>
+
           <p class="lead">
             Cantine de trottoir, kiosque de deux mètres carrés, tailleur, coiffeuse, réparateur, vendeur de fruits,
             boutique de quartier ou commerce déjà structuré : MON COMMERCE donne une présence claire, simple et directe.
@@ -730,7 +728,7 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">📝 Activer mon commerce</a>
             <button class="btn btn-secondary" id="audioBtn" type="button">🎙️ Lecteur terrain</button>
-            <a class="btn btn-green" href="#commerces">Voir les commerces</a>
+            <a class="btn btn-green" href="./galerie.html">🖼️ Voir les boutiques partenaires</a>
             <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">WhatsApp DIGIY</a>
           </div>
 
@@ -839,10 +837,11 @@
     <section class="section" id="commerces">
       <div class="wrap">
         <div class="section-title">
-          <h2>Commerces visibles</h2>
+          <h2>Aperçu des commerces</h2>
           <p>
-            Les fiches publiées apparaissent ici. Si la galerie réelle est encore légère, DIGIY complète avec des exemples métier pour montrer tous les commerces possibles.
+            Cette zone peut afficher des exemples métier. Pour voir les vraies fiches partenaires gardées, ouvre la galerie officielle.
           </p>
+          <a class="btn btn-primary" href="./galerie.html">🖼️ Ouvrir la galerie partenaires</a>
         </div>
 
         <div class="gallery-panel">
@@ -864,6 +863,7 @@
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">📝 Activer mon commerce</a>
+            <a class="btn btn-secondary" href="./galerie.html">🖼️ Galerie partenaires</a>
             <a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Voir les tarifs</a>
           </div>
         </div>
@@ -877,6 +877,7 @@
       <div>
         <a href="https://digiylyfe.com/">Site</a> ·
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
+        <a href="./galerie.html">Galerie</a> ·
         <a href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activation</a>
       </div>
     </div>
@@ -886,7 +887,7 @@
     <div class="bottom-nav-inner">
       <a class="active" href="#"><span class="ico">🏠</span><span>Accueil</span></a>
       <a href="#pour-qui"><span class="ico">🛒</span><span>Métiers</span></a>
-      <a href="#commerces"><span class="ico">🧭</span><span>Voir</span></a>
+      <a href="./galerie.html"><span class="ico">🖼️</span><span>Galerie</span></a>
       <a href="https://tarifs.digiylyfe.com/"><span class="ico">📦</span><span>Tarifs</span></a>
       <a href="https://commencer-a-payer.digiylyfe.com/?module=POS"><span class="ico">📝</span><span>Activer</span></a>
     </div>
@@ -1092,13 +1093,11 @@
           let data = [];
           let error = null;
 
-          // Tentative 1 : RPC publique si elle existe.
           try{
             const r = await client.rpc("digiy_pos_public_gallery");
             if(!r.error && Array.isArray(r.data)) data = r.data;
           }catch(_){}
 
-          // Tentative 2 : table / vue publique existante.
           if(!data.length){
             const q = client
               .from("digiy_pos_public_profiles")
@@ -1205,5 +1204,3 @@ MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
   </script>
 </body>
 </html>
-
-
