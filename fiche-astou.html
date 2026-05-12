@@ -200,6 +200,12 @@
       padding:20px;
     }
 
+    .qrBox a{
+      display:block;
+      border-radius:18px;
+      line-height:0;
+    }
+
     .qrBox img{
       max-width:100%;
       height:auto;
@@ -346,17 +352,24 @@
     <h2>QR Astou Boutique</h2>
 
     <div class="line">
-      <strong>Scanner</strong>
-      Scanne ce QR pour retrouver cette boutique rapidement.
+      <strong>Scanner ou cliquer</strong>
+      Scanne ce QR sur papier, ou clique dessus si tu reçois cette fiche sur téléphone.
     </div>
 
     <div class="qrBox">
-      <img
-        src="https://quickchart.io/qr?size=280&text=https%3A%2F%2Fmon-commerce.digiylyfe.com%2Ffiche-astou.html"
-        alt="QR Astou Boutique"
-        width="280"
-        height="280"
-      />
+      <a
+        href="https://mon-commerce.digiylyfe.com/fiche-astou.html"
+        target="_blank"
+        rel="noopener"
+        aria-label="Ouvrir la fiche publique Astou Boutique"
+      >
+        <img
+          src="https://quickchart.io/qr?size=280&text=https%3A%2F%2Fmon-commerce.digiylyfe.com%2Ffiche-astou.html"
+          alt="QR Astou Boutique"
+          width="280"
+          height="280"
+        />
+      </a>
     </div>
 
     <div class="links">
