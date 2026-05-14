@@ -266,13 +266,46 @@
     }
 
     .shop-cover{
-      height:176px;
+      height:220px;
       background:
         radial-gradient(circle at top right,rgba(214,168,95,.18),transparent 45%),
         linear-gradient(135deg,#2a231f,#14110f);
       display:grid;
       place-items:center;
       font-size:62px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .shop-cover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+
+    .shop-cover::after{
+      content:"Voir la fiche";
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.54);
+      color:#fff7d6;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:13px;
+      font-weight:1000;
+      backdrop-filter:blur(8px);
+    }
+
+    .shop-cover.placeholder::after{
+      display:none;
     }
 
     .shop-body{
@@ -451,7 +484,13 @@
     <div class="gallery">
 
       <article class="shop">
-        <div class="shop-cover">🛍️</div>
+        <a class="shop-cover" href="./fiche-astou.html" aria-label="Ouvrir la fiche Astou Boutique">
+          <img
+            src="https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-B.png"
+            alt="Astou Boutique — textile maison, plage, hôtel et beauté à Saly"
+            loading="lazy"
+          />
+        </a>
 
         <div class="shop-body">
           <h3>Astou Boutique</h3>
@@ -464,7 +503,7 @@
 
           <div class="desc">
             Textile maison, serviettes, draps, foutas, tenues, beauté et produits utiles du quotidien.
-            Contact direct, fiche légère, QR permanent.
+            Une vraie ambiance boutique : on voit, on comprend, on clique, puis on contacte directement.
           </div>
 
           <div class="shop-actions">
@@ -475,7 +514,7 @@
       </article>
 
       <article class="shop">
-        <div class="shop-cover">＋</div>
+        <div class="shop-cover placeholder">＋</div>
 
         <div class="shop-body">
           <h3>Prochaine boutique</h3>
@@ -534,4 +573,5 @@
 </nav>
 
 </body>
+<!-- DIGIY MON COMMERCE — Galerie Astou avec ASTOU-B en image d’ouverture — 20260514 -->
 </html>
