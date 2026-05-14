@@ -507,9 +507,37 @@
       min-height:100%;
     }
 
+    .commerce-photo-link{
+      position:relative;
+      display:block;
+      width:100%;
+      height:220px;
+      overflow:hidden;
+      background:#241f1b;
+    }
+
+    .commerce-photo-link::after{
+      content:"Voir la fiche";
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.56);
+      color:#fff7d6;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:13px;
+      font-weight:1000;
+      backdrop-filter:blur(8px);
+    }
+
     .commerce-photo{
       width:100%;
-      height:176px;
+      height:100%;
       object-fit:cover;
       background:#241f1b;
     }
@@ -729,6 +757,7 @@
             <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">📝 Activer mon commerce</a>
             <button class="btn btn-secondary" id="audioBtn" type="button">🎙️ Lecteur terrain</button>
             <a class="btn btn-green" href="./galerie.html">🖼️ Voir les boutiques partenaires</a>
+            <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/fiche-astou.html" target="_blank" rel="noopener noreferrer">🛍️ Voir Astou Boutique</a>
             <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">WhatsApp DIGIY</a>
           </div>
 
@@ -839,7 +868,7 @@
         <div class="section-title">
           <h2>Aperçu des commerces</h2>
           <p>
-            Cette zone peut afficher des exemples métier. Pour voir les vraies fiches partenaires gardées, ouvre la galerie officielle.
+            Cette zone montre Astou Boutique comme preuve terrain, puis des exemples métier pour rappeler que MON COMMERCE reste ouvert à tous les commerces.
           </p>
           <a class="btn btn-primary" href="./galerie.html">🖼️ Ouvrir la galerie partenaires</a>
         </div>
@@ -898,6 +927,19 @@
       "use strict";
 
       const PATCHWORK_URL = "https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png";
+
+      const ASTOU_PARTNER = {
+        display_name:"Astou Boutique",
+        category:"Textile maison · plage · hôtel · beauté",
+        city:"Saly",
+        description:"Textile maison, serviettes, draps, foutas, tenues, beauté et produits utiles du quotidien. Une vraie ambiance boutique : on voit, on comprend, on clique, puis on contacte directement.",
+        photo_url:"https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-B.png",
+        whatsapp:"221771342889",
+        public_url:"https://mon-commerce.digiylyfe.com/fiche-astou.html",
+        qr_url:"https://mon-commerce.digiylyfe.com/qr-astou.html",
+        is_astou:true,
+        published:true
+      };
 
       const DEMOS = [
         {
@@ -1020,6 +1062,50 @@
         }
       }
 
+      function normText(v){
+        return String(v || "")
+          .trim()
+          .toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+      }
+
+      function isGenericCommerce(item){
+        const name = normText(pick(item,["display_name","shop_name","store_name","name","title"],""));
+        const desc = normText(pick(item,["description","bio","short_description","about"],""));
+        const city = normText(pick(item,["city","location","address_label","zone"],""));
+
+        return (
+          name === "mon commerce" &&
+          (city === "senegal" || city === "terrain" || !city) &&
+          desc.includes("commerce equipe avec mon commerce")
+        );
+      }
+
+      function isAstouLike(item){
+        const values = [
+          item?.slug,
+          item?.public_slug,
+          item?.commerce,
+          item?.display_name,
+          item?.shop_name,
+          item?.store_name,
+          item?.name,
+          item?.title,
+          item?.public_url,
+          item?.url,
+          item?.website
+        ].map(normText).join(" ");
+
+        return values.includes("astou");
+      }
+
+      function ensureAstouFirst(items){
+        const clean = Array.isArray(items) ? items.filter(item => !isGenericCommerce(item)) : [];
+        const withoutAstou = clean.filter(item => !isAstouLike(item));
+        return [ASTOU_PARTNER].concat(withoutAstou);
+      }
+
+
       function whatsappLink(phone, name){
         const p = digits(phone);
         if(!p) return "";
@@ -1041,25 +1127,34 @@
           const photo = pick(raw,["photo_url","image_url","cover_url","logo_url","avatar_url"],PATCHWORK_URL);
           const phone = raw.demo ? "" : pick(raw,["whatsapp","whatsapp_phone","phone","public_phone"],"");
           const publicUrl = raw.demo ? "" : pick(raw,["public_url","url","website"],"");
-          const wa = whatsappLink(phone,name);
-          const demoBadge = isDemo || raw.demo ? '<span class="commerce-chip">Exemple métier</span>' : '<span class="commerce-chip">Publié</span>';
+          const qrUrl = raw.demo ? "" : pick(raw,["qr_url","qr","qr_public_url"],"");
+          const wa = raw.is_astou ? ASTOU_WA : whatsappLink(phone,name);
+          const demoBadge = isDemo || raw.demo
+            ? '<span class="commerce-chip">Exemple métier</span>'
+            : (raw.is_astou ? '<span class="commerce-chip">Partenaire vedette</span>' : '<span class="commerce-chip">Publié</span>');
+
+          const photoHref = publicUrl || (raw.demo ? "https://commencer-a-payer.digiylyfe.com/?module=POS" : "./galerie.html");
 
           const article = document.createElement("article");
           article.className = "commerce-card";
 
           article.innerHTML = `
-            <img class="commerce-photo" src="${esc(photo)}" alt="${esc(name)}" loading="lazy" onerror="this.src='${PATCHWORK_URL}'">
+            <a class="commerce-photo-link" href="${esc(photoHref)}" ${publicUrl ? 'target="_blank" rel="noopener noreferrer"' : ""} aria-label="Ouvrir ${esc(name)}">
+              <img class="commerce-photo" src="${esc(photo)}" alt="${esc(name)}" loading="lazy" onerror="this.src='${PATCHWORK_URL}'">
+            </a>
             <div class="commerce-body">
               <div class="commerce-title">${esc(name)}</div>
               <div class="commerce-meta">
                 <span class="commerce-chip">${esc(category)}</span>
                 <span class="commerce-chip">${esc(city)}</span>
                 ${demoBadge}
+                ${raw.is_astou ? '<span class="commerce-chip">QR boutique</span>' : ""}
               </div>
               <div class="commerce-bio">${esc(description)}</div>
               <div class="commerce-actions">
+                ${publicUrl ? `<a class="btn btn-secondary" href="${esc(publicUrl)}" target="_blank" rel="noopener noreferrer">Voir la fiche</a>` : ""}
+                ${qrUrl ? `<a class="btn btn-secondary" href="${esc(qrUrl)}" target="_blank" rel="noopener noreferrer">QR Astou</a>` : ""}
                 ${wa ? `<a class="btn btn-green" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : ""}
-                ${publicUrl ? `<a class="btn btn-secondary" href="${esc(publicUrl)}" target="_blank" rel="noopener noreferrer">Voir fiche</a>` : ""}
                 ${raw.demo ? `<a class="btn btn-secondary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activer mon commerce</a>` : ""}
               </div>
             </div>
@@ -1113,29 +1208,37 @@
           if(filter && data.length){
             data = data.filter((item) => {
               const slug = String(item.slug || item.public_slug || item.commerce || "").toLowerCase();
-              return slug === filter;
+              return slug === filter || (filter.includes("astou") && isAstouLike(item));
             });
           }
 
-          if(data.length){
+          if(filter && filter.includes("astou")){
+            status.textContent = "Astou Boutique chargée comme commerce partenaire.";
+            renderCommerceCards([ASTOU_PARTNER],false);
+            return;
+          }
+
+          const publicItems = ensureAstouFirst(data);
+
+          if(publicItems.length){
             if(filter){
               status.textContent = "Commerce chargé depuis la fiche publique.";
-              renderCommerceCards(data,false);
+              renderCommerceCards(publicItems,false);
               return;
             }
 
-            const needed = Math.max(0, 8 - data.length);
-            const mixed = data.concat(DEMOS.slice(0, needed));
+            const needed = Math.max(0, 8 - publicItems.length);
+            const mixed = publicItems.concat(DEMOS.slice(0, needed));
 
-            status.textContent = data.length + " commerce(s) publié(s) chargé(s). Galerie complétée par des exemples métier pour montrer que MON COMMERCE est ouvert à tous.";
+            status.textContent = "Astou Boutique affichée comme partenaire vedette. Galerie complétée par des exemples métier pour montrer que MON COMMERCE est ouvert à tous.";
             renderCommerceCards(mixed,false);
             return;
           }
 
           status.textContent = error
-            ? "Galerie réelle non disponible pour l’instant. Exemples métier affichés."
-            : "Aucun commerce publié pour l’instant. Exemples métier affichés.";
-          renderCommerceCards(DEMOS,true);
+            ? "Galerie réelle non disponible pour l’instant. Astou Boutique et exemples métier affichés."
+            : "Aucun commerce publié pour l’instant. Astou Boutique et exemples métier affichés.";
+          renderCommerceCards([ASTOU_PARTNER].concat(DEMOS.slice(0,7)),false);
         }catch(_){
           status.textContent = "Connexion galerie indisponible. Démonstration terrain affichée.";
           renderCommerceCards(DEMOS,true);
@@ -1203,4 +1306,6 @@ MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
     })();
   </script>
 </body>
+<!-- DIGIY MON COMMERCE — index Astou partenaire vedette corrigé — 20260514 -->
 </html>
+
