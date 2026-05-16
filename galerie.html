@@ -3,576 +3,930 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <meta name="theme-color" content="#12100f"/>
-  <meta name="robots" content="index,follow"/>
-
-  <title>Galerie partenaires — MON COMMERCE DIGIYLYFE</title>
-  <meta name="description" content="Galerie des boutiques partenaires MON COMMERCE by DIGIYLYFE : fiches publiques, QR, contact direct, 0% commission."/>
+  <title>Astou Boutique — MON COMMERCE DIGIYLYFE</title>
+  <meta name="theme-color" content="#06130f"/>
+  <meta
+    name="description"
+    content="Astou Boutique à Saly : textile maison, plage, hôtel, beauté, nouveautés, WhatsApp direct, QR public, Google Maps, TikTok et partage simple."
+  />
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Lora:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --bg:#12100f;
-      --card:#211c19;
-      --text:#f8f1e8;
-      --muted:#c8b8a7;
-      --gold:#d6a85f;
-      --gold2:#f0d29a;
-      --green:#6fa27e;
-      --line:rgba(255,255,255,.10);
-      --shadow:0 22px 64px rgba(0,0,0,.36);
-      --fontA:"Outfit",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      --fontB:"Lora",Georgia,serif;
+      --bg:#06130f;
+      --bg2:#0a1f18;
+      --card:#0b241b;
+      --card2:#102b22;
+      --line:rgba(255,255,255,.11);
+      --ink:#f8fafc;
+      --muted:rgba(248,250,252,.78);
+      --soft:rgba(248,250,252,.58);
+      --gold:#d4af37;
+      --gold2:#f3d46b;
+      --ok:#22c55e;
+      --blue:#38bdf8;
+      --bad:#ef4444;
+      --radius:24px;
+      --shadow:0 24px 60px rgba(0,0,0,.30);
+      --font:"Outfit",Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
 
     *{box-sizing:border-box}
-
-    html,body{
-      margin:0;
-      padding:0;
-      min-height:100%;
-    }
+    html,body{margin:0;padding:0}
 
     body{
-      min-height:100dvh;
-      color:var(--text);
-      font-family:var(--fontA);
+      min-height:100vh;
+      color:var(--ink);
+      font-family:var(--font);
+      font-size:18px;
       background:
-        radial-gradient(900px 560px at 10% -10%,rgba(214,168,95,.14),transparent 60%),
-        radial-gradient(800px 480px at 100% 4%,rgba(111,162,126,.11),transparent 58%),
-        linear-gradient(180deg,#17120f,var(--bg));
-      padding:14px 14px 86px;
+        radial-gradient(900px 520px at 8% -10%, rgba(212,175,55,.14), transparent 58%),
+        radial-gradient(850px 520px at 100% 0%, rgba(56,189,248,.10), transparent 55%),
+        radial-gradient(900px 520px at 100% 100%, rgba(34,197,94,.10), transparent 58%),
+        linear-gradient(180deg, #071510 0%, #06130f 48%, #04100c 100%);
+      padding-bottom:calc(112px + env(safe-area-inset-bottom,0px));
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
 
     .wrap{
-      width:min(1100px,100%);
+      width:min(100%,1160px);
       margin:0 auto;
+      padding:16px 14px 42px;
       display:grid;
       gap:16px;
     }
 
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:30;
-      margin:-14px -14px 0;
-      padding:10px 14px;
-      background:rgba(18,16,15,.92);
-      border-bottom:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(14px);
-    }
-
-    .topbar-inner{
-      width:min(1100px,100%);
-      margin:0 auto;
-      min-height:60px;
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
-      gap:12px;
+      gap:14px;
       flex-wrap:wrap;
     }
 
     .brand{
       display:flex;
+      gap:12px;
       align-items:center;
-      gap:11px;
       min-width:0;
     }
 
-    .brand-badge{
-      width:46px;
-      height:46px;
-      border-radius:17px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      color:#17120e;
-      font-size:23px;
-      font-weight:1000;
+    .logo{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(212,175,55,.24);
+      box-shadow:0 10px 28px rgba(0,0,0,.20);
+      background:#fff;
       flex:0 0 auto;
     }
 
-    .brand strong{
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
       display:block;
-      font-size:16px;
+    }
+
+    .kicker{
+      color:var(--gold2);
+      font-size:13px;
+      font-weight:1000;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:4px;
+      white-space:nowrap;
+    }
+
+    .title{
+      font-size:clamp(24px,3vw,36px);
+      font-weight:1000;
       line-height:1.05;
-      font-weight:1000;
-    }
-
-    .brand span{
-      display:block;
-      margin-top:3px;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:850;
-    }
-
-    .nav{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .nav a{
-      min-height:42px;
-      padding:9px 13px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.045);
-      color:var(--muted);
-      font-size:13px;
-      font-weight:900;
-    }
-
-    .nav .cta{
-      color:#17120e;
-      border:none;
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-    }
-
-    .hero,.panel{
-      border:1px solid var(--line);
-      border-radius:30px;
-      background:
-        radial-gradient(circle at top right,rgba(214,168,95,.12),transparent 34%),
-        linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
-      box-shadow:var(--shadow);
-      padding:22px;
+      letter-spacing:-.04em;
+      white-space:nowrap;
       overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(214,168,95,.25);
-      background:rgba(214,168,95,.10);
-      color:#f5dca8;
-      font-size:13px;
-      font-weight:1000;
-      margin-bottom:14px;
-    }
-
-    h1{
-      margin:0;
-      font-family:var(--fontB);
-      font-size:clamp(2.2rem,7vw,4.7rem);
-      line-height:.95;
-      letter-spacing:-.05em;
-      font-weight:700;
-    }
-
-    h1 em{
-      color:var(--gold);
-      font-style:normal;
-    }
-
-    .lead{
-      margin:14px 0 0;
-      max-width:800px;
+    .sub{
+      margin-top:5px;
       color:var(--muted);
-      font-size:1.03rem;
-      line-height:1.65;
-      font-weight:750;
+      font-size:16px;
+      line-height:1.45;
+      font-weight:800;
     }
 
-    .hero-actions{
-      margin-top:18px;
+    .topActions{
       display:flex;
-      flex-wrap:wrap;
       gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
     .btn{
-      min-height:54px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.11);
-      background:rgba(255,255,255,.055);
+      min-height:58px;
+      border:none;
+      border-radius:17px;
+      padding:14px 17px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:9px;
-      padding:0 18px;
+      font-size:18px;
       font-weight:1000;
+      cursor:pointer;
+      white-space:nowrap;
+      transition:filter .18s ease, transform .08s ease;
       text-align:center;
     }
 
+    .btn:active{transform:translateY(1px) scale(.99)}
     .btn.primary{
-      border:none;
-      color:#17120e;
       background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#13200d;
+      box-shadow:0 14px 30px rgba(212,175,55,.22);
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--ink);
+    }
+
+    .btn.ghost{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      color:var(--ink);
     }
 
     .btn.green{
-      border:none;
-      color:#101812;
-      background:linear-gradient(135deg,var(--green),#99c5a7);
+      background:rgba(34,197,94,.14);
+      border:1px solid rgba(34,197,94,.30);
+      color:#bbf7d0;
     }
 
-    .section-title{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
+    .hero{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:16px;
     }
 
-    h2{
+    .heroMain{
+      display:grid;
+      gap:16px;
+      align-content:start;
+    }
+
+    .infoUnderPhoto{
+      grid-template-columns:1fr;
       margin:0;
-      font-family:var(--fontB);
-      font-size:clamp(1.7rem,4vw,2.9rem);
-      line-height:1.02;
-      letter-spacing:-.04em;
+      gap:16px;
     }
 
-    .section-title p{
+    .panel{
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .cover{
+      position:relative;
+      min-height:500px;
+      background:#0d1914 center/cover no-repeat;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .coverShade{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.10) 22%,rgba(0,0,0,.64));
+    }
+
+    .coverContent{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:24px;
+      z-index:2;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid rgba(212,175,55,.24);
+      background:rgba(212,175,55,.10);
+      color:var(--gold2);
+      font-size:14px;
+      font-weight:1000;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .heroTitle{
+      margin:0 0 10px;
+      font-size:clamp(38px,6vw,64px);
+      line-height:1.00;
+      letter-spacing:-.055em;
+      text-shadow:0 6px 20px rgba(0,0,0,.26);
+    }
+
+    .heroLead{
       margin:0;
-      max-width:620px;
-      color:var(--muted);
+      color:#eef6f2;
+      font-size:20px;
       line-height:1.55;
-      font-weight:750;
+      font-weight:850;
+      max-width:62ch;
+      text-shadow:0 4px 16px rgba(0,0,0,.24);
+    }
+
+    .sideCard{
+      padding:20px;
+      display:grid;
+      gap:12px;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015)),
+        linear-gradient(180deg,#0a1c16,#0d241c);
+    }
+
+    .qrCard{
+      border:1px solid rgba(212,175,55,.28);
+      border-radius:26px;
+      background:
+        radial-gradient(420px 180px at 50% 0%, rgba(212,175,55,.15), transparent 62%),
+        rgba(0,0,0,.15);
+      padding:18px;
+      display:grid;
+      gap:12px;
+      text-align:center;
+    }
+
+    .qrKicker{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      margin:auto;
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid rgba(212,175,55,.28);
+      background:rgba(212,175,55,.11);
+      color:#fde68a;
+      font-size:16px;
+      font-weight:1000;
+    }
+
+    .qrImg{
+      width:min(100%,250px);
+      height:auto;
+      margin:auto;
+      display:block;
+      border-radius:22px;
+      background:#fff;
+      padding:12px;
+      border:1px solid rgba(212,175,55,.42);
+      box-shadow:0 14px 34px rgba(0,0,0,.34);
+    }
+
+    .qrTitle{
+      font-size:28px;
+      line-height:1.08;
+      font-weight:1000;
+      color:var(--gold2);
+    }
+
+    .qrText{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.45;
+      font-weight:900;
+    }
+
+    .qrLink{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      padding:10px;
+      word-break:break-word;
+      font-size:13px;
+      line-height:1.35;
+      color:rgba(248,250,252,.72);
+      font-weight:900;
+    }
+
+    .qrActions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .miniStat{
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:19px;
+      padding:15px;
+      background:rgba(255,255,255,.035);
+    }
+
+    .miniLabel{
+      color:var(--soft);
+      font-size:13px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:8px;
+    }
+
+    .miniValue{
+      font-size:23px;
+      font-weight:1000;
+      line-height:1.15;
+      letter-spacing:-.035em;
+      word-break:break-word;
+    }
+
+    .miniHint{
+      margin-top:7px;
+      color:var(--muted);
+      font-size:16px;
+      font-weight:800;
+      line-height:1.45;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:16px;
+    }
+
+    .cardBody{padding:22px}
+
+    .sectionTitle{
+      margin:0 0 12px;
+      font-size:clamp(28px,5.8vw,42px);
+      font-weight:1000;
+      letter-spacing:-.045em;
+      line-height:1.08;
+    }
+
+    .sectionSub{
+      margin:-4px 0 16px;
+      color:var(--muted);
+      font-size:18px;
+      font-weight:850;
+      line-height:1.55;
+    }
+
+    .text{
+      color:#eef6f2;
+      font-size:20px;
+      font-weight:800;
+      line-height:1.75;
+      word-break:break-word;
+    }
+
+    .muted{color:var(--muted)}
+
+    .grid{
+      display:grid;
+      gap:12px;
+    }
+
+    .infoRow{
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.035);
+      border-radius:19px;
+      padding:16px;
+    }
+
+    .infoRow strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:7px;
+      color:#eef6f2;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-weight:1000;
+    }
+
+    .infoRow span{
+      color:var(--muted);
+      font-size:18px;
+      font-weight:850;
+      line-height:1.55;
+      word-break:break-word;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .chip{
+      min-height:38px;
+      padding:0 13px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      background:rgba(212,175,55,.09);
+      border:1px solid rgba(212,175,55,.20);
+      color:var(--gold2);
+      font-size:15px;
+      font-weight:1000;
+      letter-spacing:.02em;
     }
 
     .gallery{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:14px;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
     }
 
-    .shop{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:26px;
-      background:rgba(255,255,255,.045);
-      box-shadow:0 16px 42px rgba(0,0,0,.25);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height:100%;
-    }
-
-    .shop-cover{
-      height:220px;
-      background:
-        radial-gradient(circle at top right,rgba(214,168,95,.18),transparent 45%),
-        linear-gradient(135deg,#2a231f,#14110f);
-      display:grid;
-      place-items:center;
-      font-size:62px;
+    .photo{
       position:relative;
-      overflow:hidden;
-    }
-
-    .shop-cover img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
       display:block;
+      border-radius:20px;
+      overflow:hidden;
+      min-height:260px;
+      background:#102019 center/cover no-repeat;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 14px 34px rgba(0,0,0,.22);
     }
 
-    .shop-cover::after{
-      content:"Voir la fiche";
+    .photo::after{
+      content:"↗ Ouvrir";
       position:absolute;
-      right:12px;
-      bottom:12px;
+      right:10px;
+      bottom:10px;
       min-height:34px;
       padding:0 12px;
       border-radius:999px;
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      background:rgba(0,0,0,.54);
-      color:#fff7d6;
-      border:1px solid rgba(255,255,255,.18);
-      font-size:13px;
+      background:rgba(0,0,0,.50);
+      color:#fff;
+      font-size:14px;
       font-weight:1000;
-      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.14);
     }
 
-    .shop-cover.placeholder::after{
-      display:none;
-    }
-
-    .shop-body{
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      flex:1;
-    }
-
-    .shop h3{
-      margin:0;
-      font-family:var(--fontB);
-      font-size:1.65rem;
-      line-height:1.05;
-      color:#f3e8d8;
-    }
-
-    .meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px;
-    }
-
-    .tag{
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      color:var(--muted);
-      font-size:12px;
-      font-weight:900;
-    }
-
-    .desc{
-      color:var(--muted);
-      line-height:1.65;
-      font-size:14px;
-      font-weight:750;
-      flex:1;
-    }
-
-    .shop-actions{
+    .mobilePublicFastRow{
       display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .mobilePublicFastRow a,
+    .mobilePublicFastRow button{
+      min-height:56px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.055);
+      color:var(--ink);
+      text-decoration:none;
+      font-weight:1000;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       gap:8px;
-      margin-top:4px;
+      padding:12px;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:16px;
     }
 
-    .shop-actions .btn{
-      min-height:48px;
-      border-radius:18px;
-      width:100%;
-      padding:0 13px;
-      font-size:14px;
+    .mobilePublicFastRow .primary{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#13200d;
+      border:none;
     }
 
-    .empty{
-      border:1px dashed rgba(255,255,255,.17);
-      border-radius:24px;
-      padding:18px;
+    .foot{
+      margin-top:2px;
       color:var(--muted);
-      line-height:1.65;
-      font-weight:800;
-      background:rgba(255,255,255,.035);
-    }
-
-    footer{
+      font-size:15px;
+      font-weight:850;
+      line-height:1.6;
       text-align:center;
-      color:rgba(200,184,167,.76);
-      font-size:13px;
-      font-weight:800;
-      line-height:1.45;
-      padding:10px 4px 20px;
     }
 
-    .bottom-nav{
+    #gallery,.hero,.layout,.infoUnderPhoto{scroll-margin-top:90px}
+
+    .publicBottomNav{
       position:fixed;
       left:0;
       right:0;
       bottom:0;
-      z-index:50;
+      z-index:99990;
       padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
-      background:rgba(18,16,15,.94);
-      border-top:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(14px);
+      background:rgba(6,19,15,.95);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
     }
 
-    .bottom-inner{
+    .publicBottomNavInner{
       width:min(100%,760px);
       margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(5,1fr);
       gap:6px;
     }
 
-    .bottom-inner a{
-      min-height:54px;
-      border-radius:14px;
+    .publicBottomNav a,
+    .publicBottomNav button{
+      min-height:62px;
+      border-radius:17px;
       display:grid;
       place-items:center;
       align-content:center;
-      gap:2px;
-      color:rgba(246,241,235,.72);
-      font-size:11px;
-      font-weight:950;
+      gap:3px;
+      color:rgba(248,250,252,.75);
+      font-size:12px;
+      font-weight:1000;
       text-align:center;
       border:1px solid transparent;
+      text-decoration:none;
+      background:transparent;
+      cursor:pointer;
+      font-family:inherit;
       padding:0 4px;
     }
 
-    .bottom-inner .ico{
-      font-size:18px;
-      line-height:1;
+    .publicBottomNav .icoBottom{font-size:20px;line-height:1}
+
+    .publicBottomNav a.active,
+    .publicBottomNav button.active{
+      color:#13200d;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      border-color:rgba(243,212,107,.30);
+      box-shadow:0 12px 26px rgba(212,175,55,.18);
     }
 
-    .bottom-inner a.active{
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
-      color:#17120e;
+    .shareToast{
+      position:fixed;
+      left:50%;
+      bottom:calc(96px + env(safe-area-inset-bottom,0px));
+      transform:translateX(-50%) translateY(12px);
+      z-index:99999;
+      opacity:0;
+      pointer-events:none;
+      transition:.22s ease;
+      max-width:calc(100vw - 24px);
+      padding:12px 18px;
+      border-radius:999px;
+      border:1px solid rgba(243,212,107,.28);
+      background:rgba(16,38,30,.97);
+      color:var(--gold2);
+      font-size:15px;
+      font-weight:1000;
+      box-shadow:var(--shadow);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .shareToast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    @media(max-width:1040px){
+      .hero,.layout,.infoUnderPhoto{grid-template-columns:1fr}
+    }
+
+    @media(max-width:760px){
+      .gallery{grid-template-columns:1fr}
     }
 
     @media(max-width:640px){
-      .hero,.panel{border-radius:24px;padding:18px}
-      .hero-actions{display:grid}
-      .btn{width:100%}
-      .nav{width:100%}
-      .nav a{flex:1}
+      body{font-size:18px}
+      .wrap{padding:12px 10px 36px}
+      .topbar{flex-direction:column}
+      .topActions{display:none}
+      .cover{min-height:380px}
+      .coverContent{padding:18px}
+      .cardBody,.sideCard{padding:18px}
+      .heroTitle{font-size:clamp(38px,12vw,56px)}
+      .heroLead,.text{font-size:19px}
+      .btn{width:100%;min-height:62px;font-size:18px}
+      .actions{display:grid;grid-template-columns:1fr}
+      .qrActions{grid-template-columns:1fr}
+      .qrImg{width:min(82vw,270px)}
+      .mobilePublicFastRow{grid-template-columns:1fr 1fr}
+      .miniValue{font-size:22px}
+      .photo{min-height:280px}
     }
   </style>
 </head>
 
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="./index.html">
-      <div class="brand-badge">🛍️</div>
-      <div>
-        <strong>Galerie partenaires</strong>
-        <span>MON COMMERCE by DIGIYLYFE</span>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">
+          <img src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg" alt="Logo DIGIYLYFE">
+        </div>
+        <div class="brandText">
+          <div class="kicker">MON COMMERCE</div>
+          <div class="title">Astou Boutique</div>
+          <div class="sub">Textile maison, plage, hôtel, beauté et produits utiles du quotidien.</div>
+        </div>
       </div>
-    </a>
 
-    <nav class="nav" aria-label="Navigation galerie">
-      <a href="./index.html">Accueil</a>
-      <a class="cta" href="https://commencer-a-payer.digiylyfe.com/?module=POS" target="_blank" rel="noopener">Ajouter un commerce</a>
-    </nav>
-  </div>
-</header>
+      <div class="topActions">
+        <a class="btn ghost" href="https://digiylyfe.com/">Site</a>
+        <a class="btn ghost" href="https://digiy-hub.digiylyfe.com/">HUB</a>
+        <a class="btn ghost" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
+        <a class="btn secondary" href="./galerie.html">Galerie</a>
+        <a class="btn primary" href="./galerie.html">Mon commerce</a>
+        <a class="btn secondary" href="https://wa.me/221771342889?text=Bonjour%20Astou%20Boutique%2C%20je%20viens%20depuis%20votre%20fiche%20DIGIYLYFE." target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+      </div>
+    </header>
 
-<main class="wrap">
-
-  <section class="hero">
-    <div class="eyebrow">🖼️ Boutiques partenaires</div>
-
-    <h1>Des fiches gardées, <em>pas un flux qui disparaît.</em></h1>
-
-    <p class="lead">
-      Ici, chaque commerce abonné peut avoir sa fiche publique : lien, QR, WhatsApp, adresse,
-      TikTok, Google Maps, catalogue ou site. Le client retrouve la boutique demain, pas seulement pendant un passage dans le flux.
-    </p>
-
-    <div class="hero-actions">
-      <a class="btn primary" href="#partenaires">Voir les partenaires</a>
-      <a class="btn green" href="https://commencer-a-payer.digiylyfe.com/?module=POS" target="_blank" rel="noopener">Ajouter mon commerce</a>
-    </div>
-  </section>
-
-  <section class="panel" id="partenaires">
-    <div class="section-title">
-      <h2>Commerces abonnés</h2>
-      <p>
-        Les fiches ci-dessous sont des portes publiques. Chaque nouvelle boutique peut être ajoutée ici avec sa fiche dédiée.
-      </p>
-    </div>
-
-    <div class="gallery">
-
-      <article class="shop">
-        <a class="shop-cover" href="./fiche-astou.html" aria-label="Ouvrir la fiche Astou Boutique">
-          <img
-            src="https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-B.png"
-            alt="Astou Boutique — textile maison, plage, hôtel et beauté à Saly"
-            loading="lazy"
-          />
-        </a>
-
-        <div class="shop-body">
-          <h3>Astou Boutique</h3>
-
-          <div class="meta">
-            <span class="tag">Saly</span>
-            <span class="tag">Textile maison</span>
-            <span class="tag">Beauté</span>
+    <section class="hero">
+      <div class="heroMain">
+        <article class="panel">
+          <div class="cover" style="background-image:url('https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-C.png')">
+            <div class="coverShade"></div>
+            <div class="coverContent">
+              <div class="badge">🛍️ Boutique publique · Saly</div>
+              <h1 class="heroTitle">Astou Boutique</h1>
+              <p class="heroLead">
+                Textile maison, plage, hôtel, beauté et nouveautés.
+                Contact direct avec la boutique, vente par vidéo WhatsApp possible, 0% commission.
+              </p>
+            </div>
           </div>
+        </article>
 
-          <div class="desc">
-            Textile maison, serviettes, draps, foutas, tenues, beauté et produits utiles du quotidien.
-            Une vraie ambiance boutique : on voit, on comprend, on clique, puis on contacte directement.
-          </div>
+        <section class="layout infoUnderPhoto">
+          <article class="panel">
+            <div class="cardBody">
+              <h2 class="sectionTitle">À savoir</h2>
+              <p class="sectionSub">Le résumé utile pour comprendre vite et contacter sans détour.</p>
 
-          <div class="shop-actions">
-            <a class="btn primary" href="./fiche-astou.html">🛍️ Voir la fiche</a>
-            <a class="btn green" href="https://wa.me/221771342889?text=Bonjour%20Astou%20Boutique%2C%20je%20viens%20depuis%20la%20galerie%20MON%20COMMERCE%20DIGIYLYFE." target="_blank" rel="noopener">💬 WhatsApp</a>
+              <div class="grid">
+                <div class="infoRow">
+                  <strong>En bref</strong>
+                  <span>Astou Boutique propose linge, serviettes, draps, foutas, tenues, textile maison/plage/hôtel, beauté et nouveautés utiles du quotidien.</span>
+                </div>
+
+                <div class="text">
+                  La fiche donne une présence claire à la boutique : photo, repère, liens utiles, WhatsApp direct, QR partageable et accès à la vitrine Net.
+                  Le client regarde, comprend et contacte Astou Boutique directement.
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="panel">
+            <div class="cardBody">
+              <h2 class="sectionTitle">Infos utiles</h2>
+              <p class="sectionSub">Contact, horaires, liens et repères.</p>
+
+              <div class="grid">
+                <div class="infoRow">
+                  <strong>Adresse / repère</strong>
+                  <span>Saly · Sénégal</span>
+                </div>
+
+                <div class="infoRow">
+                  <strong>Horaires</strong>
+                  <span>Tous les jours sauf dimanche · 9h00 à 18h30 non-stop</span>
+                </div>
+
+                <div class="infoRow">
+                  <strong>Mots boutique</strong>
+                  <span>
+                    <span class="chip">#textile</span>
+                    <span class="chip">#maison</span>
+                    <span class="chip">#plage</span>
+                    <span class="chip">#hôtel</span>
+                    <span class="chip">#beauté</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </div>
+
+      <aside class="panel sideCard">
+        <article class="qrCard" aria-label="QR Astou Boutique">
+          <div class="qrKicker">📲 QR boutique</div>
+          <img class="qrImg" alt="QR Astou Boutique" src="https://api.qrserver.com/v1/create-qr-code/?size=620x620&margin=16&data=https%3A%2F%2Fmon-commerce.digiylyfe.com%2Ffiche-astou.html">
+          <div class="qrTitle">Scanne pour voir Astou Boutique</div>
+          <div class="qrText">
+            Produits, textile, beauté, Google Maps, TikTok et WhatsApp direct.
           </div>
+          <div class="qrLink" id="qrLinkText">https://mon-commerce.digiylyfe.com/fiche-astou.html</div>
+          <div class="qrActions">
+            <a class="btn primary" href="https://mon-commerce.digiylyfe.com/fiche-astou.html" target="_blank" rel="noopener">🧭 Ouvrir</a>
+            <button class="btn secondary" id="qrCopyBtn" type="button">📋 Copier</button>
+          </div>
+        </article>
+
+        <div class="miniStat">
+          <div class="miniLabel">Activité</div>
+          <div class="miniValue">Boutique</div>
+          <div class="miniHint">Textile maison, plage, hôtel, beauté et nouveautés.</div>
         </div>
-      </article>
 
-      <article class="shop">
-        <div class="shop-cover placeholder">＋</div>
-
-        <div class="shop-body">
-          <h3>Prochaine boutique</h3>
-
-          <div class="meta">
-            <span class="tag">À ajouter</span>
-            <span class="tag">Fiche dédiée</span>
-          </div>
-
-          <div class="desc">
-            Emplacement prêt pour le prochain commerce abonné : nom, métier, ville, WhatsApp et lien vers sa fiche publique.
-          </div>
-
-          <div class="shop-actions">
-            <a class="btn" href="https://commencer-a-payer.digiylyfe.com/?module=POS" target="_blank" rel="noopener">📝 Ajouter un commerce</a>
-          </div>
+        <div class="miniStat">
+          <div class="miniLabel">Où c’est</div>
+          <div class="miniValue">Saly · Sénégal</div>
+          <div class="miniHint">Repère public avec Google Maps.</div>
         </div>
-      </article>
 
+        <div class="miniStat">
+          <div class="miniLabel">Contact direct</div>
+          <div class="miniValue">WhatsApp protégé</div>
+          <div class="miniHint">Le client ouvre WhatsApp sans passer par une plateforme.</div>
+        </div>
+
+        <div class="miniStat">
+          <div class="miniLabel">Commission</div>
+          <div class="miniValue">0%</div>
+          <div class="miniHint">Le contact reste direct avec la boutique.</div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://wa.me/221771342889?text=Bonjour%20Astou%20Boutique%2C%20je%20viens%20depuis%20votre%20fiche%20DIGIYLYFE.%20Je%20souhaite%20avoir%20des%20informations%20ou%20voir%20les%20produits%20en%20vid%C3%A9o%20WhatsApp." target="_blank" rel="noopener">Contact direct</a>
+          <a class="btn secondary" href="https://wa.me/221771342889?text=Bonjour%20Astou%20Boutique%2C%20je%20viens%20depuis%20votre%20fiche%20DIGIYLYFE." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Astou%20Boutique%20Saly" target="_blank" rel="noopener">Y aller</a>
+        </div>
+
+        <div class="mobilePublicFastRow">
+          <a href="./galerie.html">← Galerie</a>
+          <a href="#gallery">🖼️ Images</a>
+          <a class="primary" href="https://www.google.com/maps/search/?api=1&query=Astou%20Boutique%20Saly" target="_blank" rel="noopener">🧭 Y aller</a>
+          <button id="fastShare" type="button">📤 Partager</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <div class="cardBody">
+        <h2 class="sectionTitle">Ambiance en images</h2>
+        <p class="sectionSub">Quelques images pour sentir la boutique, les produits et l’ambiance avant de contacter.</p>
+
+        <div id="gallery" class="gallery">
+          <a
+            class="photo"
+            href="https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-C.png"
+            target="_blank"
+            rel="noopener"
+            aria-label="Ouvrir la photo principale Astou Boutique"
+            style="background-image:url('https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-C.png')"
+          ></a>
+
+          <a
+            class="photo"
+            href="https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-D.png"
+            target="_blank"
+            rel="noopener"
+            aria-label="Ouvrir une photo d’ambiance Astou Boutique"
+            style="background-image:url('https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-D.png')"
+          ></a>
+
+          <a
+            class="photo"
+            href="https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-A.png"
+            target="_blank"
+            rel="noopener"
+            aria-label="Ouvrir une autre photo Astou Boutique"
+            style="background-image:url('https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-A.png')"
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="cardBody">
+        <h2 class="sectionTitle">Liens utiles</h2>
+        <p class="sectionSub">La fiche garde les chemins directs vers la boutique et les preuves vivantes.</p>
+
+        <div class="actions">
+          <a class="btn primary" href="https://astou-boutique.digiylyfe.com/" target="_blank" rel="noopener">🌐 Vitrine Net Astou</a>
+          <a class="btn secondary" href="https://market.digiylyfe.com/?commerce=astou-boutique" target="_blank" rel="noopener">🛍️ Entrée MARKET</a>
+          <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Astou%20Boutique%20Saly" target="_blank" rel="noopener">📍 Google Maps</a>
+          <a class="btn ghost" href="https://www.tiktok.com/search?q=Astou%20Boutique%20Saly" target="_blank" rel="noopener">🎵 TikTok</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      DIGIY MON COMMERCE • fiche publique • QR boutique • ambiance en images • contact direct • partage simple
     </div>
-  </section>
-
-  <section class="panel">
-    <div class="section-title">
-      <h2>Comment ajouter un pro ?</h2>
-      <p>
-        Pour chaque pro abonné, on ajoute une fiche dédiée et une carte dans cette galerie.
-      </p>
-    </div>
-
-    <div class="empty">
-      Exemple :
-      <br/>
-      <strong>fiche-astou.html</strong> → carte Astou Boutique.
-      <br/>
-      Demain :
-      <strong>fiche-boutique-ndiaye.html</strong>,
-      <strong>fiche-cosmetique-saly.html</strong>,
-      <strong>fiche-artisan-dakar.html</strong>.
-    </div>
-  </section>
-
-  <footer>
-    DIGIYLYFE · MON COMMERCE · 0% commission · contact direct · le terrain garde la main.
-  </footer>
-
-</main>
-
-<nav class="bottom-nav" aria-label="Navigation mobile galerie">
-  <div class="bottom-inner">
-    <a href="./index.html"><span class="ico">🏠</span><span>Accueil</span></a>
-    <a class="active" href="./galerie.html"><span class="ico">🖼️</span><span>Galerie</span></a>
-    <a href="./fiche-astou.html"><span class="ico">🛍️</span><span>Astou</span></a>
-    <a href="https://commencer-a-payer.digiylyfe.com/?module=POS" target="_blank" rel="noopener"><span class="ico">📝</span><span>Ajouter</span></a>
   </div>
-</nav>
 
+  <nav class="publicBottomNav" aria-label="Navigation Astou Boutique">
+    <div class="publicBottomNavInner">
+      <a href="./galerie.html"><span class="icoBottom">←</span><span>Galerie</span></a>
+      <a href="#gallery"><span class="icoBottom">🖼️</span><span>Images</span></a>
+      <a class="active" href="https://www.google.com/maps/search/?api=1&query=Astou%20Boutique%20Saly" target="_blank" rel="noopener"><span class="icoBottom">🧭</span><span>Y aller</span></a>
+      <a href="https://wa.me/221771342889?text=Bonjour%20Astou%20Boutique%2C%20je%20viens%20depuis%20votre%20fiche%20DIGIYLYFE." target="_blank" rel="noopener"><span class="icoBottom">💬</span><span>WhatsApp</span></a>
+      <button id="bottomShare" type="button"><span class="icoBottom">📤</span><span>Partager</span></button>
+    </div>
+  </nav>
+
+  <div class="shareToast" id="shareToast">Lien prêt à partager</div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      const PUBLIC_URL = "https://mon-commerce.digiylyfe.com/fiche-astou.html";
+      const SHARE_TEXT = "Astou Boutique · MON COMMERCE DIGIYLYFE\\n\\nBoutique à Saly · textile maison, plage, hôtel, beauté.\\nContact direct, 0% commission.\\n\\n👉 " + PUBLIC_URL;
+
+      const qrCopyBtn = document.getElementById("qrCopyBtn");
+      const fastShare = document.getElementById("fastShare");
+      const bottomShare = document.getElementById("bottomShare");
+      const shareToast = document.getElementById("shareToast");
+
+      async function copyText(text){
+        if(navigator.clipboard?.writeText){
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly","");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        ta.remove();
+        return ok;
+      }
+
+      function showToast(text){
+        if(!shareToast) return;
+        shareToast.textContent = text || "Lien prêt à partager";
+        shareToast.classList.add("show");
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(() => shareToast.classList.remove("show"), 2200);
+      }
+
+      async function share(){
+        if(navigator.share){
+          try{
+            await navigator.share({title:"Astou Boutique", text:SHARE_TEXT, url:PUBLIC_URL});
+            return;
+          }catch(_){}
+        }
+
+        try{
+          await copyText(PUBLIC_URL);
+          showToast("Lien Astou copié.");
+        }catch(_){
+          window.open("https://wa.me/?text=" + encodeURIComponent(SHARE_TEXT), "_blank", "noopener");
+        }
+      }
+
+      if(qrCopyBtn){
+        qrCopyBtn.addEventListener("click", async function(){
+          try{
+            await copyText(PUBLIC_URL);
+            showToast("Lien Astou copié.");
+          }catch(_){
+            showToast("Copie impossible, utilise le lien QR.");
+          }
+        });
+      }
+
+      if(fastShare) fastShare.addEventListener("click", share);
+      if(bottomShare) bottomShare.addEventListener("click", share);
+    })();
+  </script>
+  <!-- DIGIY MON COMMERCE — FICHE PUBLIQUE ASTOU : Mon commerce reste dans le hero, mais pointe vers la galerie publique, pas vers le PRO — 20260516 -->
 </body>
-<!-- DIGIY MON COMMERCE — GALERIE PUBLIQUE : aucune porte PRO, aucun guard, aucun PIN — 20260516 -->
 </html>
+
 
