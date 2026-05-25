@@ -339,6 +339,35 @@
       white-space:nowrap;
     }
 
+
+    .media-strip{
+      border-color:rgba(214,168,95,.30);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.18),transparent 42%),
+        rgba(214,168,95,.08);
+    }
+
+    .media-strip strong{
+      color:#f5dca8;
+    }
+
+    .contact-note{
+      margin-top:14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.045);
+      padding:14px;
+      color:#ead8c4;
+      font-size:14px;
+      line-height:1.65;
+      font-weight:800;
+    }
+
+    .contact-note b{
+      color:#f5dca8;
+      font-weight:1000;
+    }
+
     .audio-card{
       margin-top:20px;
       border-radius:26px;
@@ -356,6 +385,23 @@
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
+    }
+
+    .audio-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .audio-actions .btn{
+      min-height:46px;
+      padding:0 16px;
+    }
+
+    .audio-actions .btn-primary{
+      min-width:150px;
     }
 
     .audio-title{
@@ -758,7 +804,8 @@
             <button class="btn btn-secondary" id="audioBtn" type="button">🎙️ Lecteur terrain</button>
             <a class="btn btn-green" href="./galerie.html">🖼️ Voir les boutiques partenaires</a>
             <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/fiche-astou.html" target="_blank" rel="noopener noreferrer">🛍️ Voir Astou Boutique</a>
-            <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">WhatsApp DIGIY</a>
+            <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">💬 Demande WhatsApp</a>
+            <a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE">📩 Demande SMS</a>
           </div>
 
           <div class="chips" aria-label="Piliers MON COMMERCE">
@@ -776,14 +823,28 @@
             <a href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activation commerce</a>
           </div>
 
+          <div class="signup-strip media-strip">
+            <strong>🎥 Vidéo de présentation</strong>
+            <span>Quand une boutique ajoute une vidéo, la fiche peut la montrer au client avant l’appel. Le client regarde, comprend, puis demande par WhatsApp ou par SMS.</span>
+            <a href="#commerces">Voir les fiches</a>
+          </div>
+
+          <div class="contact-note">
+            <b>Doctrine du jour :</b> le client ne doit pas chercher. Il voit la vitrine, écoute l’explication,
+            puis il choisit son canal humain : <b>WhatsApp</b> s’il veut discuter vite, ou <b>SMS</b> si c’est plus simple sur son téléphone.
+          </div>
+
           <div class="audio-card" id="audioCard">
             <div class="audio-top">
-              <div class="audio-title">🎙️ Lecteur terrain</div>
-              <button class="btn btn-secondary" id="stopAudioBtn" type="button">Stop</button>
+              <div class="audio-title">🎧 Lecteur vitrine</div>
+              <div class="audio-actions" aria-label="Lecteur audio MON COMMERCE">
+                <button class="btn btn-primary" id="audioPlayBtn" type="button">▶️ Lecture</button>
+                <button class="btn btn-secondary" id="stopAudioBtn" type="button">⏹ Arrêt</button>
+              </div>
             </div>
             <div class="audio-text">
-              Une voix explique que cette vitrine est ouverte à tous les commerces : petits, grands, artisanaux,
-              de marché, de quartier, de trottoir, de maison ou de boutique.
+              Une voix met le client à l’aise : MON COMMERCE sert les petits et grands commerces,
+              rappelle qu’une vidéo peut présenter la boutique, puis explique qu’une demande peut partir par WhatsApp ou par SMS.
             </div>
           </div>
         </div>
@@ -894,6 +955,8 @@
             <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">📝 Activer mon commerce</a>
             <a class="btn btn-secondary" href="./galerie.html">🖼️ Galerie partenaires</a>
             <a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Voir les tarifs</a>
+            <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE">📩 SMS</a>
           </div>
         </div>
       </div>
@@ -927,6 +990,10 @@
       "use strict";
 
       const PATCHWORK_URL = "https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png";
+      const DIGIY_CONTACT_PHONE = "221771342889";
+      const DIGIY_CONTACT_TEXT = "Bonjour DIGIY, je veux faire une demande pour MON COMMERCE.";
+      const DIGIY_WHATSAPP = "https://wa.me/" + DIGIY_CONTACT_PHONE + "?text=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
+      const DIGIY_SMS = "sms:+" + DIGIY_CONTACT_PHONE + "?body=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
 
       const ASTOU_PARTNER = {
         display_name:"Astou Boutique",
@@ -1113,6 +1180,16 @@
         return "https://wa.me/" + p + "?text=" + encodeURIComponent(text);
       }
 
+      function smsLink(phone, name){
+        const p = digits(phone);
+        if(!p) return "";
+        const text = "Bonjour, je viens de voir votre commerce sur MON COMMERCE by DIGIY.";
+        return "sms:+" + p + "?body=" + encodeURIComponent(text);
+      }
+
+      const ASTOU_WA = whatsappLink(ASTOU_PARTNER.whatsapp, "Astou Boutique");
+      const ASTOU_SMS = smsLink(ASTOU_PARTNER.whatsapp, "Astou Boutique");
+
       function renderCommerceCards(items, isDemo){
         const grid = $("commerceGrid");
         grid.innerHTML = "";
@@ -1129,6 +1206,7 @@
           const publicUrl = raw.demo ? "" : pick(raw,["public_url","url","website"],"");
           const qrUrl = raw.demo ? "" : pick(raw,["qr_url","qr","qr_public_url"],"");
           const wa = raw.is_astou ? ASTOU_WA : whatsappLink(phone,name);
+          const sms = raw.is_astou ? ASTOU_SMS : smsLink(phone,name);
           const demoBadge = isDemo || raw.demo
             ? '<span class="commerce-chip">Exemple métier</span>'
             : (raw.is_astou ? '<span class="commerce-chip">Partenaire vedette</span>' : '<span class="commerce-chip">Publié</span>');
@@ -1155,6 +1233,7 @@
                 ${publicUrl ? `<a class="btn btn-secondary" href="${esc(publicUrl)}" target="_blank" rel="noopener noreferrer">Voir la fiche</a>` : ""}
                 ${qrUrl ? `<a class="btn btn-secondary" href="${esc(qrUrl)}" target="_blank" rel="noopener noreferrer">QR Astou</a>` : ""}
                 ${wa ? `<a class="btn btn-green" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : ""}
+                ${sms ? `<a class="btn btn-secondary" href="${esc(sms)}">SMS</a>` : ""}
                 ${raw.demo ? `<a class="btn btn-secondary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activer mon commerce</a>` : ""}
               </div>
             </div>
@@ -1246,8 +1325,9 @@
       }
 
       function bindAudio(){
-        const btn = $("audioBtn");
-        const stop = $("stopAudioBtn");
+        const heroBtn = $("audioBtn");
+        const playBtn = $("audioPlayBtn");
+        const stopBtn = $("stopAudioBtn");
         const synth = window.speechSynthesis;
         let playing = false;
 
@@ -1256,22 +1336,26 @@ Ici, la vitrine n'est pas réservée aux grands commerces.
 Elle est ouverte à la cantine de trottoir, au kiosque de deux mètres carrés,
 à l'artisan, au tailleur, au réparateur, à la coiffeuse, au vendeur de fruits,
 à la petite boutique de quartier, au marché, et aussi aux commerces déjà structurés.
-DIGIY donne une adresse, un QR, une fiche et un contact direct.
-Le client arrive chez le commerçant. Le paiement reste direct. Zéro commission sur la vente.
+La fiche peut présenter les photos, les produits, le QR, le contact direct, et aussi une vidéo de présentation quand le commerçant l'ajoute.
+Le client regarde, comprend, écoute si besoin, puis fait sa demande par WhatsApp ou par SMS.
+DIGIY donne une adresse, une fiche et une porte claire.
+Le paiement reste direct. Zéro commission sur la vente.
 Même petit, un commerce peut être vu, compris et respecté.
 MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
 
-        function setButton(){
-          btn.textContent = playing ? "⏹ Stop" : "🎙️ Lecteur terrain";
+        function setButtons(){
+          if(heroBtn) heroBtn.textContent = playing ? "⏹ Arrêter" : "🎧 Écouter la vitrine";
+          if(playBtn) playBtn.textContent = playing ? "🔊 Lecture en cours" : "▶️ Lecture";
+          if(stopBtn) stopBtn.disabled = !playing;
         }
 
         function stopAudio(){
           try{ synth && synth.cancel(); }catch(_){}
           playing = false;
-          setButton();
+          setButtons();
         }
 
-        btn.addEventListener("click", () => {
+        function playAudio(){
           if(!synth || typeof SpeechSynthesisUtterance === "undefined") return;
 
           if(playing){
@@ -1286,18 +1370,20 @@ MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
 
           u.onstart = () => {
             playing = true;
-            setButton();
+            setButtons();
           };
           u.onend = stopAudio;
           u.onerror = stopAudio;
 
           synth.cancel();
           synth.speak(u);
-        });
+        }
 
-        stop.addEventListener("click",stopAudio);
-        window.addEventListener("beforeunload",stopAudio);
-        setButton();
+        if(heroBtn) heroBtn.addEventListener("click", playAudio);
+        if(playBtn) playBtn.addEventListener("click", playAudio);
+        if(stopBtn) stopBtn.addEventListener("click", stopAudio);
+        window.addEventListener("beforeunload", stopAudio);
+        setButtons();
       }
 
       cleanSensitiveUrl();
@@ -1306,6 +1392,7 @@ MON COMMERCE démocratise la vitrine. Le terrain garde la main.`;
     })();
   </script>
 </body>
-<!-- DIGIY MON COMMERCE — index Astou partenaire vedette corrigé — 20260514 -->
+<!-- DIGIY MON COMMERCE — index audio video WhatsApp SMS lecteur corrigé — 20260525 -->
 </html>
+
 
