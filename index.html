@@ -781,7 +781,7 @@
         <a href="#pour-qui">Pour qui ?</a>
         <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a>
-        <a class="cta" href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activer mon commerce</a>
+        <a class="cta" href="./inscription-pos.html">Inscription commerce</a>
       </nav>
     </div>
   </header>
@@ -800,7 +800,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">📝 Activer mon commerce</a>
+            <a class="btn btn-primary" href="./inscription-pos.html">📝 Inscription commerce</a>
             <button class="btn btn-secondary" id="audioBtn" type="button">🎙️ Lecteur terrain</button>
             <a class="btn btn-green" href="./galerie.html">🖼️ Voir les boutiques partenaires</a>
             <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/fiche-astou.html" target="_blank" rel="noopener noreferrer">🛍️ Voir Astou Boutique</a>
@@ -820,7 +820,7 @@
           <div class="signup-strip">
             <strong>Tu as un commerce ?</strong>
             <span>Cantine, kiosque, boutique, artisanat, service ou marché : active ton commerce et ouvre ta vitrine.</span>
-            <a href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activation commerce</a>
+            <a href="./inscription-pos.html">Inscription commerce</a>
           </div>
 
           <div class="signup-strip media-strip">
@@ -952,7 +952,7 @@
             </p>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">📝 Activer mon commerce</a>
+            <a class="btn btn-primary" href="./inscription-pos.html">📝 Inscription commerce</a>
             <a class="btn btn-secondary" href="./galerie.html">🖼️ Galerie partenaires</a>
             <a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Voir les tarifs</a>
             <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
@@ -970,7 +970,7 @@
         <a href="https://digiylyfe.com/">Site</a> ·
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
         <a href="./galerie.html">Galerie</a> ·
-        <a href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activation</a>
+        <a href="./inscription-pos.html">Activation</a>
       </div>
     </div>
   </footer>
@@ -981,7 +981,7 @@
       <a href="#pour-qui"><span class="ico">🛒</span><span>Métiers</span></a>
       <a href="./galerie.html"><span class="ico">🖼️</span><span>Galerie</span></a>
       <a href="https://tarifs.digiylyfe.com/"><span class="ico">📦</span><span>Tarifs</span></a>
-      <a href="https://commencer-a-payer.digiylyfe.com/?module=POS"><span class="ico">📝</span><span>Activer</span></a>
+      <a href="./inscription-pos.html"><span class="ico">📝</span><span>Activer</span></a>
     </div>
   </nav>
 
@@ -1211,7 +1211,7 @@
             ? '<span class="commerce-chip">Exemple métier</span>'
             : (raw.is_astou ? '<span class="commerce-chip">Partenaire vedette</span>' : '<span class="commerce-chip">Publié</span>');
 
-          const photoHref = publicUrl || (raw.demo ? "https://commencer-a-payer.digiylyfe.com/?module=POS" : "./galerie.html");
+          const photoHref = publicUrl || (raw.demo ? "./inscription-pos.html" : "./galerie.html");
 
           const article = document.createElement("article");
           article.className = "commerce-card";
@@ -1234,7 +1234,7 @@
                 ${qrUrl ? `<a class="btn btn-secondary" href="${esc(qrUrl)}" target="_blank" rel="noopener noreferrer">QR Astou</a>` : ""}
                 ${wa ? `<a class="btn btn-green" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : ""}
                 ${sms ? `<a class="btn btn-secondary" href="${esc(sms)}">SMS</a>` : ""}
-                ${raw.demo ? `<a class="btn btn-secondary" href="https://commencer-a-payer.digiylyfe.com/?module=POS">Activer mon commerce</a>` : ""}
+                ${raw.demo ? `<a class="btn btn-secondary" href="./inscription-pos.html">Inscription commerce</a>` : ""}
               </div>
             </div>
           `;
