@@ -487,6 +487,73 @@
       font-weight:950;
     }
 
+
+    .proIdentity{
+      margin-top:12px;
+      padding:12px;
+      border-radius:20px;
+      border:1px solid rgba(20,122,85,.26);
+      background:rgba(255,255,255,.66);
+      display:grid;
+      gap:10px;
+    }
+
+    .proIdentityTitle{
+      color:var(--green);
+      font-size:18px;
+      font-weight:1000;
+    }
+
+    .proIdentity p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+      font-weight:850;
+    }
+
+    .proIdentityGrid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+    }
+
+    .proIdentity label{
+      display:grid;
+      gap:6px;
+      color:#7a4d00;
+      font-size:12px;
+      letter-spacing:.035em;
+      text-transform:uppercase;
+      font-weight:1000;
+    }
+
+    .proIdentity input{
+      width:100%;
+      min-height:48px;
+      border-radius:16px;
+      border:1px solid rgba(214,168,95,.42);
+      background:#fffaf0;
+      color:var(--ink);
+      padding:0 12px;
+      outline:none;
+      font-size:15px;
+      font-weight:900;
+      text-transform:none;
+      letter-spacing:0;
+    }
+
+    .proIdentity input:focus{
+      border-color:rgba(20,122,85,.52);
+      box-shadow:0 0 0 4px rgba(20,122,85,.10);
+    }
+
+    .proIdentityActions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
     .paymentNote{
       margin-top:12px;
     }
@@ -619,6 +686,7 @@
       .nav a,
       button{font-size:15px}
       .pills{grid-template-columns:1fr}
+      .proIdentityGrid{grid-template-columns:1fr}
       .choiceLine,
       .totalLine,
       .payLine{display:grid}
@@ -750,6 +818,42 @@
           <div class="proof">
             Après paiement Wave, envoie la capture ou la preuve par WhatsApp.
             DIGIY vérifie puis accompagne l’ouverture / visibilité MON COMMERCE.
+          </div>
+
+
+          <div class="proIdentity" id="proIdentityBox">
+            <div class="proIdentityTitle">👤 Infos pro pour le paiement</div>
+
+            <p>
+              Ces infos servent seulement à compléter le message WhatsApp / SMS et la preuve Wave.
+              Elles restent sur ce téléphone.
+            </p>
+
+            <div class="proIdentityGrid">
+              <label for="proName">
+                Nom / responsable
+                <input id="proName" autocomplete="name" placeholder="Ex : Mamadou Diop">
+              </label>
+
+              <label for="proPhone">
+                Téléphone / WhatsApp
+                <input id="proPhone" autocomplete="tel" placeholder="Ex : +221 77 000 00 00">
+              </label>
+
+              <label for="proZone">
+                Zone / ville
+                <input id="proZone" autocomplete="address-level2" placeholder="Ex : Saly, Mbour, Dakar">
+              </label>
+
+              <label for="proBusiness">
+                Nom du commerce
+                <input id="proBusiness" autocomplete="organization" placeholder="Ex : Boutique Teranga">
+              </label>
+            </div>
+
+            <div class="proIdentityActions">
+              <button class="btn clear" id="btnClearProInfo" type="button">🧹 Effacer mes infos</button>
+            </div>
           </div>
 
           <div class="paymentNote">
@@ -936,6 +1040,15 @@
       const summary = document.getElementById("summary");
       const paymentNote = document.getElementById("paymentNote");
 
+      const PRO_MEMORY_KEY = "digiy_pos_payment_identity_v1";
+      const proFields = {
+        proName: document.getElementById("proName"),
+        proPhone: document.getElementById("proPhone"),
+        proZone: document.getElementById("proZone"),
+        proBusiness: document.getElementById("proBusiness")
+      };
+
+
       let selected = new Set();
 
       function money(n){
@@ -955,6 +1068,61 @@
 
       function noteText(){
         return (paymentNote.value || "").trim();
+      }
+
+      function cleanValue(value){
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
+      function loadProIdentity(){
+        let data = {};
+
+        try{
+          data = JSON.parse(localStorage.getItem(PRO_MEMORY_KEY) || "{}");
+        }catch(e){
+          data = {};
+        }
+
+        Object.keys(proFields).forEach(id => {
+          const input = proFields[id];
+          if(input && data[id] && !input.value){
+            input.value = data[id];
+          }
+        });
+      }
+
+      function saveProIdentity(){
+        const data = {};
+
+        Object.keys(proFields).forEach(id => {
+          const input = proFields[id];
+          if(input && cleanValue(input.value)){
+            data[id] = cleanValue(input.value);
+          }
+        });
+
+        localStorage.setItem(PRO_MEMORY_KEY, JSON.stringify(data));
+        syncContact();
+      }
+
+      function clearProIdentity(){
+        localStorage.removeItem(PRO_MEMORY_KEY);
+
+        Object.keys(proFields).forEach(id => {
+          const input = proFields[id];
+          if(input) input.value = "";
+        });
+
+        syncContact();
+      }
+
+      function proIdentityText(){
+        return [
+          "Nom / responsable : " + (cleanValue(proFields.proName && proFields.proName.value) || "à compléter"),
+          "Téléphone / WhatsApp : " + (cleanValue(proFields.proPhone && proFields.proPhone.value) || "à compléter"),
+          "Zone / ville : " + (cleanValue(proFields.proZone && proFields.proZone.value) || "à compléter"),
+          "Commerce : " + (cleanValue(proFields.proBusiness && proFields.proBusiness.value) || "à compléter")
+        ].join("\n");
       }
 
       function render(){
@@ -994,6 +1162,9 @@
           "Bonjour JB, je veux avancer avec MON COMMERCE.",
           "",
           "Date de demande : " + requestDate(),
+          "",
+          "Infos pro / paiement :",
+          proIdentityText(),
           "",
           "Choix :",
           lines || "Aucun choix sélectionné",
@@ -1121,13 +1292,24 @@
       });
 
       document.getElementById("btnFloating").addEventListener("click", () => {
-        update(false);
+        loadProIdentity();
+      update(false);
         summary.scrollIntoView({behavior:"smooth", block:"start"});
       });
 
       btnSms.addEventListener("click", copySms);
       btnClear.addEventListener("click", clearChoices);
       paymentNote.addEventListener("input", syncContact);
+
+      Object.keys(proFields).forEach(id => {
+        const input = proFields[id];
+        if(input) input.addEventListener("input", saveProIdentity);
+      });
+
+      const btnClearProInfo = document.getElementById("btnClearProInfo");
+      if(btnClearProInfo){
+        btnClearProInfo.addEventListener("click", clearProIdentity);
+      }
 
       document.getElementById("btnCopyWave").addEventListener("click", () => {
         if(navigator.clipboard){
@@ -1139,6 +1321,7 @@
         }
       });
 
+      loadProIdentity();
       update(false);
     })();
   </script>
@@ -1151,4 +1334,6 @@
   </script>
 </body>
 </html>
+
+
 
