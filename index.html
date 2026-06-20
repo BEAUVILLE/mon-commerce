@@ -763,6 +763,47 @@
       .chips{grid-template-columns:1fr}
       .chip{font-size:15px}
     }
+
+    /* === DIGIYLYFE · Switch FR / EN === */
+    .lang-switch{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      min-height:42px;
+      padding:3px;
+      border-radius:999px;
+      border:1px solid rgba(214,168,95,.28);
+      background:rgba(255,255,255,.055);
+      box-shadow:0 10px 24px rgba(0,0,0,.16);
+    }
+
+    .lang-switch button{
+      min-height:34px;
+      border:0;
+      border-radius:999px;
+      padding:0 10px;
+      color:var(--muted);
+      background:transparent;
+      font-size:12px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+
+    .lang-switch button.active{
+      color:#17120e;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+    }
+
+    html[lang="en"] .commerce-photo-link::after{
+      content:"View profile";
+    }
+
+    @media(max-width:720px){
+      .lang-switch{width:100%;justify-content:center}
+      .lang-switch button{flex:1}
+    }
+
+
   </style>
 </head>
 
@@ -783,6 +824,10 @@
         <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a>
         <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Wolof caisse</a>
+        <div class="lang-switch" aria-label="Choisir la langue">
+          <button id="langFrBtn" type="button" class="active" aria-pressed="true">🇫🇷 FR</button>
+          <button id="langEnBtn" type="button" aria-pressed="false">🇬🇧 EN</button>
+        </div>
         <a class="cta" href="./inscription-pos.html">Activer ma présence</a>
       </nav>
     </div>
@@ -1336,7 +1381,7 @@
         const synth = window.speechSynthesis;
         let playing = false;
 
-        const text = `Bienvenue dans MON COMMERCE, par DIGIYLYFE.
+        const textFr = `Bienvenue dans MON COMMERCE, par DIGIYLYFE.
 Ici, une cantine, un kiosque, un atelier ou une boutique peut avoir une présence propre.
 La fiche montre le nom, le métier, les photos, le QR et le contact direct.
 Le client regarde, comprend, puis écrit par WhatsApp ou par SMS.
@@ -1345,10 +1390,32 @@ Le commerçant garde son argent, son client et sa relation.
 L’inscription est fluide pour activer sa présence dans l’architecture métiers de la Supa-Apps.
 DIGIY donne la porte. Le terrain garde la main.`;
 
+        const textEn = `Welcome to MON COMMERCE, by DIGIYLYFE.
+Here, a food stall, a kiosk, a workshop or a small shop can have a clean digital presence.
+The profile shows the name, the activity, the photos, the QR code and the direct contact.
+The customer looks, understands, then writes through WhatsApp or SMS.
+The Wolof cash register lexicon also helps on the ground: opening the register, saying the total, giving the receipt, applying a discount, checking stock and closing cleanly.
+The merchant keeps the money, the customer and the relationship.
+Registration is simple to activate a presence inside the DIGIYLYFE business architecture.
+DIGIY opens the door. The field keeps control.`;
+
+        function currentLang(){
+          try{
+            if(typeof window.DIGIY_GET_COMMERCE_LANG === "function") return window.DIGIY_GET_COMMERCE_LANG();
+            return localStorage.getItem("digiy_mon_commerce_lang") || document.documentElement.lang || "fr";
+          }catch(_){
+            return document.documentElement.lang || "fr";
+          }
+        }
+
         function setButtons(){
-          if(heroBtn) heroBtn.textContent = playing ? "⏹ Arrêter" : "🎧 Écouter l’intro";
-          if(playBtn) playBtn.textContent = playing ? "🔊 Lecture en cours" : "▶️ Lecture";
-          if(stopBtn) stopBtn.disabled = !playing;
+          const en = currentLang() === "en";
+          if(heroBtn) heroBtn.textContent = playing ? (en ? "⏹ Stop" : "⏹ Arrêter") : (en ? "🎧 Listen to intro" : "🎧 Écouter l’intro");
+          if(playBtn) playBtn.textContent = playing ? (en ? "🔊 Playing" : "🔊 Lecture en cours") : (en ? "▶️ Play" : "▶️ Lecture");
+          if(stopBtn){
+            stopBtn.textContent = en ? "⏹ Stop" : "⏹ Arrêt";
+            stopBtn.disabled = !playing;
+          }
         }
 
         function stopAudio(){
@@ -1377,9 +1444,11 @@ DIGIY donne la porte. Le terrain garde la main.`;
               .replace(/0\s*%/g, "zéro pour cent");
           }
 
-          const u = new SpeechSynthesisUtterance(prepareForSpeech(text));
-          u.lang = "fr-FR";
-          u.rate = 0.86;
+          const lang = currentLang();
+          const rawText = lang === "en" ? textEn : textFr;
+          const u = new SpeechSynthesisUtterance(lang === "en" ? rawText : prepareForSpeech(rawText));
+          u.lang = lang === "en" ? "en-US" : "fr-FR";
+          u.rate = lang === "en" ? 0.90 : 0.86;
           u.pitch = 1.02;
 
           u.onstart = () => {
@@ -1405,6 +1474,296 @@ DIGIY donne la porte. Le terrain garde la main.`;
       loadPublicCommerces();
     })();
    </script>
+
+<script>
+(function(){
+  "use strict";
+
+  const STORAGE_KEY = "digiy_mon_commerce_lang";
+  const originalText = new WeakMap();
+  const originalAttr = new WeakMap();
+  let observer = null;
+  let applying = false;
+
+  const meta = {
+    fr:{
+      title:"MON COMMERCE — Une vitrine pour tous by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale : cantines, kiosques, artisans, marchés, petites boutiques, commerces de quartier. Contact direct, paiement direct, 0% commission."
+    },
+    en:{
+      title:"MON COMMERCE — A storefront for everyone by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE makes digital storefronts accessible to food stalls, kiosks, artisans, markets, small shops and neighborhood businesses. Direct contact, direct payment, 0% commission."
+    }
+  };
+
+  const TEXT = new Map(Object.entries({
+    "Une vitrine pour le commerce réel":"A storefront for real commerce",
+    "Galerie partenaires":"Partner gallery",
+    "Pour qui ?":"Who is it for?",
+    "Tarifs":"Pricing",
+    "🇸🇳 Wolof caisse":"🇸🇳 Wolof cash register",
+    "Activer ma présence":"Activate my presence",
+    "🛒 MON COMMERCE by DIGIYLYFE":"🛒 MON COMMERCE by DIGIYLYFE",
+    "La vitrine n’est pas réservée aux grands.":"A digital storefront is not only for big businesses.",
+    "Elle appartient au terrain.":"It belongs to the field.",
+    "Cantine, kiosque, atelier, boutique ou service de quartier : MON COMMERCE donne une fiche claire,\n            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client.":"Food stall, kiosk, workshop, shop or neighborhood service: MON COMMERCE gives a clear profile, photos, a QR code and direct contact. The professional keeps their name, their money and their customer relationship.",
+    "📝 Activer ma présence":"📝 Activate my presence",
+    "🎧 Écouter l’intro":"🎧 Listen to intro",
+    "🇸🇳 Lexique Wolof caisse":"🇸🇳 Wolof cash register lexicon",
+    "🖼️ Voir les boutiques partenaires":"🖼️ See partner shops",
+    "🛍️ Voir Astou Boutique":"🛍️ See Astou Boutique",
+    "💬 Demande WhatsApp":"💬 WhatsApp request",
+    "📩 Demande SMS":"📩 SMS request",
+    "0% commission":"0% commission",
+    "Paiement direct":"Direct payment",
+    "WhatsApp direct":"Direct WhatsApp",
+    "QR boutique":"Shop QR",
+    "Photo par URL":"Photo by URL",
+    "Wolof caisse":"Wolof cash register",
+    "Simple sur téléphone":"Simple on phone",
+    "Tu as un commerce ?":"Do you have a business?",
+    "La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers de la Supa-Apps.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the business architecture.",
+    "🎥 Vidéo de présentation":"🎥 Presentation video",
+    "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS.",
+    "Voir les fiches":"See profiles",
+    "Intro simple :":"Simple intro:",
+    " le client voit la vitrine, comprend l’activité, puis choisit son canal humain :\n            ":" the customer sees the storefront, understands the activity, then chooses a human channel: ",
+    "WhatsApp":"WhatsApp",
+    " pour discuter vite, ou ":" to talk quickly, or ",
+    "SMS":"SMS",
+    " si c’est plus simple sur son téléphone.\n            Le ":" if it is easier on the phone. The ",
+    "lexique Wolof caisse":"Wolof cash register lexicon",
+    " aide aussi au terrain : ouverture, total, ticket, remise, stock et fermeture.":" also helps on the ground: opening, total, receipt, discount, stock and closing.",
+    "🎧 Intro MON COMMERCE":"🎧 MON COMMERCE intro",
+    "▶️ Lecture":"▶️ Play",
+    "⏹ Arrêt":"⏹ Stop",
+    "Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et inscription fluide dans l’architecture métiers.":"A short voice introduces the prospect: clear profile, QR code, photos, direct contact, payment to the merchant, Wolof cash register lexicon and simple registration inside the business architecture.",
+    "Un cercle, plusieurs métiers. Même petit, chaque commerce peut être trouvé, compris et contacté.":"One circle, many activities. Even small businesses can be found, understood and contacted.",
+    "Ouvert au petit, au grand, à l’artisan.":"Open to the small shop, the bigger shop and the artisan.",
+    "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control.",
+    "Cantines & nourriture":"Food stalls & meals",
+    "Plat du jour, jus, café, sandwich, dibiterie, petit point de vente : le client comprend vite.":"Daily meal, juice, coffee, sandwich, grill spot, small sales point: the customer understands fast.",
+    "Artisans & ateliers":"Artisans & workshops",
+    "Tailleur, cordonnier, réparateur, soudeur, menuisier : le savoir-faire sort de l’ombre.":"Tailor, shoemaker, repairer, welder, carpenter: the know-how comes out of the shadows.",
+    "Beauté & services":"Beauty & services",
+    "Coiffure, onglerie, cosmétique, soins, petits services de quartier : contact direct sans détour.":"Hair, nails, cosmetics, care and neighborhood services: direct contact with no detour.",
+    "Boutiques & marchés":"Shops & markets",
+    "Épicerie, fruits, vêtements, accessoires, téléphone, maison : une vitrine simple et vivante.":"Groceries, fruits, clothing, accessories, phone items, home goods: a simple and living storefront.",
+    "Démocratiser la vitrine":"Make the storefront accessible",
+    "Le commerce local n’a pas toujours une belle devanture. Parfois il est serré entre deux murs, posé sur une table,\n            installé sous un parasol ou dans un coin de rue. Cela ne retire rien à sa valeur.":"Local business does not always have a beautiful shopfront. Sometimes it sits between two walls, on a table, under a parasol or on a street corner. That does not remove its value.",
+    "DIGIY donne au terrain une adresse, un lien, un QR, une fiche, un contact direct et une dignité visible.":"DIGIY gives the field an address, a link, a QR code, a profile, direct contact and visible dignity.",
+    "Pas une plateforme qui capte":"Not a platform that captures",
+    "Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.":"The customer contacts the merchant directly. Payment stays direct. DIGIY takes no commission on the sale.",
+    "La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien.":"The storefront helps the business exist online without forcing the merchant to become a technician.",
+    "Aperçu des commerces":"Business preview",
+    "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront.",
+    "🖼️ Ouvrir la galerie partenaires":"🖼️ Open partner gallery",
+    "Chargement des commerces publiés…":"Loading published businesses…",
+    "Ton commerce mérite sa présence.":"Your business deserves its presence.",
+    "Pas besoin d’être grand pour être visible. Il faut une fiche claire :\n              ton nom, ton métier, tes photos, ton contact, ton QR.":"You do not need to be big to be visible. You need a clear profile: your name, your activity, your photos, your contact, your QR code.",
+    "🖼️ Galerie partenaires":"🖼️ Partner gallery",
+    "Voir les tarifs":"See pricing",
+    "💬 WhatsApp":"💬 WhatsApp",
+    "📩 SMS":"📩 SMS",
+    "MON COMMERCE by DIGIYLYFE — Paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Direct payment · 0% commission · The field keeps control.",
+    "Site":"Site",
+    "Galerie":"Gallery",
+    "Activation":"Activation",
+    "Accueil":"Home",
+    "Métiers":"Activities",
+    "Wolof":"Wolof",
+    "Activer":"Activate",
+    "Voir la fiche":"View profile",
+    "Inscription commerce":"Business registration",
+    "Exemple métier":"Activity example",
+    "Partenaire vedette":"Featured partner",
+    "Publié":"Published",
+    "Textile maison · plage · hôtel · beauté":"Home textile · beach · hotel · beauty",
+    "Textile maison, serviettes, draps, foutas, tenues, beauté et produits utiles du quotidien. Une vraie ambiance boutique : on voit, on comprend, on clique, puis on contacte directement.":"Home textiles, towels, sheets, foutas, outfits, beauty and useful everyday products. A real shop atmosphere: people see, understand, click, then contact directly.",
+    "Cantine du coin":"Neighborhood food stall",
+    "Cantine · plat du jour":"Food stall · daily meal",
+    "Quartier":"Neighborhood",
+    "Petit point de nourriture, service rapide, contact direct. Même sous un abri simple, le commerce mérite sa vitrine.":"Small food point, quick service, direct contact. Even under a simple shelter, a business deserves its storefront.",
+    "Kiosque quartier":"Neighborhood kiosk",
+    "Boutique · petit commerce":"Shop · small business",
+    "Rue principale":"Main street",
+    "Deux mètres carrés peuvent devenir une vraie présence digitale : nom, contact, produits, QR et WhatsApp direct.":"Two square meters can become a real digital presence: name, contact, products, QR code and direct WhatsApp.",
+    "Atelier tailleur":"Tailor workshop",
+    "Artisanat · couture":"Craft · tailoring",
+    "Marché":"Market",
+    "Un métier de main, des tissus, des commandes, une relation humaine. DIGIY aide le client à trouver l’artisan.":"A handcraft, fabrics, orders and a human relationship. DIGIY helps the customer find the artisan.",
+    "Coiffure & beauté":"Hair & beauty",
+    "Service · beauté":"Service · beauty",
+    "Coiffeuse, barber, onglerie, cosmétique : une fiche simple pour montrer le service et recevoir le client directement.":"Hairdresser, barber, nails, cosmetics: a simple profile to show the service and receive the customer directly.",
+    "Vendeur fruits & légumes":"Fruit & vegetable seller",
+    "Marché · alimentaire":"Market · food",
+    "Marché local":"Local market",
+    "Produits frais, prix du jour, disponibilité, contact WhatsApp. Le marché aussi peut avoir une porte digitale.":"Fresh products, daily price, availability and WhatsApp contact. The market can also have a digital door.",
+    "Réparateur du quartier":"Neighborhood repairer",
+    "Réparation · artisan":"Repair · artisan",
+    "Atelier":"Workshop",
+    "Téléphone, vélo, chaussures, petits appareils : le savoir-faire local devient trouvable et respectable.":"Phone, bicycle, shoes, small devices: local know-how becomes findable and respected.",
+    "Boutique accessoires":"Accessories shop",
+    "Téléphone · accessoires":"Phone · accessories",
+    "Rue commerçante":"Shopping street",
+    "Chargeurs, coques, écouteurs, petits équipements : la vitrine aide le client à voir avant de venir.":"Chargers, cases, earphones, small equipment: the storefront helps the customer see before coming.",
+    "Petit commerce maison":"Small home goods shop",
+    "Maison · quotidien":"Home · daily goods",
+    "Proximité":"Nearby",
+    "Lessive, savon, eau, biscuits, produits du quotidien : même une petite boutique mérite une présence claire.":"Laundry soap, soap, water, biscuits, daily goods: even a small shop deserves a clear presence.",
+    "Astou Boutique chargée comme commerce partenaire.":"Astou Boutique loaded as a partner business.",
+    "Commerce chargé depuis la fiche publique.":"Business loaded from the public profile.",
+    "Astou Boutique affichée comme partenaire vedette. Galerie complétée par quelques exemples pour comprendre sans alourdir.":"Astou Boutique displayed as a featured partner. The gallery is completed with a few examples to explain without weighing it down.",
+    "Galerie réelle non disponible pour l’instant. Astou Boutique et exemples métier affichés.":"Live gallery unavailable for now. Astou Boutique and activity examples displayed.",
+    "Aucun commerce publié pour l’instant. Astou Boutique et exemples métier affichés.":"No published business for now. Astou Boutique and activity examples displayed.",
+    "Connexion galerie indisponible. Démonstration terrain affichée.":"Gallery connection unavailable. Field demonstration displayed."
+  }));
+
+  const ATTR = {
+    "Patchwork circulaire de commerces locaux : cantine, kiosque, artisanat, marché, réparation, coiffure et petites boutiques":"Circular patchwork of local businesses: food stall, kiosk, craft, market, repair, hair and small shops",
+    "Navigation principale":"Main navigation",
+    "Piliers MON COMMERCE":"MON COMMERCE pillars",
+    "Lecteur audio MON COMMERCE":"MON COMMERCE audio player",
+    "Navigation mobile MON COMMERCE":"MON COMMERCE mobile navigation"
+  };
+
+  function getLang(){
+    try{return localStorage.getItem(STORAGE_KEY) || "fr"}catch(_){return "fr"}
+  }
+
+  window.DIGIY_GET_COMMERCE_LANG = getLang;
+
+  function setMeta(lang){
+    const m = meta[lang] || meta.fr;
+    document.title = m.title;
+    const desc = document.querySelector('meta[name="description"]');
+    if(desc) desc.setAttribute("content", m.description);
+  }
+
+  function translateTextNode(node, lang){
+    if(!originalText.has(node)) originalText.set(node, node.nodeValue);
+    const original = originalText.get(node);
+    if(lang === "fr"){
+      node.nodeValue = original;
+      return;
+    }
+    const trimmed = original.trim();
+    if(!trimmed) return;
+    const translated = TEXT.get(trimmed);
+    if(translated){
+      node.nodeValue = original.replace(trimmed, translated);
+    }
+  }
+
+  function attrKey(el, attr){
+    let map = originalAttr.get(el);
+    if(!map){
+      map = {};
+      originalAttr.set(el, map);
+    }
+    if(!(attr in map)) map[attr] = el.getAttribute(attr) || "";
+    return map[attr];
+  }
+
+  function translateAttributes(root, lang){
+    const nodes = root.nodeType === 1 ? [root].concat(Array.from(root.querySelectorAll("*"))) : [];
+    nodes.forEach(el => {
+      ["aria-label","alt","title"].forEach(attr => {
+        if(!el.hasAttribute(attr)) return;
+        const original = attrKey(el, attr);
+        if(lang === "fr"){
+          el.setAttribute(attr, original);
+          return;
+        }
+        const translated = ATTR[original] || TEXT.get(original.trim());
+        if(translated) el.setAttribute(attr, translated);
+      });
+      if(el.tagName === "INPUT" || el.tagName === "TEXTAREA"){
+        if(el.hasAttribute("placeholder")){
+          const original = attrKey(el, "placeholder");
+          if(lang === "fr") el.setAttribute("placeholder", original);
+          else if(TEXT.get(original.trim())) el.setAttribute("placeholder", TEXT.get(original.trim()));
+        }
+      }
+    });
+  }
+
+  function translateTree(root, lang){
+    if(!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node){
+        const parent = node.parentElement;
+        if(!parent) return NodeFilter.FILTER_REJECT;
+        if(["SCRIPT","STYLE","NOSCRIPT"].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => translateTextNode(node, lang));
+    translateAttributes(root, lang);
+  }
+
+  function setSwitch(lang){
+    const fr = document.getElementById("langFrBtn");
+    const en = document.getElementById("langEnBtn");
+    if(fr){
+      fr.classList.toggle("active", lang === "fr");
+      fr.setAttribute("aria-pressed", lang === "fr" ? "true" : "false");
+    }
+    if(en){
+      en.classList.toggle("active", lang === "en");
+      en.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+    }
+  }
+
+  function applyLang(lang){
+    if(applying) return;
+    applying = true;
+    try{
+      document.documentElement.lang = lang;
+      document.documentElement.setAttribute("data-lang", lang);
+      try{localStorage.setItem(STORAGE_KEY, lang)}catch(_){}
+      setMeta(lang);
+      setSwitch(lang);
+      translateTree(document.body, lang);
+
+      if(typeof window.speechSynthesis !== "undefined"){
+        try{ window.speechSynthesis.cancel(); }catch(_){}
+      }
+
+      window.dispatchEvent(new CustomEvent("digiy-commerce-langchange", {detail:{lang}}));
+    }finally{
+      applying = false;
+    }
+  }
+
+  window.DIGIY_APPLY_COMMERCE_LANG = function(){
+    applyLang(getLang());
+  };
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const fr = document.getElementById("langFrBtn");
+    const en = document.getElementById("langEnBtn");
+    fr?.addEventListener("click", () => applyLang("fr"));
+    en?.addEventListener("click", () => applyLang("en"));
+
+    observer = new MutationObserver((mutations) => {
+      if(applying || getLang() !== "en") return;
+      mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if(node.nodeType === 1) translateTree(node, "en");
+          else if(node.nodeType === 3) translateTextNode(node, "en");
+        });
+      });
+    });
+    observer.observe(document.body, {childList:true, subtree:true});
+
+    applyLang(getLang());
+  });
+})();
+</script>
+
 <script src="https://pro-action-digiy.digiylyfe.com/assets/js/digiy-retour-voix.js?v=retour-voix-20260606-v4" defer></script>
 </body>
 <!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
