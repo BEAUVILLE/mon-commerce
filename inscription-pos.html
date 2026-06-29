@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f6eddc" />
   <meta name="robots" content="index,follow" />
-  <meta name="digiy-version" content="pos-inscription-wave-note-paiement-clair-20260604" />
+  <meta name="digiy-version" content="pos-inscription-france-senegal-grille-pays-sendwave-20260629" />
 
-  <title>Inscription MON COMMERCE — DIGIY POS</title>
+  <title>Inscription MON COMMERCE — DIGIY POS France · Sénégal</title>
   <meta
     name="description"
-    content="Inscription DIGIY POS : aucun choix précoché, bouton effacer, choix cumulables, addition, sous-total, total, date, WhatsApp et SMS."
+    content="Inscription DIGIY POS MON COMMERCE : grille pays Sénégal / France, Wave direct au Sénégal, Sendwave France vers Wave Sénégal, 0% commission."
   />
 
   <style>
@@ -616,6 +616,66 @@
       margin-top:10px;
     }
 
+
+    .countryBox{
+      margin-top:12px;
+      border:1px solid rgba(20,122,85,.26);
+      border-radius:20px;
+      background:rgba(20,122,85,.08);
+      padding:13px;
+      color:var(--green);
+      font-weight:1000;
+    }
+
+    .countryBox strong{
+      display:block;
+      color:var(--green);
+      font-size:18px;
+      margin-bottom:6px;
+    }
+
+    .countryBox p{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+      font-weight:850;
+    }
+
+    .countryBtns{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .countryBtn{
+      border-radius:16px;
+      min-height:52px;
+      border:1px solid rgba(20,122,85,.22);
+      background:#fffaf0;
+      color:var(--green);
+      font-weight:1000;
+      box-shadow:none;
+    }
+
+    .countryBtn.active{
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:#fff;
+      border:0;
+    }
+
+    .countryNote{
+      margin-top:10px;
+      border-radius:16px;
+      border:1px dashed rgba(20,122,85,.28);
+      background:rgba(255,255,255,.60);
+      padding:10px;
+      color:#7a4d00;
+      font-size:13px;
+      line-height:1.4;
+      font-weight:950;
+    }
+
     .audio{
       margin-top:12px;
       display:flex;
@@ -738,17 +798,27 @@
         </article>
 
         <aside class="panel side">
-          <div class="sideTitle">Paiement Wave</div>
+          <div class="sideTitle">Paiement pays · Wave / Sendwave</div>
 
           <div class="waveHero">
             <small>Nom et numéro de paiement</small>
-            <strong>Wave : JB BEAUVILLE · +221 77 134 28 89</strong>
+            <strong id="topPaymentLabel">Wave : JB BEAUVILLE · +221 77 134 28 89</strong>
           </div>
 
           <p class="lead">
             La page additionne uniquement les choix cliqués.
             Après paiement, le client envoie la preuve sur WhatsApp.
           </p>
+
+          <div class="countryBox" aria-label="Choix pays paiement">
+            <strong>🌍 Grille pays</strong>
+            <p>Choisis le pays du professionnel. Les montants France et Sénégal ne sont pas une conversion au taux de change : c’est une grille adaptée au marché et au mode de règlement.</p>
+            <div class="countryBtns">
+              <button class="countryBtn active" type="button" data-country="SN">🇸🇳 Sénégal · Wave</button>
+              <button class="countryBtn" type="button" data-country="FR">🇫🇷 France · Sendwave</button>
+            </div>
+            <div class="countryNote" id="countryNote">Sénégal : règlement Wave direct vers JB BEAUVILLE.</div>
+          </div>
 
           <div class="doctrine">POS détaille la vente. PAY lit l’argent.</div>
         </aside>
@@ -776,7 +846,12 @@
       <aside class="card summary" id="summary">
         <h2>Ce que l’abonnement m’apporte</h2>
 
-        <p class="sub">La sélection s’additionne ici.</p>
+        <p class="sub">La sélection s’additionne ici selon la grille pays.</p>
+
+        <div class="countryBox" aria-label="Pays sélectionné">
+          <strong id="countrySummaryTitle">🇸🇳 Sénégal · Wave direct</strong>
+          <p id="countrySummaryText">Tarifs Sénégal en FCFA. Paiement Wave direct vers JB BEAUVILLE.</p>
+        </div>
 
         <div class="selected" id="selectedBox">
           <strong>Aucun choix sélectionné</strong>
@@ -803,11 +878,11 @@
         </div>
 
         <div class="payment">
-          <div class="paymentTitle">💳 Paiement Wave</div>
+          <div class="paymentTitle" id="paymentTitle">💳 Paiement Wave</div>
 
           <div class="waveHero">
             <small>Nom et numéro de paiement</small>
-            <strong>Wave : JB BEAUVILLE · +221 77 134 28 89</strong>
+            <strong id="paymentLabel">Wave : JB BEAUVILLE · +221 77 134 28 89</strong>
           </div>
 
           <div class="payLine">
@@ -816,7 +891,7 @@
           </div>
 
           <div class="proof">
-            Après paiement Wave, envoie la capture ou la preuve par WhatsApp.
+            Après paiement, envoie la capture ou la preuve par WhatsApp.
             DIGIY vérifie puis accompagne l’ouverture / visibilité MON COMMERCE.
           </div>
 
@@ -860,7 +935,7 @@
             <label for="paymentNote">📝 Note / preuve paiement</label>
             <textarea
               id="paymentNote"
-              placeholder="Ex : Paiement Wave envoyé pour MON COMMERCE 5 — 19 900 FCFA — au nom de Mamadou Diop — tél +221 77 000 00 00."
+              placeholder="Ex : Paiement Wave / Sendwave envoyé pour MON COMMERCE 5 — montant choisi — au nom de Mamadou Diop — tél +221 / +33 ..."
             ></textarea>
           </div>
         </div>
@@ -909,15 +984,17 @@
       "use strict";
 
       const SUPPORT_WA = "221771342889";
-      const WAVE_LABEL = "Wave : JB BEAUVILLE · +221 77 134 28 89";
+      const WAVE_SN = "Wave Sénégal : JB BEAUVILLE · +221 77 134 28 89";
+      const SENDWAVE_FR = "Sendwave France → Wave Sénégal : JB BEAUVILLE · +221 77 134 28 89";
+      const DEFAULT_COUNTRY = "SN";
 
       const PLANS = [
         {
           code:"5",
           module:"POS",
           name:"Mon commerce — Caisse",
-          amount:"19 900 FCFA · 29 €",
-          fcfa:19900,
+          sn:19900,
+          fr:29,
           desc:"Caisse mobile, produits, quantités, total, ticket et stock.",
           bonus:[
             "Caisse téléphone",
@@ -931,8 +1008,8 @@
           code:"56",
           module:"PACK",
           name:"Duo commerce — Caisse + boutique",
-          amount:"29 900 FCFA · 49 €",
-          fcfa:29900,
+          sn:29900,
+          fr:49,
           desc:"POS + présence boutique visible pour attirer et vendre.",
           bonus:[
             "Caisse POS incluse",
@@ -946,8 +1023,8 @@
           code:"E2",
           module:"EXPLORE_BOOST",
           name:"BOOST visibilité — Standard",
-          amount:"10 000 FCFA · 19 €",
-          fcfa:10000,
+          sn:10000,
+          fr:19,
           desc:"Mise en avant d’une fiche commerce déjà active.",
           bonus:[
             "Visibilité renforcée",
@@ -960,8 +1037,8 @@
           code:"R7",
           module:"RESEAU_DIGIY",
           name:"RÉSEAU abonné — 7 jours",
-          amount:"15 000 FCFA",
-          fcfa:15000,
+          sn:15000,
+          fr:28,
           desc:"Visibilité courte pour un pro déjà abonné DIGIY.",
           bonus:[
             "Réservé aux pros déjà abonnés",
@@ -974,8 +1051,8 @@
           code:"R15",
           module:"RESEAU_DIGIY",
           name:"RÉSEAU abonné — 15 jours",
-          amount:"25 000 FCFA",
-          fcfa:25000,
+          sn:25000,
+          fr:45,
           desc:"Visibilité renforcée 15 jours pour un pro déjà abonné.",
           bonus:[
             "Réservé aux pros déjà abonnés",
@@ -988,8 +1065,8 @@
           code:"R30",
           module:"RESEAU_DIGIY",
           name:"RÉSEAU abonné — 1 mois",
-          amount:"45 000 FCFA",
-          fcfa:45000,
+          sn:45000,
+          fr:75,
           desc:"Visibilité d’un mois pour un pro déjà abonné DIGIY.",
           bonus:[
             "Réservé aux pros déjà abonnés",
@@ -1002,8 +1079,8 @@
           code:"FIRST",
           module:"RESEAU_DIGIY",
           name:"Mise en classe FIRST — non-abonné",
-          amount:"150 000 FCFA · 1 mois",
-          fcfa:150000,
+          sn:150000,
+          fr:260,
           desc:"Pour les non-abonnés : qualification, fiche/vitrine finie, QR, lien, messages prêts et visibilité qualifiée.",
           bonus:[
             "Réservé aux non-abonnés",
@@ -1023,7 +1100,8 @@
         "Voix DIGIY pour préparer la vente plus vite",
         "Textes prêts à envoyer au client",
         "Validation humaine par clic",
-        "0% commission"
+        "0% commission",
+        "Grille pays : pas une conversion au taux de change"
       ];
 
       const grid = document.getElementById("posOptions");
@@ -1041,6 +1119,7 @@
       const paymentNote = document.getElementById("paymentNote");
 
       const PRO_MEMORY_KEY = "digiy_pos_payment_identity_v1";
+      const COUNTRY_KEY = "digiy_pos_country_v1";
       const proFields = {
         proName: document.getElementById("proName"),
         proPhone: document.getElementById("proPhone"),
@@ -1048,11 +1127,113 @@
         proBusiness: document.getElementById("proBusiness")
       };
 
-
       let selected = new Set();
+      let currentCountry = DEFAULT_COUNTRY;
+
+      function cleanValue(value){
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
+      function readCountryFromUrl(){
+        const params = new URLSearchParams(window.location.search);
+        const raw = cleanValue(params.get("pays") || params.get("country") || params.get("zone")).toLowerCase();
+
+        if(["fr","france"].includes(raw)) return "FR";
+        if(["sn","senegal","sénégal"].includes(raw)) return "SN";
+
+        try{
+          const saved = localStorage.getItem(COUNTRY_KEY);
+          if(saved === "FR" || saved === "SN") return saved;
+        }catch(_){}
+
+        return DEFAULT_COUNTRY;
+      }
+
+      function setCountry(country, scroll){
+        currentCountry = country === "FR" ? "FR" : "SN";
+
+        try{
+          localStorage.setItem(COUNTRY_KEY, currentCountry);
+        }catch(_){}
+
+        document.querySelectorAll("[data-country]").forEach(button => {
+          button.classList.toggle("active", button.getAttribute("data-country") === currentCountry);
+        });
+
+        updatePaymentLabels();
+        update(!!scroll);
+      }
+
+      function countryLabel(){
+        return currentCountry === "FR" ? "France" : "Sénégal";
+      }
+
+      function currencyLabel(){
+        return currentCountry === "FR" ? "€" : "FCFA";
+      }
+
+      function amountValue(plan){
+        return currentCountry === "FR" ? Number(plan.fr || 0) : Number(plan.sn || 0);
+      }
 
       function money(n){
-        return new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
+        if(currentCountry === "FR"){
+          return new Intl.NumberFormat("fr-FR").format(Number(n || 0)) + " €";
+        }
+
+        return new Intl.NumberFormat("fr-FR").format(Number(n || 0)) + " FCFA";
+      }
+
+      function planDisplay(plan){
+        return currentCountry === "FR"
+          ? money(plan.fr)
+          : money(plan.sn);
+      }
+
+      function paymentLabel(){
+        return currentCountry === "FR" ? SENDWAVE_FR : WAVE_SN;
+      }
+
+      function paymentMode(){
+        return currentCountry === "FR"
+          ? "Sendwave France vers Wave Sénégal"
+          : "Wave direct Sénégal";
+      }
+
+      function updatePaymentLabels(){
+        const note = document.getElementById("countryNote");
+        const summaryTitle = document.getElementById("countrySummaryTitle");
+        const summaryText = document.getElementById("countrySummaryText");
+        const topPaymentLabel = document.getElementById("topPaymentLabel");
+        const paymentLabelEl = document.getElementById("paymentLabel");
+        const paymentTitle = document.getElementById("paymentTitle");
+
+        if(note){
+          note.textContent = currentCountry === "FR"
+            ? "France : le professionnel règle en euros par Sendwave, envoyé vers le Wave Sénégal JB BEAUVILLE."
+            : "Sénégal : règlement Wave direct vers JB BEAUVILLE.";
+        }
+
+        if(summaryTitle){
+          summaryTitle.textContent = currentCountry === "FR"
+            ? "🇫🇷 France · Sendwave vers Wave Sénégal"
+            : "🇸🇳 Sénégal · Wave direct";
+        }
+
+        if(summaryText){
+          summaryText.textContent = currentCountry === "FR"
+            ? "Tarifs France en euros. Règlement par Sendwave vers Wave Sénégal : JB BEAUVILLE +221 77 134 28 89."
+            : "Tarifs Sénégal en FCFA. Paiement Wave direct vers JB BEAUVILLE.";
+        }
+
+        if(topPaymentLabel) topPaymentLabel.textContent = paymentLabel();
+        if(paymentLabelEl) paymentLabelEl.textContent = paymentLabel();
+
+        if(paymentTitle){
+          paymentTitle.textContent = currentCountry === "FR"
+            ? "💳 Paiement Sendwave vers Wave Sénégal"
+            : "💳 Paiement Wave";
+        }
       }
 
       function requestDate(){
@@ -1067,11 +1248,7 @@
       }
 
       function noteText(){
-        return (paymentNote.value || "").trim();
-      }
-
-      function cleanValue(value){
-        return String(value || "").replace(/\s+/g, " ").trim();
+        return cleanValue(paymentNote && paymentNote.value);
       }
 
       function loadProIdentity(){
@@ -1101,12 +1278,17 @@
           }
         });
 
-        localStorage.setItem(PRO_MEMORY_KEY, JSON.stringify(data));
+        try{
+          localStorage.setItem(PRO_MEMORY_KEY, JSON.stringify(data));
+        }catch(_){}
+
         syncContact();
       }
 
       function clearProIdentity(){
-        localStorage.removeItem(PRO_MEMORY_KEY);
+        try{
+          localStorage.removeItem(PRO_MEMORY_KEY);
+        }catch(_){}
 
         Object.keys(proFields).forEach(id => {
           const input = proFields[id];
@@ -1130,7 +1312,7 @@
           <button class="option${selected.has(p.code) ? " active" : ""}" type="button" data-code="${p.code}">
             <span class="code">${p.code}</span>
             <span class="name">${p.name}</span>
-            <span class="amount">${p.amount}</span>
+            <span class="amount">${planDisplay(p)}</span>
             <span class="desc">${p.desc}</span>
           </button>
         `).join("");
@@ -1147,36 +1329,48 @@
 
       function clearChoices(){
         selected.clear();
-        paymentNote.value = "";
+        if(paymentNote) paymentNote.value = "";
         update(true);
       }
 
-      function buildMessage(){
+      function selectedTotal(){
+        return chosen().reduce((sum, plan) => sum + amountValue(plan), 0);
+      }
+
+      function selectedLines(){
         const items = chosen();
-        const subtotal = items.reduce((sum, plan) => sum + plan.fcfa, 0);
-        const lines = items
-          .map(plan => `- ${plan.code} · ${plan.name} · ${money(plan.fcfa)}`)
-          .join("\n");
+
+        return items
+          .map(plan => `- ${plan.code} · ${plan.name} · ${planDisplay(plan)}`)
+          .join("\n") || "Aucun choix sélectionné";
+      }
+
+      function buildMessage(){
+        const subtotal = selectedTotal();
 
         return [
           "Bonjour JB, je veux avancer avec MON COMMERCE.",
           "",
           "Date de demande : " + requestDate(),
+          "Pays / grille : " + countryLabel(),
+          "Règlement : " + paymentMode(),
           "",
           "Infos pro / paiement :",
           proIdentityText(),
           "",
           "Choix :",
-          lines || "Aucun choix sélectionné",
+          selectedLines(),
           "",
           "Sous-total : " + money(subtotal),
-          "Ajustement / remise : 0 FCFA",
+          "Ajustement / remise : 0 " + currencyLabel(),
           "Total : " + money(subtotal),
           "",
-          "Paiement Wave : " + WAVE_LABEL,
+          "Paiement : " + paymentLabel(),
           "",
           "Note / preuve paiement :",
-          noteText() || "à compléter après paiement Wave",
+          noteText() || "à compléter après paiement",
+          "",
+          "Important : les tarifs France et Sénégal sont une grille pays, pas une conversion au taux de change.",
           "",
           "Après paiement, je vous envoie la preuve ici.",
           "",
@@ -1185,22 +1379,20 @@
       }
 
       function proofMessage(){
-        const items = chosen();
-        const subtotal = items.reduce((sum, plan) => sum + plan.fcfa, 0);
-        const lines = items
-          .map(plan => `- ${plan.code} · ${plan.name} · ${money(plan.fcfa)}`)
-          .join("\n");
+        const subtotal = selectedTotal();
 
         return [
-          "Bonjour JB, voici la preuve de paiement Wave pour MON COMMERCE.",
+          "Bonjour JB, voici la preuve de paiement pour MON COMMERCE.",
           "",
           "Date de demande : " + requestDate(),
+          "Pays / grille : " + countryLabel(),
+          "Règlement : " + paymentMode(),
           "",
-          WAVE_LABEL,
+          paymentLabel(),
           "Montant : " + money(subtotal),
           "",
           "Choix :",
-          lines || "Aucun choix sélectionné",
+          selectedLines(),
           "",
           "Note / preuve paiement :",
           noteText() || "à compléter",
@@ -1211,15 +1403,18 @@
 
       function syncContact(){
         btnWa.href = "https://wa.me/" + SUPPORT_WA + "?text=" + encodeURIComponent(buildMessage());
-        document.getElementById("btnProof").href =
-          "https://wa.me/" + SUPPORT_WA + "?text=" + encodeURIComponent(proofMessage());
+
+        const proofBtn = document.getElementById("btnProof");
+        if(proofBtn){
+          proofBtn.href = "https://wa.me/" + SUPPORT_WA + "?text=" + encodeURIComponent(proofMessage());
+        }
       }
 
       function update(scroll){
         render();
 
         const items = chosen();
-        const subtotal = items.reduce((sum, plan) => sum + plan.fcfa, 0);
+        const subtotal = selectedTotal();
 
         selectedBox.innerHTML = items.length
           ? `<strong>${items.length} choix sélectionné${items.length > 1 ? "s" : ""}</strong><span>Ajoute ou retire en recliquant sur une carte.</span>`
@@ -1229,15 +1424,18 @@
           ? items.map(plan => `
               <div class="choiceLine">
                 <span>${plan.code} · ${plan.name}</span>
-                <b>${money(plan.fcfa)}</b>
+                <b>${planDisplay(plan)}</b>
               </div>
             `).join("")
-          : `<div class="choiceLine"><span>Aucun choix</span><b>0 FCFA</b></div>`;
+          : `<div class="choiceLine"><span>Aucun choix</span><b>${money(0)}</b></div>`;
 
         subtotalText.textContent = money(subtotal);
-        adjustText.textContent = "0 FCFA";
+        adjustText.textContent = currentCountry === "FR" ? "0 €" : "0 FCFA";
         totalText.textContent = money(subtotal);
-        document.getElementById("payTotal").textContent = money(subtotal);
+
+        const payTotal = document.getElementById("payTotal");
+        if(payTotal) payTotal.textContent = money(subtotal);
+
         dateBox.textContent = "Date de demande : " + requestDate();
 
         const bonus = items.length
@@ -1270,9 +1468,15 @@
       }
 
       function speakText(){
-        const total = totalText.textContent || "0 FCFA";
-        return `Module Mon Commerce, diji i caisse. Aucun choix n’est précoché. Les choix s’additionnent seulement après clic. Le bouton effacer remet le total à zéro. Total affiché : ${total}.`;
+        const total = totalText.textContent || money(0);
+        return `Module Mon Commerce, DIGIY caisse. Pays sélectionné : ${countryLabel()}. Aucun choix n’est précoché. Les choix s’additionnent seulement après clic. Le bouton effacer remet le total à zéro. Total affiché : ${total}.`;
       }
+
+      document.querySelectorAll("[data-country]").forEach(button => {
+        button.addEventListener("click", () => {
+          setCountry(button.getAttribute("data-country"), false);
+        });
+      });
 
       document.getElementById("btnAudio").addEventListener("click", () => {
         if(!("speechSynthesis" in window)) return;
@@ -1293,13 +1497,13 @@
 
       document.getElementById("btnFloating").addEventListener("click", () => {
         loadProIdentity();
-      update(false);
+        update(false);
         summary.scrollIntoView({behavior:"smooth", block:"start"});
       });
 
       btnSms.addEventListener("click", copySms);
       btnClear.addEventListener("click", clearChoices);
-      paymentNote.addEventListener("input", syncContact);
+      if(paymentNote) paymentNote.addEventListener("input", syncContact);
 
       Object.keys(proFields).forEach(id => {
         const input = proFields[id];
@@ -1313,16 +1517,18 @@
 
       document.getElementById("btnCopyWave").addEventListener("click", () => {
         if(navigator.clipboard){
-          navigator.clipboard.writeText(WAVE_LABEL).then(() => {
+          navigator.clipboard.writeText(paymentLabel()).then(() => {
             const button = document.getElementById("btnCopyWave");
-            button.textContent = "✅ Wave copié";
+            button.textContent = "✅ Paiement copié";
             setTimeout(() => button.textContent = "📋 Copier Wave", 1600);
           });
         }
       });
 
       loadProIdentity();
-      update(false);
+      currentCountry = readCountryFromUrl();
+      updatePaymentLabels();
+      setCountry(currentCountry, false);
     })();
   </script>
 
@@ -1334,6 +1540,10 @@
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
