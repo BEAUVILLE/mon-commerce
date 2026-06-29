@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
   <meta name="theme-color" content="#12100f"/>
   <meta name="robots" content="index,follow"/>
-  <title>MON COMMERCE — Une vitrine pour tous by DIGIYLYFE</title>
-  <meta name="description" content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale : cantines, kiosques, artisans, marchés, petites boutiques, commerces de quartier. Contact direct, paiement direct, 0% commission."/>
-  <meta name="digiy-build" content="mon-commerce-index-sans-bouton-qr-astou-20260618"/>
+  <title>MON COMMERCE — Commerce local Afrique · France · Diaspora by DIGIYLYFE</title>
+  <meta name="description" content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : Afrique, France, diaspora, cantines, kiosques, artisans, marchés, boutiques, services. Contact direct, paiement direct, 0% commission."/>
+  <meta name="digiy-build" content="mon-commerce-international-afrique-france-diaspora-bilingue-20260629"/>
 
   <script>
     window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
@@ -708,7 +708,7 @@
       width:min(100%,760px);
       margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(6,1fr);
+      grid-template-columns:repeat(7,1fr);
       gap:6px;
     }
 
@@ -764,6 +764,65 @@
       .chip{font-size:15px}
     }
 
+
+    /* === MON COMMERCE · Ouverture internationale === */
+    .territory-panel{
+      border-radius:32px;
+      border:1px solid rgba(214,168,95,.24);
+      background:
+        radial-gradient(circle at top left,rgba(214,168,95,.16),transparent 38%),
+        radial-gradient(circle at bottom right,rgba(111,162,126,.12),transparent 42%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .territory-panel .eyebrow{margin-bottom:12px}
+    .territory-panel h2{
+      margin:0;
+      font-family:var(--fontB);
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.02;
+      letter-spacing:-1px;
+    }
+    .territory-panel p{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width:840px;
+      font-weight:750;
+      line-height:1.7;
+    }
+    .territory-grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+    .territory-item{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.045);
+      padding:16px;
+    }
+    .territory-item b{
+      display:block;
+      color:var(--gold2);
+      font-size:16px;
+      font-weight:1000;
+      margin-bottom:7px;
+    }
+    .territory-item span{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      font-weight:730;
+    }
+    @media(max-width:720px){
+      .territory-grid{grid-template-columns:1fr}
+      .territory-panel{padding:20px}
+    }
+
+
     /* === DIGIYLYFE · Switch FR / EN === */
     .lang-switch{
       display:inline-flex;
@@ -814,13 +873,14 @@
         <div class="brand-badge">👜</div>
         <div>
           <strong>MON COMMERCE</strong>
-          <span>Une vitrine pour le commerce réel</span>
+          <span>Commerce local · Afrique · France · Diaspora</span>
         </div>
       </a>
 
       <nav class="nav" aria-label="Navigation principale">
         <a href="./galerie.html">Galerie partenaires</a>
         <a href="#pour-qui">Pour qui ?</a>
+        <a href="#territoires">Territoires</a>
         <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a>
         <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Wolof caisse</a>
@@ -837,13 +897,13 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">🛒 MON COMMERCE by DIGIYLYFE</div>
+          <div class="eyebrow">🛒 MON COMMERCE · Afrique · France · Diaspora</div>
 
-          <h1>La vitrine n’est pas réservée aux grands. <em>Elle appartient au terrain.</em></h1>
+          <h1>La vitrine du commerce local n’est pas réservée aux grands. <em>Elle appartient au terrain.</em></h1>
 
           <p class="lead">
-            Cantine, kiosque, atelier, boutique ou service de quartier : MON COMMERCE donne une fiche claire,
-            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client.
+            Cantine, kiosque, atelier, boutique, marché ou service de quartier : MON COMMERCE donne une fiche claire,
+            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.
           </p>
 
           <div class="hero-actions">
@@ -862,26 +922,27 @@
             <span class="chip">WhatsApp direct</span>
             <span class="chip">QR boutique</span>
             <span class="chip">Photo par URL</span>
+            <span class="chip">Afrique · France · Diaspora</span>
             <span class="chip">Wolof caisse</span>
             <span class="chip">Simple sur téléphone</span>
           </div>
 
           <div class="signup-strip">
             <strong>Tu as un commerce ?</strong>
-            <span>La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers de la Supa-Apps.</span>
+            <span>La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora.</span>
             <a href="./inscription-pos.html">Activer ma présence</a>
           </div>
 
           <div class="signup-strip media-strip">
             <strong>🎥 Vidéo de présentation</strong>
-            <span>La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS.</span>
+            <span>La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.</span>
             <a href="#commerces">Voir les fiches</a>
           </div>
 
           <div class="contact-note">
             <b>Intro simple :</b> le client voit la vitrine, comprend l’activité, puis choisit son canal humain :
             <b>WhatsApp</b> pour discuter vite, ou <b>SMS</b> si c’est plus simple sur son téléphone.
-            Le <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607"><b>lexique Wolof caisse</b></a> aide aussi au terrain : ouverture, total, ticket, remise, stock et fermeture.
+            Le <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607"><b>lexique Wolof caisse</b></a> reste la preuve terrain ; l’ouverture France et diaspora garde le même principe : contact direct, paiement direct, 0% commission.
           </div>
 
           <div class="audio-card" id="audioCard">
@@ -893,7 +954,7 @@
               </div>
             </div>
             <div class="audio-text">
-              Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et inscription fluide dans l’architecture métiers.
+              Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et ouverture Afrique · France · Diaspora.
             </div>
           </div>
         </div>
@@ -905,7 +966,25 @@
             loading="eager"
           />
           <div class="patchwork-note">
-            Un cercle, plusieurs métiers. Même petit, chaque commerce peut être trouvé, compris et contacté.
+            Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="territoires">
+      <div class="wrap">
+        <div class="territory-panel">
+          <div class="eyebrow">🌍 Commerce local · Afrique · France · Diaspora</div>
+          <h2>Un même commerce local, plusieurs territoires.</h2>
+          <p>
+            MON COMMERCE n’est pas limité à Saly. Saly reste la preuve terrain. La France ouvre les commerces structurés.
+            La diaspora peut aider à voir, partager, recommander et soutenir une activité locale sans prendre la place du commerçant.
+          </p>
+          <div class="territory-grid">
+            <div class="territory-item"><b>🇸🇳 Afrique · preuve terrain</b><span>Cantines, kiosques, marchés, artisans, boutiques et services de proximité visibles par QR, fiche et contact direct.</span></div>
+            <div class="territory-item"><b>🇫🇷 France · commerces structurés</b><span>Petites boutiques, artisans, marchés, indépendants et services locaux qui veulent une présence claire sans commission.</span></div>
+            <div class="territory-item"><b>🌍 Diaspora · pont commercial</b><span>Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.</span></div>
           </div>
         </div>
       </div>
@@ -914,9 +993,9 @@
     <section class="section" id="pour-qui">
       <div class="wrap">
         <div class="section-title">
-          <h2>Ouvert au petit, au grand, à l’artisan.</h2>
+          <h2>Ouvert au petit commerce, à l’artisan et à la diaspora.</h2>
           <p>
-            On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main.
+            On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.
           </p>
         </div>
 
@@ -978,7 +1057,7 @@
         <div class="section-title">
           <h2>Aperçu des commerces</h2>
           <p>
-            Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine.
+            Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.
           </p>
           <a class="btn btn-primary" href="./galerie.html">🖼️ Ouvrir la galerie partenaires</a>
         </div>
@@ -997,7 +1076,7 @@
             <h2>Ton commerce mérite sa présence.</h2>
             <p>
               Pas besoin d’être grand pour être visible. Il faut une fiche claire :
-              ton nom, ton métier, tes photos, ton contact, ton QR.
+              ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.
             </p>
           </div>
           <div class="hero-actions">
@@ -1015,7 +1094,7 @@
 
   <footer>
     <div class="wrap footer-row">
-      <div>MON COMMERCE by DIGIYLYFE — Paiement direct · 0% commission · Le terrain garde la main.</div>
+      <div>MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · Paiement direct · 0% commission · Le terrain garde la main.</div>
       <div>
         <a href="https://digiylyfe.com/">Site</a> ·
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
@@ -1030,6 +1109,7 @@
     <div class="bottom-nav-inner">
       <a class="active" href="#"><span class="ico">🏠</span><span>Accueil</span></a>
       <a href="#pour-qui"><span class="ico">🛒</span><span>Métiers</span></a>
+      <a href="#territoires"><span class="ico">🌍</span><span>Intl</span></a>
       <a href="./galerie.html"><span class="ico">🖼️</span><span>Galerie</span></a>
       <a href="https://tarifs.digiylyfe.com/"><span class="ico">📦</span><span>Tarifs</span></a>
       <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607"><span class="ico">🇸🇳</span><span>Wolof</span></a>
@@ -1382,16 +1462,16 @@
         let playing = false;
 
         const textFr = `Bienvenue dans MON COMMERCE, par DIGIYLYFE.
-Ici, une cantine, un kiosque, un atelier ou une boutique peut avoir une présence propre.
+Ici, une cantine, un kiosque, un atelier, une boutique ou un service local peut avoir une présence propre, en Afrique, en France et dans la diaspora.
 La fiche montre le nom, le métier, les photos, le QR et le contact direct.
 Le client regarde, comprend, puis écrit par WhatsApp ou par SMS.
 Le lexique Wolof caisse aide aussi au terrain pour ouvrir la caisse, annoncer le total, donner le ticket, gérer une remise, signaler le stock et fermer proprement.
 Le commerçant garde son argent, son client et sa relation.
-L’inscription est fluide pour activer sa présence dans l’architecture métiers de la Supa-Apps.
+L’inscription est fluide pour activer sa présence dans l’architecture métiers DIGIYLYFE.
 DIGIY donne la porte. Le terrain garde la main.`;
 
         const textEn = `Welcome to MON COMMERCE, by DIGIYLYFE.
-Here, a food stall, a kiosk, a workshop or a small shop can have a clean digital presence.
+Here, a food stall, a kiosk, a workshop, a small shop or a local service can have a clean digital presence in Africa, France and the diaspora.
 The profile shows the name, the activity, the photos, the QR code and the direct contact.
 The customer looks, understands, then writes through WhatsApp or SMS.
 The Wolof cash register lexicon also helps on the ground: opening the register, saying the total, giving the receipt, applying a discount, checking stock and closing cleanly.
@@ -1487,16 +1567,43 @@ DIGIY opens the door. The field keeps control.`;
 
   const meta = {
     fr:{
-      title:"MON COMMERCE — Une vitrine pour tous by DIGIYLYFE",
-      description:"MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale : cantines, kiosques, artisans, marchés, petites boutiques, commerces de quartier. Contact direct, paiement direct, 0% commission."
+      title:"MON COMMERCE — Commerce local Afrique · France · Diaspora by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : Afrique, France, diaspora, cantines, kiosques, artisans, marchés, boutiques, services. Contact direct, paiement direct, 0% commission."
     },
     en:{
-      title:"MON COMMERCE — A storefront for everyone by DIGIYLYFE",
-      description:"MON COMMERCE by DIGIYLYFE makes digital storefronts accessible to food stalls, kiosks, artisans, markets, small shops and neighborhood businesses. Direct contact, direct payment, 0% commission."
+      title:"MON COMMERCE — Local commerce Africa · France · Diaspora by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE makes digital storefronts accessible to local commerce: Africa, France, diaspora, food stalls, kiosks, artisans, markets, shops and services. Direct contact, direct payment, 0% commission."
     }
   };
 
   const TEXT = new Map(Object.entries({
+
+    "Commerce local · Afrique · France · Diaspora":"Local commerce · Africa · France · Diaspora",
+    "Territoires":"Territories",
+    "🛒 MON COMMERCE · Afrique · France · Diaspora":"🛒 MON COMMERCE · Africa · France · Diaspora",
+    "La vitrine du commerce local n’est pas réservée aux grands.":"The local commerce storefront is not only for big businesses.",
+    "Cantine, kiosque, atelier, boutique, marché ou service de quartier : MON COMMERCE donne une fiche claire,\n            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.":"Food stall, kiosk, workshop, shop, market or neighborhood service: MON COMMERCE gives a clear profile, photos, a QR code and direct contact. The professional keeps their name, their money and their customer relationship, in Africa, France and the diaspora.",
+    "Afrique · France · Diaspora":"Africa · France · Diaspora",
+    "La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora.",
+    "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS, even from a distance.",
+    " le client voit la vitrine, comprend l’activité, puis choisit son canal humain :\n            ":" the customer sees the storefront, understands the activity, then chooses a human channel: ",
+    " reste la preuve terrain ; l’ouverture France et diaspora garde le même principe : contact direct, paiement direct, 0% commission.":" remains the field proof; the France and diaspora opening keeps the same principle: direct contact, direct payment, 0% commission.",
+    "Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et ouverture Afrique · France · Diaspora.":"A short voice introduces the prospect: clear profile, QR code, photos, direct contact, payment to the merchant, Wolof cash register lexicon and Africa · France · Diaspora opening.",
+    "Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.":"One circle, many activities, several territories. Even small businesses can be found, understood and contacted.",
+    "Un même commerce local, plusieurs territoires.":"One local commerce method, several territories.",
+    "MON COMMERCE n’est pas limité à Saly. Saly reste la preuve terrain. La France ouvre les commerces structurés.\n            La diaspora peut aider à voir, partager, recommander et soutenir une activité locale sans prendre la place du commerçant.":"MON COMMERCE is not limited to Saly. Saly remains the field proof. France opens structured commerce. The diaspora can help see, share, recommend and support a local activity without taking the merchant’s place.",
+    "🇸🇳 Afrique · preuve terrain":"🇸🇳 Africa · field proof",
+    "Cantines, kiosques, marchés, artisans, boutiques et services de proximité visibles par QR, fiche et contact direct.":"Food stalls, kiosks, markets, artisans, shops and nearby services visible through QR, profile and direct contact.",
+    "🇫🇷 France · commerces structurés":"🇫🇷 France · structured commerce",
+    "Petites boutiques, artisans, marchés, indépendants et services locaux qui veulent une présence claire sans commission.":"Small shops, artisans, markets, independents and local services that want a clear presence without commission.",
+    "🌍 Diaspora · pont commercial":"🌍 Diaspora · commerce bridge",
+    "Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.":"Families, travelers and customers can discover, share and contact a local business without a platform capturing the relationship.",
+    "Ouvert au petit commerce, à l’artisan et à la diaspora.":"Open to small commerce, artisans and the diaspora.",
+    "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control, whatever the territory.",
+    "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront. Senegal, France or diaspora: the logic remains the same.",
+    "Pas besoin d’être grand pour être visible. Il faut une fiche claire :\n              ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.":"You do not need to be big to be visible. You need a clear profile: your name, your activity, your photos, your contact, your QR code, and a direct door for your territory.",
+    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · Paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · Direct payment · 0% commission · The field keeps control.",
+    "Intl":"Intl",
     "Une vitrine pour le commerce réel":"A storefront for real commerce",
     "Galerie partenaires":"Partner gallery",
     "Pour qui ?":"Who is it for?",
@@ -1522,9 +1629,9 @@ DIGIY opens the door. The field keeps control.`;
     "Wolof caisse":"Wolof cash register",
     "Simple sur téléphone":"Simple on phone",
     "Tu as un commerce ?":"Do you have a business?",
-    "La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers de la Supa-Apps.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the business architecture.",
+    "La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the business architecture.",
     "🎥 Vidéo de présentation":"🎥 Presentation video",
-    "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS.",
+    "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS.",
     "Voir les fiches":"See profiles",
     "Intro simple :":"Simple intro:",
     " le client voit la vitrine, comprend l’activité, puis choisit son canal humain :\n            ":" the customer sees the storefront, understands the activity, then chooses a human channel: ",
@@ -1537,10 +1644,10 @@ DIGIY opens the door. The field keeps control.`;
     "🎧 Intro MON COMMERCE":"🎧 MON COMMERCE intro",
     "▶️ Lecture":"▶️ Play",
     "⏹ Arrêt":"⏹ Stop",
-    "Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et inscription fluide dans l’architecture métiers.":"A short voice introduces the prospect: clear profile, QR code, photos, direct contact, payment to the merchant, Wolof cash register lexicon and simple registration inside the business architecture.",
-    "Un cercle, plusieurs métiers. Même petit, chaque commerce peut être trouvé, compris et contacté.":"One circle, many activities. Even small businesses can be found, understood and contacted.",
+    "Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et ouverture Afrique · France · Diaspora.":"A short voice introduces the prospect: clear profile, QR code, photos, direct contact, payment to the merchant, Wolof cash register lexicon and simple registration inside the business architecture.",
+    "Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.":"One circle, many activities. Even small businesses can be found, understood and contacted.",
     "Ouvert au petit, au grand, à l’artisan.":"Open to the small shop, the bigger shop and the artisan.",
-    "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control.",
+    "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control.",
     "Cantines & nourriture":"Food stalls & meals",
     "Plat du jour, jus, café, sandwich, dibiterie, petit point de vente : le client comprend vite.":"Daily meal, juice, coffee, sandwich, grill spot, small sales point: the customer understands fast.",
     "Artisans & ateliers":"Artisans & workshops",
@@ -1556,7 +1663,7 @@ DIGIY opens the door. The field keeps control.`;
     "Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.":"The customer contacts the merchant directly. Payment stays direct. DIGIY takes no commission on the sale.",
     "La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien.":"The storefront helps the business exist online without forcing the merchant to become a technician.",
     "Aperçu des commerces":"Business preview",
-    "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront.",
+    "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront.",
     "🖼️ Ouvrir la galerie partenaires":"🖼️ Open partner gallery",
     "Chargement des commerces publiés…":"Loading published businesses…",
     "Ton commerce mérite sa présence.":"Your business deserves its presence.",
@@ -1565,7 +1672,7 @@ DIGIY opens the door. The field keeps control.`;
     "Voir les tarifs":"See pricing",
     "💬 WhatsApp":"💬 WhatsApp",
     "📩 SMS":"📩 SMS",
-    "MON COMMERCE by DIGIYLYFE — Paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Direct payment · 0% commission · The field keeps control.",
+    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · Paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Direct payment · 0% commission · The field keeps control.",
     "Site":"Site",
     "Galerie":"Gallery",
     "Activation":"Activation",
@@ -1768,6 +1875,25 @@ DIGIY opens the door. The field keeps control.`;
 </body>
 <!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
