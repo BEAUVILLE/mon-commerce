@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
   <meta name="theme-color" content="#12100f"/>
   <meta name="robots" content="index,follow"/>
-  <title>MON COMMERCE — Commerce local Afrique · France · Diaspora by DIGIYLYFE</title>
-  <meta name="description" content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : Afrique, France, diaspora, cantines, kiosques, artisans, marchés, boutiques, services. Contact direct, paiement direct, 0% commission."/>
-  <meta name="digiy-build" content="mon-commerce-international-afrique-france-diaspora-bilingue-20260629"/>
+  <title>MON COMMERCE — Demande commerce local · 0% commission by DIGIYLYFE</title>
+  <meta name="description" content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : demande sans engagement, activation POS payante, contact direct, paiement direct, 0% commission."/>
+  <meta name="digiy-build" content="mon-commerce-public-bilingue-demande-sans-engagement-activation-pos-payante-20260707"/>
 
   <script>
     window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
@@ -765,6 +765,109 @@
     }
 
 
+
+    /* === MON COMMERCE · Doctrine demande / activation === */
+    .commerce-doctrine-panel{
+      border-radius:32px;
+      border:2px solid rgba(214,168,95,.30);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.18),transparent 38%),
+        radial-gradient(circle at bottom left,rgba(111,162,126,.12),transparent 42%),
+        linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+
+    .commerce-doctrine-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      width:max-content;
+      max-width:100%;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(214,168,95,.34);
+      background:rgba(214,168,95,.11);
+      color:#f5dca8;
+      font-size:12px;
+      font-weight:1000;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .commerce-doctrine-panel h2{
+      margin:12px 0 10px;
+      font-family:var(--fontB);
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.02;
+      letter-spacing:-1px;
+    }
+
+    .commerce-doctrine-panel h2 em{
+      color:var(--gold);
+      font-style:italic;
+    }
+
+    .commerce-doctrine-panel p{
+      margin:0;
+      color:var(--muted);
+      max-width:900px;
+      font-weight:750;
+      line-height:1.7;
+    }
+
+    .commerce-doctrine-grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .commerce-doctrine-item{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.045);
+      padding:16px;
+    }
+
+    .commerce-doctrine-item b{
+      display:block;
+      color:var(--gold2);
+      font-size:15px;
+      font-weight:1000;
+      margin-bottom:7px;
+    }
+
+    .commerce-doctrine-item span{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      font-weight:730;
+    }
+
+    .commerce-doctrine-quote{
+      margin-top:16px!important;
+      padding:14px 16px;
+      border-left:4px solid var(--gold);
+      border-radius:18px;
+      background:rgba(214,168,95,.10);
+      color:#f5dca8!important;
+      font-weight:1000!important;
+    }
+
+    .gold-glow{
+      border-color:rgba(214,168,95,.44)!important;
+      background:linear-gradient(135deg,rgba(214,168,95,.18),rgba(240,210,154,.08))!important;
+      color:#f5dca8!important;
+    }
+
+    @media(max-width:720px){
+      .commerce-doctrine-grid{grid-template-columns:1fr}
+      .commerce-doctrine-panel{padding:20px}
+    }
+
+
     /* === MON COMMERCE · Ouverture internationale === */
     .territory-panel{
       border-radius:32px;
@@ -880,6 +983,7 @@
       <nav class="nav" aria-label="Navigation principale">
         <a href="./galerie.html">Galerie partenaires</a>
         <a href="#pour-qui">Pour qui ?</a>
+        <a href="#doctrine-commerce">Doctrine</a>
         <a href="#territoires">Territoires</a>
         <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a>
@@ -888,7 +992,7 @@
           <button id="langFrBtn" type="button" class="active" aria-pressed="true">🇫🇷 FR</button>
           <button id="langEnBtn" type="button" aria-pressed="false">🇬🇧 EN</button>
         </div>
-        <a class="cta" href="./inscription-pos.html">Activer ma présence</a>
+        <a class="cta" href="./inscription-pos.html">Demande commerce</a>
       </nav>
     </div>
   </header>
@@ -903,11 +1007,13 @@
 
           <p class="lead">
             Cantine, kiosque, atelier, boutique, marché ou service de quartier : MON COMMERCE donne une fiche claire,
-            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.
+            des photos, un QR et un contact direct. La demande commerce est sans engagement ;
+            l’activation POS / présence commerce devient payante seulement si le professionnel valide son choix.
+            Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="./inscription-pos.html">📝 Activer ma présence</a>
+            <a class="btn btn-primary" href="./inscription-pos.html">📝 Demande commerce</a>
             <button class="btn btn-secondary" id="audioBtn" type="button">🎧 Écouter l’intro</button>
             <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
             <a class="btn btn-green" href="./galerie.html">🖼️ Voir les boutiques partenaires</a>
@@ -929,8 +1035,8 @@
 
           <div class="signup-strip">
             <strong>Tu as un commerce ?</strong>
-            <span>La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora.</span>
-            <a href="./inscription-pos.html">Activer ma présence</a>
+            <span>La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.</span>
+            <a href="./inscription-pos.html">Demande commerce</a>
           </div>
 
           <div class="signup-strip media-strip">
@@ -968,6 +1074,30 @@
           <div class="patchwork-note">
             Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="doctrine-commerce">
+      <div class="wrap">
+        <div class="commerce-doctrine-panel">
+          <span class="commerce-doctrine-tag">Demande MON COMMERCE sans engagement · Activation POS payante · 0% commission</span>
+          <h2>Le commerçant vend. <em>DIGIY ouvre la porte, sans prendre la caisse.</em></h2>
+          <p>
+            MON COMMERCE prépare une présence claire pour les boutiques, marchés, cantines, kiosques,
+            ateliers, artisans et services. La demande initiale est sans engagement : le paiement concerne seulement
+            l’activation POS, une fiche commerce, un QR, un BOOST, une galerie, une mise en valeur
+            ou un pack visibilité. DIGIY ne prend aucune commission sur la vente, la caisse ou le paiement.
+          </p>
+          <div class="commerce-doctrine-grid">
+            <div class="commerce-doctrine-item"><b>✅ Demande sans engagement</b><span>Le pro peut demander, comprendre et préparer avant de valider.</span></div>
+            <div class="commerce-doctrine-item"><b>🧾 Activation POS payante</b><span>La fiche, le QR, la caisse et la visibilité s’activent clairement.</span></div>
+            <div class="commerce-doctrine-item"><b>🤝 Vente et paiement directs</b><span>Le client contacte le commerce. L’argent va directement au commerçant.</span></div>
+            <div class="commerce-doctrine-item gold-glow"><b>🇫🇷 France / diaspora</b><span>Sendwave vers Wave Sénégal reste possible pour régler l’activation.</span></div>
+          </div>
+          <p class="commerce-doctrine-quote">
+            DIGIY MON COMMERCE organise la route entre le client et le commerçant — sans détour, sans commission, sans dépossession.
+          </p>
         </div>
       </div>
     </section>
@@ -1046,7 +1176,7 @@
             Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.
           </p>
           <p>
-            La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien.
+            La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.
           </p>
         </article>
       </div>
@@ -1080,7 +1210,7 @@
             </p>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="./inscription-pos.html">📝 Activer ma présence</a>
+            <a class="btn btn-primary" href="./inscription-pos.html">📝 Demande commerce</a>
             <a class="btn btn-secondary" href="./galerie.html">🖼️ Galerie partenaires</a>
             <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
             <a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Voir les tarifs</a>
@@ -1094,13 +1224,13 @@
 
   <footer>
     <div class="wrap footer-row">
-      <div>MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · Paiement direct · 0% commission · Le terrain garde la main.</div>
+      <div>MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.</div>
       <div>
         <a href="https://digiylyfe.com/">Site</a> ·
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
         <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">Wolof caisse</a> ·
         <a href="./galerie.html">Galerie</a> ·
-        <a href="./inscription-pos.html">Activation</a>
+        <a href="./inscription-pos.html">Demande</a>
       </div>
     </div>
   </footer>
@@ -1113,7 +1243,7 @@
       <a href="./galerie.html"><span class="ico">🖼️</span><span>Galerie</span></a>
       <a href="https://tarifs.digiylyfe.com/"><span class="ico">📦</span><span>Tarifs</span></a>
       <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607"><span class="ico">🇸🇳</span><span>Wolof</span></a>
-      <a href="./inscription-pos.html"><span class="ico">📝</span><span>Activer</span></a>
+      <a href="./inscription-pos.html"><span class="ico">📝</span><span>Demande</span></a>
     </div>
   </nav>
 
@@ -1123,7 +1253,7 @@
 
       const PATCHWORK_URL = "https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png";
       const DIGIY_CONTACT_PHONE = "221771342889";
-      const DIGIY_CONTACT_TEXT = "Bonjour DIGIY, je veux faire une demande pour MON COMMERCE.";
+      const DIGIY_CONTACT_TEXT = "Bonjour DIGIY, je veux faire une demande sans engagement pour MON COMMERCE.";
       const DIGIY_WHATSAPP = "https://wa.me/" + DIGIY_CONTACT_PHONE + "?text=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
       const DIGIY_SMS = "sms:+" + DIGIY_CONTACT_PHONE + "?body=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
 
@@ -1364,7 +1494,7 @@
                 ${publicUrl ? `<a class="btn btn-secondary" href="${esc(publicUrl)}" target="_blank" rel="noopener noreferrer">Voir la fiche</a>` : ""}
                 ${wa ? `<a class="btn btn-green" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : ""}
                 ${sms ? `<a class="btn btn-secondary" href="${esc(sms)}">SMS</a>` : ""}
-                ${raw.demo ? `<a class="btn btn-secondary" href="./inscription-pos.html">Inscription commerce</a>` : ""}
+                ${raw.demo ? `<a class="btn btn-secondary" href="./inscription-pos.html">Demande commerce</a>` : ""}
               </div>
             </div>
           `;
@@ -1467,7 +1597,7 @@ La fiche montre le nom, le métier, les photos, le QR et le contact direct.
 Le client regarde, comprend, puis écrit par WhatsApp ou par SMS.
 Le lexique Wolof caisse aide aussi au terrain pour ouvrir la caisse, annoncer le total, donner le ticket, gérer une remise, signaler le stock et fermer proprement.
 Le commerçant garde son argent, son client et sa relation.
-L’inscription est fluide pour activer sa présence dans l’architecture métiers DIGIYLYFE.
+La demande est sans engagement, puis l’activation POS devient payante seulement si le professionnel valide sa présence dans l’architecture métiers DIGIYLYFE.
 DIGIY donne la porte. Le terrain garde la main.`;
 
         const textEn = `Welcome to MON COMMERCE, by DIGIYLYFE.
@@ -1476,7 +1606,7 @@ The profile shows the name, the activity, the photos, the QR code and the direct
 The customer looks, understands, then writes through WhatsApp or SMS.
 The Wolof cash register lexicon also helps on the ground: opening the register, saying the total, giving the receipt, applying a discount, checking stock and closing cleanly.
 The merchant keeps the money, the customer and the relationship.
-Registration is simple to activate a presence inside the DIGIYLYFE business architecture.
+The request is without commitment, then POS activation becomes paid only if the professional validates their presence inside the DIGIYLYFE business architecture.
 DIGIY opens the door. The field keeps control.`;
 
         function currentLang(){
@@ -1571,12 +1701,32 @@ DIGIY opens the door. The field keeps control.`;
       description:"MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : Afrique, France, diaspora, cantines, kiosques, artisans, marchés, boutiques, services. Contact direct, paiement direct, 0% commission."
     },
     en:{
-      title:"MON COMMERCE — Local commerce Africa · France · Diaspora by DIGIYLYFE",
-      description:"MON COMMERCE by DIGIYLYFE makes digital storefronts accessible to local commerce: Africa, France, diaspora, food stalls, kiosks, artisans, markets, shops and services. Direct contact, direct payment, 0% commission."
+      title:"MON COMMERCE — Local commerce request · 0% commission by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE makes digital storefronts accessible to local commerce: no-commitment request, paid POS activation, direct contact, direct payment, 0% commission."
     }
   };
 
   const TEXT = new Map(Object.entries({
+    'La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.':'The request is simple: name, activity, photos, contact, QR code. It helps prepare then activate your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora, with no commitment before validation.',
+    'La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.':'The storefront helps the business exist online without forcing the pro to become a technician. The request stays without commitment; activation becomes paid when the pro validates.',
+    'MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.':'MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · no-commitment request · paid POS activation · direct payment · 0% commission · The field keeps control.',
+    'Doctrine':'Doctrine',
+    'Demande MON COMMERCE sans engagement · Activation POS payante · 0% commission':'No-commitment MON COMMERCE request · Paid POS activation · 0% commission',
+    'Le commerçant vend.':'The merchant sells.',
+    'DIGIY ouvre la porte, sans prendre la caisse.':'DIGIY opens the door without taking the cashbox.',
+    'MON COMMERCE prépare une présence claire pour les boutiques, marchés, cantines, kiosques,\n            ateliers, artisans et services. La demande initiale est sans engagement : le paiement concerne seulement\n            l’activation POS, une fiche commerce, un QR, un BOOST, une galerie, une mise en valeur\n            ou un pack visibilité. DIGIY ne prend aucune commission sur la vente, la caisse ou le paiement.':'MON COMMERCE prepares a clear presence for shops, markets, food stalls, kiosks, workshops, artisans and services. The initial request is without commitment: payment only concerns POS activation, a commerce profile, QR code, BOOST, gallery, highlighting or visibility pack. DIGIY takes no commission on the sale, cashbox or payment.',
+    '✅ Demande sans engagement':'✅ No-commitment request',
+    'Le pro peut demander, comprendre et préparer avant de valider.':'The pro can request, understand and prepare before validating.',
+    '🧾 Activation POS payante':'🧾 Paid POS activation',
+    'La fiche, le QR, la caisse et la visibilité s’activent clairement.':'The profile, QR code, cash register and visibility are activated clearly.',
+    '🤝 Vente et paiement directs':'🤝 Direct sale and payment',
+    'Le client contacte le commerce. L’argent va directement au commerçant.':'The customer contacts the business. The money goes directly to the merchant.',
+    '🇫🇷 France / diaspora':'🇫🇷 France / diaspora',
+    'Sendwave vers Wave Sénégal reste possible pour régler l’activation.':'Sendwave to Senegal Wave remains possible to pay for activation.',
+    'DIGIY MON COMMERCE organise la route entre le client et le commerçant — sans détour, sans commission, sans dépossession.':'DIGIY MON COMMERCE organizes the road between customer and merchant — no detour, no commission, no dispossession.',
+    'Demande commerce':'Commerce request',
+    '📝 Demande commerce':'📝 Commerce request',
+    'Demande':'Request',
 
     "Commerce local · Afrique · France · Diaspora":"Local commerce · Africa · France · Diaspora",
     "Territoires":"Territories",
@@ -1584,7 +1734,7 @@ DIGIY opens the door. The field keeps control.`;
     "La vitrine du commerce local n’est pas réservée aux grands.":"The local commerce storefront is not only for big businesses.",
     "Cantine, kiosque, atelier, boutique, marché ou service de quartier : MON COMMERCE donne une fiche claire,\n            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.":"Food stall, kiosk, workshop, shop, market or neighborhood service: MON COMMERCE gives a clear profile, photos, a QR code and direct contact. The professional keeps their name, their money and their customer relationship, in Africa, France and the diaspora.",
     "Afrique · France · Diaspora":"Africa · France · Diaspora",
-    "La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora.",
+    "La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora.",
     "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS, even from a distance.",
     " le client voit la vitrine, comprend l’activité, puis choisit son canal humain :\n            ":" the customer sees the storefront, understands the activity, then chooses a human channel: ",
     " reste la preuve terrain ; l’ouverture France et diaspora garde le même principe : contact direct, paiement direct, 0% commission.":" remains the field proof; the France and diaspora opening keeps the same principle: direct contact, direct payment, 0% commission.",
@@ -1602,7 +1752,7 @@ DIGIY opens the door. The field keeps control.`;
     "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control, whatever the territory.",
     "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront. Senegal, France or diaspora: the logic remains the same.",
     "Pas besoin d’être grand pour être visible. Il faut une fiche claire :\n              ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.":"You do not need to be big to be visible. You need a clear profile: your name, your activity, your photos, your contact, your QR code, and a direct door for your territory.",
-    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · Paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · Direct payment · 0% commission · The field keeps control.",
+    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · Direct payment · 0% commission · The field keeps control.",
     "Intl":"Intl",
     "Une vitrine pour le commerce réel":"A storefront for real commerce",
     "Galerie partenaires":"Partner gallery",
@@ -1629,7 +1779,7 @@ DIGIY opens the door. The field keeps control.`;
     "Wolof caisse":"Wolof cash register",
     "Simple sur téléphone":"Simple on phone",
     "Tu as un commerce ?":"Do you have a business?",
-    "La fiche d’inscription est fluide : nom, métier, photos, contact, QR. Elle permet d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the business architecture.",
+    "La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the business architecture.",
     "🎥 Vidéo de présentation":"🎥 Presentation video",
     "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS.",
     "Voir les fiches":"See profiles",
@@ -1661,7 +1811,7 @@ DIGIY opens the door. The field keeps control.`;
     "DIGIY donne au terrain une adresse, un lien, un QR, une fiche, un contact direct et une dignité visible.":"DIGIY gives the field an address, a link, a QR code, a profile, direct contact and visible dignity.",
     "Pas une plateforme qui capte":"Not a platform that captures",
     "Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.":"The customer contacts the merchant directly. Payment stays direct. DIGIY takes no commission on the sale.",
-    "La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien.":"The storefront helps the business exist online without forcing the merchant to become a technician.",
+    "La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.":"The storefront helps the business exist online without forcing the merchant to become a technician.",
     "Aperçu des commerces":"Business preview",
     "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront.",
     "🖼️ Ouvrir la galerie partenaires":"🖼️ Open partner gallery",
@@ -1672,7 +1822,7 @@ DIGIY opens the door. The field keeps control.`;
     "Voir les tarifs":"See pricing",
     "💬 WhatsApp":"💬 WhatsApp",
     "📩 SMS":"📩 SMS",
-    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · Paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Direct payment · 0% commission · The field keeps control.",
+    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Direct payment · 0% commission · The field keeps control.",
     "Site":"Site",
     "Galerie":"Gallery",
     "Activation":"Activation",
@@ -1875,6 +2025,45 @@ DIGIY opens the door. The field keeps control.`;
 </body>
 <!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
