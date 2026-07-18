@@ -8,7 +8,7 @@
   <title>MON COMMERCE — Demande commerce local · 0% commission by DIGIYLYFE</title>
   <meta name="description" content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : demande sans engagement, activation POS payante, contact direct, paiement direct, 0% commission."/>
   <link rel="canonical" href="https://mon-commerce.digiylyfe.com/"/>
-  <meta name="digiy-build" content="mon-commerce-public-verite-caisse-contact-astou-20260710"/>
+  <meta name="digiy-build" content="mon-commerce-public-moule-generique-20260718"/>
 
   <script>
     window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
@@ -1018,7 +1018,7 @@
             <button class="btn btn-secondary" id="audioBtn" type="button">🎧 Écouter l’intro</button>
             <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
             <a class="btn btn-green" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Voir les boutiques partenaires</a>
-            <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/fiche-astou.html" target="_blank" rel="noopener noreferrer">🛍️ Voir Astou Boutique</a>
+            <a class="btn btn-secondary" href="#commerces">🛍️ Voir les commerces</a>
             <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">💬 Demande WhatsApp</a>
             <a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE">📩 Demande SMS</a>
           </div>
@@ -1188,7 +1188,7 @@
         <div class="section-title">
           <h2>Aperçu des commerces</h2>
           <p>
-            Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.
+            Cette zone affiche les commerces publiés, puis quelques exemples métier pour faire comprendre l’esprit sans créer de fausse boutique active.
           </p>
           <a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Ouvrir la galerie partenaires</a>
         </div>
@@ -1257,22 +1257,6 @@
       const DIGIY_CONTACT_TEXT = "Bonjour DIGIY, je veux faire une demande sans engagement pour MON COMMERCE.";
       const DIGIY_WHATSAPP = "https://wa.me/" + DIGIY_CONTACT_PHONE + "?text=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
       const DIGIY_SMS = "sms:+" + DIGIY_CONTACT_PHONE + "?body=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
-
-      const ASTOU_PARTNER = {
-        id:"astou-boutique",
-        slug:"astou-boutique",
-        display_name:"Astou Boutique",
-        category:"Textile maison · plage · hôtel · beauté",
-        city:"Saly",
-        description:"Textile maison, serviettes, draps, foutas, tenues, beauté et produits utiles du quotidien. Une vraie ambiance boutique : on voit, on comprend, on clique, puis on contacte directement.",
-        photo_url:"https://digiylyfe.net/wp-content/uploads/2026/05/ASTOU-B.png",
-        whatsapp_public:"221778765785",
-        public_url:"https://mon-commerce.digiylyfe.com/fiche-astou.html",
-        is_astou:true,
-        is_published:true,
-        is_active:true,
-        manually_validated:true
-      };
 
       const DEMOS = [
         {
@@ -1432,22 +1416,10 @@
         );
       }
 
-      const ASTOU_EXACT_SLUG = "astou-boutique";
-      const ASTOU_EXACT_URL = "https://mon-commerce.digiylyfe.com/fiche-astou.html";
-
-      function isAstouExact(item){
-        const slug = normText(pick(item,["slug","public_slug","commerce"],""));
-        const id = normText(pick(item,["id","public_id","profile_id"],""));
-        const url = safeHttpsUrl(pick(item,["public_url","url","website"],""),"").replace(/\/$/,"").toLowerCase();
-        return slug === ASTOU_EXACT_SLUG || id === ASTOU_EXACT_SLUG || url === ASTOU_EXACT_URL.toLowerCase();
-      }
-
       function preparePublicItems(items){
-        const clean = Array.isArray(items)
+        return Array.isArray(items)
           ? items.filter(publicRowAllowed).filter(item => !isGenericCommerce(item))
           : [];
-        const normalized = clean.map(item => isAstouExact(item) ? Object.assign({},item,ASTOU_PARTNER) : item);
-        return normalized.sort((a,b) => Number(isAstouExact(b)) - Number(isAstouExact(a)));
       }
 
 
@@ -1465,9 +1437,6 @@
         return "sms:+" + p + "?body=" + encodeURIComponent(text);
       }
 
-      const ASTOU_WA = whatsappLink(ASTOU_PARTNER.whatsapp_public, "Astou Boutique");
-      const ASTOU_SMS = smsLink(ASTOU_PARTNER.whatsapp_public, "Astou Boutique");
-
       function renderCommerceCards(items, isDemo){
         const grid = $("commerceGrid");
         grid.innerHTML = "";
@@ -1483,11 +1452,11 @@
           const phone = raw.demo ? "" : pick(raw,["whatsapp_public","public_phone"],"");
           const publicUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["public_url","url","website"],""),"");
           const qrUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["qr_url","qr_public_url"],""),"");
-          const wa = raw.is_astou ? ASTOU_WA : whatsappLink(phone,name);
-          const sms = raw.is_astou ? ASTOU_SMS : smsLink(phone,name);
+          const wa = whatsappLink(phone,name);
+          const sms = smsLink(phone,name);
           const demoBadge = isDemo || raw.demo
             ? '<span class="commerce-chip">Exemple métier</span>'
-            : (raw.is_astou ? '<span class="commerce-chip">Partenaire vedette</span>' : '<span class="commerce-chip">Publié</span>');
+            : '<span class="commerce-chip">Publié</span>';
 
           const photoHref = publicUrl || (raw.demo ? "https://mon-commerce.digiylyfe.com/inscription-pos.html" : "https://mon-commerce.digiylyfe.com/galerie.html");
 
@@ -1504,7 +1473,6 @@
                 <span class="commerce-chip">${esc(category)}</span>
                 <span class="commerce-chip">${esc(city)}</span>
                 ${demoBadge}
-                ${raw.is_astou ? '<span class="commerce-chip">QR boutique</span>' : ""}
               </div>
               <div class="commerce-bio">${esc(description)}</div>
               <div class="commerce-actions">
@@ -1557,14 +1525,8 @@
           if(filter && publicItems.length){
             publicItems = publicItems.filter((item) => {
               const slug = normText(pick(item,["slug","public_slug","commerce"],""));
-              return slug === filter || (filter === ASTOU_EXACT_SLUG && isAstouExact(item));
+              return slug === filter;
             });
-          }
-
-          if(filter === ASTOU_EXACT_SLUG && !publicItems.length){
-            status.textContent = "Fiche témoin Astou Boutique validée manuellement.";
-            renderCommerceCards([ASTOU_PARTNER],false);
-            return;
           }
 
           if(publicItems.length){
@@ -1576,9 +1538,7 @@
 
             const needed = Math.max(0, 4 - publicItems.length);
             const mixed = publicItems.concat(DEMOS.slice(0, needed));
-            status.textContent = publicItems.some(isAstouExact)
-              ? "Commerces actifs chargés. Astou Boutique apparaît comme partenaire validé."
-              : "Commerces actifs chargés depuis la galerie publique.";
+            status.textContent = "Commerces actifs chargés depuis la galerie publique.";
             renderCommerceCards(mixed,false);
             return;
           }
@@ -1759,7 +1719,7 @@ DIGIY opens the door. The field keeps control.`;
     "Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.":"Families, travelers and customers can discover, share and contact a local business without a platform capturing the relationship.",
     "Ouvert au petit commerce, à l’artisan et à la diaspora.":"Open to small commerce, artisans and the diaspora.",
     "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control, whatever the territory.",
-    "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront. Senegal, France or diaspora: the logic remains the same.",
+    "Cette zone affiche les commerces publiés, puis quelques exemples métier pour faire comprendre l’esprit sans créer de fausse boutique active.":"This area displays published businesses, followed by a few activity examples without creating a fake active shop.",
     "Pas besoin d’être grand pour être visible. Il faut une fiche claire :\n              ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.":"You do not need to be big to be visible. You need a clear profile: your name, your activity, your photos, your contact, your QR code, and a direct door for your territory.",
     "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · Direct payment · 0% commission · The field keeps control.",
     "Intl":"Intl",
@@ -1777,7 +1737,7 @@ DIGIY opens the door. The field keeps control.`;
     "🎧 Écouter l’intro":"🎧 Listen to intro",
     "🇸🇳 Lexique Wolof caisse":"🇸🇳 Wolof cash register lexicon",
     "🖼️ Voir les boutiques partenaires":"🖼️ See partner shops",
-    "🛍️ Voir Astou Boutique":"🛍️ See Astou Boutique",
+    "🛍️ Voir les commerces":"🛍️ See businesses",
     "💬 Demande WhatsApp":"💬 WhatsApp request",
     "📩 Demande SMS":"📩 SMS request",
     "0% commission":"0% commission",
@@ -1822,7 +1782,6 @@ DIGIY opens the door. The field keeps control.`;
     "Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.":"The customer contacts the merchant directly. Payment stays direct. DIGIY takes no commission on the sale.",
     "La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.":"The storefront helps the business exist online without forcing the merchant to become a technician.",
     "Aperçu des commerces":"Business preview",
-    "Cette zone montre Astou Boutique comme preuve terrain, puis quelques exemples pour faire comprendre l’esprit sans alourdir la vitrine. Sénégal, France ou diaspora : la logique reste la même.":"This area shows Astou Boutique as field proof, then a few examples to explain the spirit without weighing down the storefront.",
     "🖼️ Ouvrir la galerie partenaires":"🖼️ Open partner gallery",
     "Chargement des commerces publiés…":"Loading published businesses…",
     "Ton commerce mérite sa présence.":"Your business deserves its presence.",
@@ -1845,7 +1804,6 @@ DIGIY opens the door. The field keeps control.`;
     "Partenaire vedette":"Featured partner",
     "Publié":"Published",
     "Textile maison · plage · hôtel · beauté":"Home textile · beach · hotel · beauty",
-    "Textile maison, serviettes, draps, foutas, tenues, beauté et produits utiles du quotidien. Une vraie ambiance boutique : on voit, on comprend, on clique, puis on contacte directement.":"Home textiles, towels, sheets, foutas, outfits, beauty and useful everyday products. A real shop atmosphere: people see, understand, click, then contact directly.",
     "Cantine du coin":"Neighborhood food stall",
     "Cantine · plat du jour":"Food stall · daily meal",
     "Quartier":"Neighborhood",
@@ -1877,14 +1835,8 @@ DIGIY opens the door. The field keeps control.`;
     "Maison · quotidien":"Home · daily goods",
     "Proximité":"Nearby",
     "Lessive, savon, eau, biscuits, produits du quotidien : même une petite boutique mérite une présence claire.":"Laundry soap, soap, water, biscuits, daily goods: even a small shop deserves a clear presence.",
-    "Astou Boutique chargée comme commerce partenaire.":"Astou Boutique loaded as a partner business.",
     "Commerce chargé depuis la fiche publique.":"Business loaded from the public profile.",
-    "Astou Boutique affichée comme partenaire vedette. Galerie complétée par quelques exemples pour comprendre sans alourdir.":"Astou Boutique displayed as a featured partner. The gallery is completed with a few examples to explain without weighing it down.",
-    "Galerie réelle non disponible pour l’instant. Astou Boutique et exemples métier affichés.":"Live gallery unavailable for now. Astou Boutique and activity examples displayed.",
-    "Aucun commerce publié pour l’instant. Astou Boutique et exemples métier affichés.":"No published business for now. Astou Boutique and activity examples displayed.",
-    "Fiche témoin Astou Boutique validée manuellement.":"Manually validated Astou Boutique reference profile.",
     "Commerce actif chargé depuis la galerie publique.":"Active business loaded from the public gallery.",
-    "Commerces actifs chargés. Astou Boutique apparaît comme partenaire validé.":"Active businesses loaded. Astou Boutique appears as a validated partner.",
     "Commerces actifs chargés depuis la galerie publique.":"Active businesses loaded from the public gallery.",
     "Galerie publique indisponible pour l’instant. Exemples métier affichés sans fausse boutique active.":"Public gallery unavailable for now. Activity examples are shown without pretending a shop is active.",
     "Aucun commerce actif et publié pour l’instant. Exemples métier affichés.":"No active published business for now. Activity examples are displayed.",
@@ -2041,9 +1993,6 @@ DIGIY opens the door. The field keeps control.`;
 </body>
 <!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
 </html>
-
-
-
 
 
 
