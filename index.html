@@ -1449,7 +1449,7 @@
           const city = pick(raw,["city","location","address_label","zone"],"Terrain");
           const description = pick(raw,["description","bio","short_description","about"],"Commerce local visible avec contact direct.");
           const photo = safeHttpsUrl(pick(raw,["photo_url","image_url","cover_url","logo_url","avatar_url"],""),PATCHWORK_URL);
-          const phone = raw.demo ? "" : pick(raw,["whatsapp_public","public_phone"],"");
+          const phone = raw.demo ? "" : pick(raw,["whatsapp_public","whatsapp","public_phone","phone"],"");
           const publicUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["public_url","url","website"],""),"");
           const qrUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["qr_url","qr_public_url"],""),"");
           const wa = whatsappLink(phone,name);
@@ -1521,6 +1521,44 @@
           }
 
           let publicItems = preparePublicItems(data);
+
+          // MON COMMERCE est la galerie transversale : elle rassemble aussi les
+          // boutiques MARKET publiées, sans coder une boutique en dur dans le moule.
+          try{
+            const marketResult = await client
+              .from("digiy_market_profiles")
+              .select("id,slug,workspace_slug,last_slug,shop_name,business_name,category,categories_text,city,address_text,description,whatsapp,public_phone,phone,photo_url,logo_url,cover_url,cover_image_url,is_published,is_active,priority,updated_at")
+              .eq("is_published",true)
+              .eq("is_active",true)
+              .order("priority",{ascending:false})
+              .order("updated_at",{ascending:false})
+              .limit(12);
+
+            if(!marketResult.error && Array.isArray(marketResult.data)){
+              const marketItems = marketResult.data.map((item) => {
+                const marketSlug = pick(item,["slug","workspace_slug","last_slug"],"");
+                return Object.assign({},item,{
+                  display_name:pick(item,["shop_name","business_name"],"Boutique MARKET"),
+                  category:pick(item,["category","categories_text"],"Boutique MARKET"),
+                  whatsapp_public:pick(item,["whatsapp","public_phone","phone"],""),
+                  public_url:marketSlug
+                    ? "https://market.digiylyfe.com/fiche.html?slug=" + encodeURIComponent(marketSlug)
+                    : ""
+                });
+              });
+
+              const seen = new Set(publicItems.map((item) => String(item.id || "pos:" + pick(item,["slug","public_slug"],""))));
+              preparePublicItems(marketItems).forEach((item) => {
+                const key = String(item.id || "market:" + pick(item,["slug","workspace_slug","last_slug"],""));
+                if(!seen.has(key)){
+                  seen.add(key);
+                  publicItems.push(item);
+                }
+              });
+            }
+          }catch(_){
+            // La galerie POS reste utilisable si MARKET est momentanément indisponible.
+          }
 
           if(filter && publicItems.length){
             publicItems = publicItems.filter((item) => {
