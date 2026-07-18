@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f6eddc" />
   <meta name="robots" content="index,follow" />
-  <meta name="digiy-version" content="pos-inscription-france-senegal-grille-pays-sendwave-20260629" />
+  <meta name="digiy-version" content="pos-inscription-presence-40eur-metier-15eur-20260718" />
 
   <title>Inscription MON COMMERCE — DIGIY POS France · Sénégal</title>
   <meta
@@ -313,6 +313,12 @@
       border-color:rgba(214,168,95,.86);
       background:rgba(250,204,21,.18);
       box-shadow:0 14px 30px rgba(214,168,95,.14);
+    }
+
+    .option.disabled{
+      opacity:.46;
+      cursor:not-allowed;
+      filter:grayscale(.15);
     }
 
     .code{
@@ -783,16 +789,17 @@
           <h1>La caisse du terrain <em>dans le téléphone.</em></h1>
 
           <p class="lead">
-            Aucun tarif n’est précoché. Le client choisit volontairement POS, BOOST,
-            RÉSEAU abonné ou FIRST non-abonné. S’il se trompe, il efface et recommence proprement.
+            DIGIY PRÉSENCE construit l’identité numérique du commerce.
+            DIGIY MÉTIER ajoute la caisse et le logiciel POS uniquement si le professionnel le choisit.
+            Aucun module supplémentaire n’est imposé.
           </p>
 
           <div class="pills">
-            <span class="pill gold">0% commission</span>
-            <span class="pill gold">Aucun préchoix</span>
-            <span class="pill">Bouton effacer</span>
-            <span class="pill">Sous-total</span>
-            <span class="pill">Date de demande</span>
+            <span class="pill gold">Présence 19 900 FCFA / 40 €</span>
+            <span class="pill gold">Métier +8 000 FCFA / +15 €</span>
+            <span class="pill">Total 27 900 FCFA / 55 €</span>
+            <span class="pill">0% commission</span>
+            <span class="pill">Aucun préchoix</span>
             <span class="pill">WhatsApp / SMS</span>
           </div>
         </article>
@@ -817,29 +824,35 @@
               <button class="countryBtn active" type="button" data-country="SN">🇸🇳 Sénégal · Wave</button>
               <button class="countryBtn" type="button" data-country="FR">🇫🇷 France · Sendwave</button>
             </div>
-            <div class="countryNote" id="countryNote">Sénégal : règlement Wave direct vers JB BEAUVILLE.</div>
+            <div class="countryNote" id="countryNote">Sénégal : Présence 19 900 FCFA ; Métier +8 000 FCFA ; total 27 900 FCFA.</div>
           </div>
 
-          <div class="doctrine">POS détaille la vente. PAY lit l’argent.</div>
+          <div class="doctrine">DIGIY PRÉSENCE rend le commerce visible. DIGIY MÉTIER ajoute la caisse POS. PRO CARNET reste séparé.</div>
         </aside>
       </div>
     </section>
 
     <section class="grid">
       <article class="card">
-        <h2>Tarif MON COMMERCE</h2>
+        <h2>Activation MON COMMERCE</h2>
 
-        <p class="sub">Ajoute ou retire un choix en recliquant sur sa carte.</p>
+        <p class="sub">Commence par DIGIY PRÉSENCE. Ajoute DIGIY MÉTIER seulement si tu veux la caisse et le logiciel POS.</p>
 
-        <div class="sectionTitle">
-          🧾 Tarifs POS · BOOST · RÉSEAU abonnés · FIRST non-abonnés
-        </div>
+        <div class="sectionTitle">1 · SOCLE — DIGIY PRÉSENCE</div>
+        <div class="prices" id="presenceOptions"></div>
 
-        <div class="prices" id="posOptions"></div>
+        <div class="sectionTitle">2 · OPTION MÉTIER — DIGIY MÉTIER</div>
+        <div class="prices" id="metierOptions"></div>
+
+        <div class="sectionTitle">✨ BOOST visibilité</div>
+        <div class="prices" id="boostOptions"></div>
+
+        <div class="sectionTitle">📣 RÉSEAU abonnés · FIRST non-abonné</div>
+        <div class="prices" id="reseauOptions"></div>
 
         <div class="doctrine">
-          RÉSEAU : abonnés = visibilité 7 jours / 15 jours / 1 mois.
-          FIRST = non-abonnés à qualifier et installer proprement.
+          DIGIY MÉTIER reste facultatif. BOOST et RÉSEAU sont des options de visibilité séparées.
+          FIRST reste réservé aux non-abonnés à qualifier et installer proprement.
         </div>
       </article>
 
@@ -935,7 +948,7 @@
             <label for="paymentNote">📝 Note / preuve paiement</label>
             <textarea
               id="paymentNote"
-              placeholder="Ex : Paiement Wave / Sendwave envoyé pour MON COMMERCE 5 — montant choisi — au nom de Mamadou Diop — tél +221 / +33 ..."
+              placeholder="Ex : DIGIY PRÉSENCE MON COMMERCE — 19 900 FCFA ; option métier ajoutée — total 27 900 FCFA — Mamadou Diop."
             ></textarea>
           </div>
         </div>
@@ -990,37 +1003,39 @@
 
       const PLANS = [
         {
-          code:"5",
-          module:"POS",
-          name:"Mon commerce — Caisse",
+          code:"PRESENCE",
+          cat:"presence",
+          module:"MON_COMMERCE",
+          name:"DIGIY PRÉSENCE MON COMMERCE",
           sn:19900,
-          fr:29,
-          desc:"Caisse mobile, produits, quantités, total, ticket et stock.",
+          fr:40,
+          desc:"Fiche commerce personnalisée, QR officiel, lien partageable, contact direct et maintenance essentielle.",
+          bonus:[
+            "Fiche commerce visible",
+            "QR officiel",
+            "Lien partageable",
+            "Contact direct"
+          ]
+        },
+        {
+          code:"METIER",
+          cat:"metier",
+          module:"POS",
+          name:"DIGIY MÉTIER MON COMMERCE",
+          sn:8000,
+          fr:15,
+          desc:"Option facultative : caisse mobile, produits, quantités, tickets, stock et suivi des ventes.",
           bonus:[
             "Caisse téléphone",
             "Produits et prix enregistrés",
             "Vente par clic ou par voix",
-            "Ticket / total préparé",
+            "Ticket et total préparés",
             "Stock et alertes simples"
           ]
         },
         {
-          code:"56",
-          module:"PACK",
-          name:"Duo commerce — Caisse + boutique",
-          sn:29900,
-          fr:49,
-          desc:"POS + présence boutique visible pour attirer et vendre.",
-          bonus:[
-            "Caisse POS incluse",
-            "Vitrine boutique / produits",
-            "QR et lien partageable",
-            "WhatsApp direct client",
-            "Pack commerce plus complet"
-          ]
-        },
-        {
           code:"E2",
+          cat:"boost",
           module:"EXPLORE_BOOST",
           name:"BOOST visibilité — Standard",
           sn:10000,
@@ -1035,6 +1050,7 @@
         },
         {
           code:"R7",
+          cat:"reseau",
           module:"RESEAU_DIGIY",
           name:"RÉSEAU abonné — 7 jours",
           sn:15000,
@@ -1049,6 +1065,7 @@
         },
         {
           code:"R15",
+          cat:"reseau",
           module:"RESEAU_DIGIY",
           name:"RÉSEAU abonné — 15 jours",
           sn:25000,
@@ -1063,6 +1080,7 @@
         },
         {
           code:"R30",
+          cat:"reseau",
           module:"RESEAU_DIGIY",
           name:"RÉSEAU abonné — 1 mois",
           sn:45000,
@@ -1077,6 +1095,7 @@
         },
         {
           code:"FIRST",
+          cat:"reseau",
           module:"RESEAU_DIGIY",
           name:"Mise en classe FIRST — non-abonné",
           sn:150000,
@@ -1096,7 +1115,6 @@
       const COMMON = [
         "Carte de visite complète : nom, métier, adresse, téléphone",
         "QR code vers la fiche commerce",
-        "Logiciel de gestion métier fourni avec le module",
         "Voix DIGIY pour préparer la vente plus vite",
         "Textes prêts à envoyer au client",
         "Validation humaine par clic",
@@ -1104,7 +1122,12 @@
         "Grille pays : pas une conversion au taux de change"
       ];
 
-      const grid = document.getElementById("posOptions");
+      const grids = {
+        presence: document.getElementById("presenceOptions"),
+        metier: document.getElementById("metierOptions"),
+        boost: document.getElementById("boostOptions"),
+        reseau: document.getElementById("reseauOptions")
+      };
       const selectedBox = document.getElementById("selectedBox");
       const choiceList = document.getElementById("choiceList");
       const subtotalText = document.getElementById("subtotalText");
@@ -1210,8 +1233,8 @@
 
         if(note){
           note.textContent = currentCountry === "FR"
-            ? "France : le professionnel règle en euros par Sendwave, envoyé vers le Wave Sénégal JB BEAUVILLE."
-            : "Sénégal : règlement Wave direct vers JB BEAUVILLE.";
+            ? "France : DIGIY PRÉSENCE à 40 € ; DIGIY MÉTIER à +15 € ; total 55 €. Règlement Sendwave vers Wave Sénégal."
+            : "Sénégal : DIGIY PRÉSENCE à 19 900 FCFA ; DIGIY MÉTIER à +8 000 FCFA ; total 27 900 FCFA.";
         }
 
         if(summaryTitle){
@@ -1222,8 +1245,8 @@
 
         if(summaryText){
           summaryText.textContent = currentCountry === "FR"
-            ? "Tarifs France en euros. Règlement par Sendwave vers Wave Sénégal : JB BEAUVILLE +221 77 134 28 89."
-            : "Tarifs Sénégal en FCFA. Paiement Wave direct vers JB BEAUVILLE.";
+            ? "Présence 40 € ; Métier +15 € ; total 55 €. Règlement par Sendwave vers Wave Sénégal."
+            : "Présence 19 900 FCFA ; Métier +8 000 FCFA ; total 27 900 FCFA. Paiement Wave direct.";
         }
 
         if(topPaymentLabel) topPaymentLabel.textContent = paymentLabel();
@@ -1308,22 +1331,55 @@
       }
 
       function render(){
-        grid.innerHTML = PLANS.map(p => `
-          <button class="option${selected.has(p.code) ? " active" : ""}" type="button" data-code="${p.code}">
-            <span class="code">${p.code}</span>
-            <span class="name">${p.name}</span>
-            <span class="amount">${planDisplay(p)}</span>
-            <span class="desc">${p.desc}</span>
-          </button>
-        `).join("");
+        const presenceSelected = selected.has("PRESENCE");
 
-        grid.querySelectorAll(".option").forEach(button => {
-          button.addEventListener("click", () => toggle(button.dataset.code, true));
+        Object.keys(grids).forEach(cat => {
+          const grid = grids[cat];
+          if(!grid) return;
+
+          grid.innerHTML = PLANS
+            .filter(plan => plan.cat === cat)
+            .map(plan => {
+              const unavailable = plan.code === "METIER" && !presenceSelected;
+              const optionNote = plan.code === "METIER"
+                ? (currentCountry === "FR"
+                    ? "Option facultative · +15 € / mois"
+                    : "Option facultative · +8 000 FCFA / mois")
+                : "";
+
+              return `
+                <button
+                  class="option${selected.has(plan.code) ? " active" : ""}${unavailable ? " disabled" : ""}"
+                  type="button"
+                  data-code="${plan.code}"
+                  ${unavailable ? "disabled" : ""}
+                >
+                  <span class="code">${plan.code}</span>
+                  <span class="name">${plan.name}</span>
+                  <span class="amount">${planDisplay(plan)}</span>
+                  ${optionNote ? `<span class="desc">${optionNote}</span>` : ""}
+                  <span class="desc">${plan.desc}</span>
+                </button>
+              `;
+            })
+            .join("");
+
+          grid.querySelectorAll(".option").forEach(button => {
+            button.addEventListener("click", () => toggle(button.dataset.code, true));
+          });
         });
       }
 
       function toggle(code, scroll){
-        selected.has(code) ? selected.delete(code) : selected.add(code);
+        if(code === "METIER" && !selected.has("PRESENCE")) return;
+
+        if(selected.has(code)){
+          selected.delete(code);
+          if(code === "PRESENCE") selected.delete("METIER");
+        }else{
+          selected.add(code);
+        }
+
         update(scroll);
       }
 
@@ -1360,6 +1416,11 @@
           "",
           "Choix :",
           selectedLines(),
+          "",
+          "Doctrine MON COMMERCE :",
+          "- DIGIY PRÉSENCE : socle",
+          "- DIGIY MÉTIER : option facultative",
+          "- PRO CARNET, BOOST et RÉSEAU : séparés",
           "",
           "Sous-total : " + money(subtotal),
           "Ajustement / remise : 0 " + currencyLabel(),
@@ -1417,8 +1478,8 @@
         const subtotal = selectedTotal();
 
         selectedBox.innerHTML = items.length
-          ? `<strong>${items.length} choix sélectionné${items.length > 1 ? "s" : ""}</strong><span>Ajoute ou retire en recliquant sur une carte.</span>`
-          : `<strong>Aucun choix sélectionné</strong><span>Choisis au moins un tarif. Rien n’est précoché.</span>`;
+          ? `<strong>${items.length} choix sélectionné${items.length > 1 ? "s" : ""}</strong><span>${selected.has("METIER") ? "Présence + logiciel métier" : selected.has("PRESENCE") ? "Présence seule" : "Option de visibilité séparée"}</span>`
+          : `<strong>Aucun choix sélectionné</strong><span>Rien n’est précoché. Commence par DIGIY PRÉSENCE.</span>`;
 
         choiceList.innerHTML = items.length
           ? items.map(plan => `
@@ -1439,7 +1500,12 @@
         dateBox.textContent = "Date de demande : " + requestDate();
 
         const bonus = items.length
-          ? [...COMMON, ...items.flatMap(plan => plan.bonus)].slice(0,22)
+          ? [
+              ...COMMON,
+              ...items
+                .filter(plan => plan.code !== "METIER" || selected.has("METIER"))
+                .flatMap(plan => plan.bonus)
+            ].slice(0,22)
           : [];
 
         benefits.innerHTML = bonus.map(item => `<li>✅ ${item}</li>`).join("");
@@ -1469,7 +1535,7 @@
 
       function speakText(){
         const total = totalText.textContent || money(0);
-        return `Module Mon Commerce, DIGIY caisse. Pays sélectionné : ${countryLabel()}. Aucun choix n’est précoché. Les choix s’additionnent seulement après clic. Le bouton effacer remet le total à zéro. Total affiché : ${total}.`;
+        return `Module Mon Commerce. DIGIY Présence est le socle. DIGIY Métier ajoute la caisse POS seulement si elle est choisie. Pays sélectionné : ${countryLabel()}. Aucun choix n’est précoché. Total affiché : ${total}.`;
       }
 
       document.querySelectorAll("[data-country]").forEach(button => {
@@ -1540,6 +1606,21 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
