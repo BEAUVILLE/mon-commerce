@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f6eddc" />
   <meta name="robots" content="index,follow" />
-  <meta name="digiy-version" content="pos-inscription-presence-40eur-metier-15eur-20260718" />
+  <meta name="digiy-version" content="pos-grille-conservee-code5-code56-metier-option-20260718" />
 
   <title>Inscription MON COMMERCE — DIGIY POS France · Sénégal</title>
   <meta
@@ -789,15 +789,15 @@
           <h1>La caisse du terrain <em>dans le téléphone.</em></h1>
 
           <p class="lead">
-            DIGIY PRÉSENCE construit l’identité numérique du commerce.
-            DIGIY MÉTIER ajoute la caisse et le logiciel POS uniquement si le professionnel le choisit.
-            Aucun module supplémentaire n’est imposé.
+            MON COMMERCE conserve ses deux formules de base officielles.
+            Le professionnel choisit Code 5 ou Code 56.
+            Le logiciel métier POS reste une option distincte et facultative.
           </p>
 
           <div class="pills">
-            <span class="pill gold">Présence 19 900 FCFA / 40 €</span>
-            <span class="pill gold">Métier +8 000 FCFA / +15 €</span>
-            <span class="pill">Total 27 900 FCFA / 55 €</span>
+            <span class="pill gold">Code 5 · 19 900 FCFA / 29 €</span>
+            <span class="pill gold">Code 56 · 29 900 FCFA / 49 €</span>
+            <span class="pill">Logiciel · +8 000 FCFA / +15 €</span>
             <span class="pill">0% commission</span>
             <span class="pill">Aucun préchoix</span>
             <span class="pill">WhatsApp / SMS</span>
@@ -824,10 +824,13 @@
               <button class="countryBtn active" type="button" data-country="SN">🇸🇳 Sénégal · Wave</button>
               <button class="countryBtn" type="button" data-country="FR">🇫🇷 France · Sendwave</button>
             </div>
-            <div class="countryNote" id="countryNote">Sénégal : Présence 19 900 FCFA ; Métier +8 000 FCFA ; total 27 900 FCFA.</div>
+            <div class="countryNote" id="countryNote">
+              Sénégal : Code 5 à 19 900 FCFA ou Code 56 à 29 900 FCFA.
+              Logiciel facultatif : +8 000 FCFA.
+            </div>
           </div>
 
-          <div class="doctrine">DIGIY PRÉSENCE rend le commerce visible. DIGIY MÉTIER ajoute la caisse POS. PRO CARNET reste séparé.</div>
+          <div class="doctrine">La formule de base reste au choix : Code 5 ou Code 56. Le logiciel POS est facultatif. PRO CARNET reste séparé.</div>
         </aside>
       </div>
     </section>
@@ -836,12 +839,12 @@
       <article class="card">
         <h2>Activation MON COMMERCE</h2>
 
-        <p class="sub">Commence par DIGIY PRÉSENCE. Ajoute DIGIY MÉTIER seulement si tu veux la caisse et le logiciel POS.</p>
+        <p class="sub">Choisis une seule formule de base : Code 5 ou Code 56. Ajoute ensuite le logiciel métier seulement si tu en as besoin.</p>
 
-        <div class="sectionTitle">1 · SOCLE — DIGIY PRÉSENCE</div>
+        <div class="sectionTitle">1 · FORMULE DE BASE — CHOISIR UNE SEULE</div>
         <div class="prices" id="presenceOptions"></div>
 
-        <div class="sectionTitle">2 · OPTION MÉTIER — DIGIY MÉTIER</div>
+        <div class="sectionTitle">2 · OPTION LOGICIEL MÉTIER — FACULTATIVE</div>
         <div class="prices" id="metierOptions"></div>
 
         <div class="sectionTitle">✨ BOOST visibilité</div>
@@ -851,8 +854,9 @@
         <div class="prices" id="reseauOptions"></div>
 
         <div class="doctrine">
-          DIGIY MÉTIER reste facultatif. BOOST et RÉSEAU sont des options de visibilité séparées.
-          FIRST reste réservé aux non-abonnés à qualifier et installer proprement.
+          Code 5 et Code 56 sont deux formules alternatives : elles ne se cumulent pas.
+          Le logiciel métier, BOOST et RÉSEAU restent des options séparées.
+          FIRST reste réservé aux non-abonnés.
         </div>
       </article>
 
@@ -948,7 +952,7 @@
             <label for="paymentNote">📝 Note / preuve paiement</label>
             <textarea
               id="paymentNote"
-              placeholder="Ex : DIGIY PRÉSENCE MON COMMERCE — 19 900 FCFA ; option métier ajoutée — total 27 900 FCFA — Mamadou Diop."
+              placeholder="Ex : Code 5 — 19 900 FCFA ; logiciel métier ajouté — total 27 900 FCFA — Mamadou Diop."
             ></textarea>
           </div>
         </div>
@@ -1003,30 +1007,44 @@
 
       const PLANS = [
         {
-          code:"PRESENCE",
+          code:"5",
           cat:"presence",
           module:"MON_COMMERCE",
-          name:"DIGIY PRÉSENCE MON COMMERCE",
+          name:"Code 5 · Caisse",
           sn:19900,
-          fr:40,
-          desc:"Fiche commerce personnalisée, QR officiel, lien partageable, contact direct et maintenance essentielle.",
+          fr:29,
+          desc:"Formule de base MON COMMERCE : caisse mobile, fiche commerce, QR, lien partageable et contact direct.",
           bonus:[
+            "Caisse mobile",
             "Fiche commerce visible",
-            "QR officiel",
-            "Lien partageable",
+            "QR et lien partageable",
             "Contact direct"
+          ]
+        },
+        {
+          code:"56",
+          cat:"presence",
+          module:"MON_COMMERCE",
+          name:"Code 56 · Duo caisse + boutique",
+          sn:29900,
+          fr:49,
+          desc:"Formule de base renforcée : caisse mobile et boutique visible réunies.",
+          bonus:[
+            "Caisse mobile",
+            "Boutique visible",
+            "Produits et présentation commerciale",
+            "QR et lien partageable"
           ]
         },
         {
           code:"METIER",
           cat:"metier",
           module:"POS",
-          name:"DIGIY MÉTIER MON COMMERCE",
+          name:"Option logiciel métier POS",
           sn:8000,
           fr:15,
-          desc:"Option facultative : caisse mobile, produits, quantités, tickets, stock et suivi des ventes.",
+          desc:"Option facultative ajoutée à la formule choisie : produits, quantités, tickets, stock et suivi des ventes.",
           bonus:[
-            "Caisse téléphone",
             "Produits et prix enregistrés",
             "Vente par clic ou par voix",
             "Ticket et total préparés",
@@ -1233,8 +1251,8 @@
 
         if(note){
           note.textContent = currentCountry === "FR"
-            ? "France : DIGIY PRÉSENCE à 40 € ; DIGIY MÉTIER à +15 € ; total 55 €. Règlement Sendwave vers Wave Sénégal."
-            : "Sénégal : DIGIY PRÉSENCE à 19 900 FCFA ; DIGIY MÉTIER à +8 000 FCFA ; total 27 900 FCFA.";
+            ? "France : Code 5 à 29 € ou Code 56 à 49 €. Logiciel facultatif : +15 €. Totaux : 44 € ou 64 €."
+            : "Sénégal : Code 5 à 19 900 FCFA ou Code 56 à 29 900 FCFA. Logiciel facultatif : +8 000 FCFA. Totaux : 27 900 ou 37 900 FCFA.";
         }
 
         if(summaryTitle){
@@ -1245,8 +1263,8 @@
 
         if(summaryText){
           summaryText.textContent = currentCountry === "FR"
-            ? "Présence 40 € ; Métier +15 € ; total 55 €. Règlement par Sendwave vers Wave Sénégal."
-            : "Présence 19 900 FCFA ; Métier +8 000 FCFA ; total 27 900 FCFA. Paiement Wave direct.";
+            ? "Code 5 : 29 € ; Code 56 : 49 € ; logiciel +15 €. Règlement par Sendwave vers Wave Sénégal."
+            : "Code 5 : 19 900 FCFA ; Code 56 : 29 900 FCFA ; logiciel +8 000 FCFA. Paiement Wave direct.";
         }
 
         if(topPaymentLabel) topPaymentLabel.textContent = paymentLabel();
@@ -1331,7 +1349,7 @@
       }
 
       function render(){
-        const presenceSelected = selected.has("PRESENCE");
+        const presenceSelected = selected.has("5") || selected.has("56");
 
         Object.keys(grids).forEach(cat => {
           const grid = grids[cat];
@@ -1371,11 +1389,22 @@
       }
 
       function toggle(code, scroll){
-        if(code === "METIER" && !selected.has("PRESENCE")) return;
+        const isBase = code === "5" || code === "56";
+        const hasBase = selected.has("5") || selected.has("56");
 
-        if(selected.has(code)){
+        if(code === "METIER" && !hasBase) return;
+
+        if(isBase){
+          if(selected.has(code)){
+            selected.delete(code);
+            selected.delete("METIER");
+          }else{
+            selected.delete("5");
+            selected.delete("56");
+            selected.add(code);
+          }
+        }else if(selected.has(code)){
           selected.delete(code);
-          if(code === "PRESENCE") selected.delete("METIER");
         }else{
           selected.add(code);
         }
@@ -1418,8 +1447,8 @@
           selectedLines(),
           "",
           "Doctrine MON COMMERCE :",
-          "- DIGIY PRÉSENCE : socle",
-          "- DIGIY MÉTIER : option facultative",
+          "- Code 5 ou Code 56 : choisir une seule formule de base",
+          "- Logiciel métier POS : option facultative",
           "- PRO CARNET, BOOST et RÉSEAU : séparés",
           "",
           "Sous-total : " + money(subtotal),
@@ -1478,8 +1507,8 @@
         const subtotal = selectedTotal();
 
         selectedBox.innerHTML = items.length
-          ? `<strong>${items.length} choix sélectionné${items.length > 1 ? "s" : ""}</strong><span>${selected.has("METIER") ? "Présence + logiciel métier" : selected.has("PRESENCE") ? "Présence seule" : "Option de visibilité séparée"}</span>`
-          : `<strong>Aucun choix sélectionné</strong><span>Rien n’est précoché. Commence par DIGIY PRÉSENCE.</span>`;
+          ? `<strong>${items.length} choix sélectionné${items.length > 1 ? "s" : ""}</strong><span>${selected.has("METIER") ? "Formule de base + logiciel métier" : (selected.has("5") || selected.has("56")) ? "Formule de base seule" : "Option de visibilité séparée"}</span>`
+          : `<strong>Aucun choix sélectionné</strong><span>Rien n’est précoché. Choisis Code 5 ou Code 56.</span>`;
 
         choiceList.innerHTML = items.length
           ? items.map(plan => `
@@ -1535,7 +1564,7 @@
 
       function speakText(){
         const total = totalText.textContent || money(0);
-        return `Module Mon Commerce. DIGIY Présence est le socle. DIGIY Métier ajoute la caisse POS seulement si elle est choisie. Pays sélectionné : ${countryLabel()}. Aucun choix n’est précoché. Total affiché : ${total}.`;
+        return `Module Mon Commerce. Choisis Code 5 ou Code 56 comme formule de base. Le logiciel métier POS reste facultatif. Pays sélectionné : ${countryLabel()}. Total affiché : ${total}.`;
       }
 
       document.querySelectorAll("[data-country]").forEach(button => {
@@ -1606,6 +1635,37 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
