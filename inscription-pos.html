@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f6eddc" />
   <meta name="robots" content="index,follow" />
-  <meta name="digiy-version" content="pos-grille-pays-coherente-20260723-v2" />
+  <meta name="digiy-version" content="pos-direct-sms-coordonnees-obligatoires-en-haut-20260724-v3" />
 
-  <title>Inscription MON COMMERCE — DIGIY POS France · Sénégal</title>
+  <title>Inscription MON COMMERCE — Coordonnées d’abord · SMS direct</title>
   <meta
     name="description"
     content="Inscription DIGIY POS MON COMMERCE : grille pays Sénégal / France, Wave direct au Sénégal, Sendwave France vers Wave Sénégal, 0% commission."
@@ -554,6 +554,54 @@
       box-shadow:0 0 0 4px rgba(20,122,85,.10);
     }
 
+    .proIdentity.proIdentityFirst{
+      margin:14px 0 18px;
+      border-width:2px;
+      background:
+        radial-gradient(circle at top right,rgba(250,204,21,.20),transparent 42%),
+        rgba(255,255,255,.76);
+    }
+
+    .requiredMark{
+      color:#b91c1c;
+      font-weight:1000;
+    }
+
+    .sendBlocked{
+      opacity:.48!important;
+      filter:grayscale(.28);
+      cursor:not-allowed!important;
+    }
+
+    .smsDirectHelp{
+      margin:10px 0 0;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(20,122,85,.24);
+      background:rgba(20,122,85,.08);
+      color:var(--green);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:900;
+      text-align:center;
+    }
+
+    .formWarning{
+      display:none;
+      margin-top:10px;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid rgba(185,28,28,.30);
+      background:rgba(254,226,226,.90);
+      color:#991b1b;
+      line-height:1.45;
+      font-weight:950;
+    }
+
+    .formWarning.show{
+      display:block;
+    }
+
     .proIdentityActions{
       display:flex;
       gap:8px;
@@ -840,10 +888,50 @@
 
         <p class="sub">Choisis Code 5 ou Code 56 pour la visibilité. Ajoute la fiche commerce détaillée et le moteur POS seulement si tu en as besoin.</p>
 
-        <div class="sectionTitle">1 · VISIBILITÉ MON COMMERCE — CHOISIR CODE 5 OU CODE 56</div>
+        <div class="proIdentity proIdentityFirst" id="proIdentityBox">
+          <div class="proIdentityTitle">1 · Vos coordonnées</div>
+
+          <p>
+            Renseignez d’abord ces informations. Aucun SMS, WhatsApp ou envoi de preuve
+            ne peut partir sans elles. Les champs marqués <span class="requiredMark">*</span> sont obligatoires.
+          </p>
+
+          <div class="proIdentityGrid">
+            <label for="proName">
+              Nom / responsable <span class="requiredMark">*</span>
+              <input id="proName" name="proName" autocomplete="name"
+                     placeholder="Ex : Mamadou Diop" required>
+            </label>
+
+            <label for="proPhone">
+              Téléphone / WhatsApp <span class="requiredMark">*</span>
+              <input id="proPhone" name="proPhone" type="tel" inputmode="tel" autocomplete="tel"
+                     placeholder="Ex : +221 77 000 00 00" required minlength="8">
+            </label>
+
+            <label for="proZone">
+              Zone / ville <span class="requiredMark">*</span>
+              <input id="proZone" name="proZone" autocomplete="address-level2"
+                     placeholder="Ex : Saly, Mbour, Dakar" required>
+            </label>
+
+            <label for="proBusiness">
+              Nom du commerce <span class="requiredMark">*</span>
+              <input id="proBusiness" name="proBusiness" autocomplete="organization"
+                     placeholder="Ex : Boutique Teranga" required>
+            </label>
+          </div>
+
+          <div class="proIdentityActions">
+            <button class="btn clear" id="btnClearProInfo" type="button">🧹 Effacer mes coordonnées</button>
+          </div>
+        </div>
+
+        <div class="sectionTitle">2 · CHOISIR LA VISIBILITÉ MON COMMERCE</div>
+        <div class="sectionTitle">3 · VISIBILITÉ MON COMMERCE — CHOISIR CODE 5 OU CODE 56</div>
         <div class="prices" id="presenceOptions"></div>
 
-        <div class="sectionTitle">2 · FICHE COMMERCE DÉTAILLÉE + MOTEUR POS — FACULTATIF</div>
+        <div class="sectionTitle">4 · FICHE COMMERCE DÉTAILLÉE + MOTEUR POS — FACULTATIF</div>
         <div class="prices" id="metierOptions"></div>
 
         <div class="sectionTitle">✨ BOOST visibilité</div>
@@ -912,41 +1000,6 @@
           </div>
 
 
-          <div class="proIdentity" id="proIdentityBox">
-            <div class="proIdentityTitle">👤 Infos pro pour le paiement</div>
-
-            <p>
-              Ces infos servent seulement à compléter le message WhatsApp / SMS et la preuve Wave.
-              Elles restent sur ce téléphone.
-            </p>
-
-            <div class="proIdentityGrid">
-              <label for="proName">
-                Nom / responsable
-                <input id="proName" autocomplete="name" placeholder="Ex : Mamadou Diop">
-              </label>
-
-              <label for="proPhone">
-                Téléphone / WhatsApp
-                <input id="proPhone" autocomplete="tel" placeholder="Ex : +221 77 000 00 00">
-              </label>
-
-              <label for="proZone">
-                Zone / ville
-                <input id="proZone" autocomplete="address-level2" placeholder="Ex : Saly, Mbour, Dakar">
-              </label>
-
-              <label for="proBusiness">
-                Nom du commerce
-                <input id="proBusiness" autocomplete="organization" placeholder="Ex : Boutique Teranga">
-              </label>
-            </div>
-
-            <div class="proIdentityActions">
-              <button class="btn clear" id="btnClearProInfo" type="button">🧹 Effacer mes infos</button>
-            </div>
-          </div>
-
           <div class="paymentNote">
             <label for="paymentNote">📝 Note / preuve paiement</label>
             <textarea id="paymentNote"></textarea>
@@ -972,12 +1025,19 @@
             💬 WhatsApp
           </a>
 
-          <button class="btn green" id="btnSms" type="button">📱 SMS</button>
+          <button class="btn green" id="btnSms" type="button">📱 Ouvrir mon SMS déjà rempli</button>
           <button class="btn clear" id="btnClear" type="button">🧹 Effacer</button>
         </div>
 
+        <div class="smsDirectHelp">
+          Sur téléphone, aucun copier-coller : Messages s’ouvre avec le numéro DIGIY
+          et une demande MON COMMERCE courte déjà remplie. Il reste seulement à appuyer sur Envoyer.
+        </div>
+
+        <div class="formWarning" id="formWarning" role="alert" aria-live="assertive"></div>
+
         <div class="actions">
-          <button class="btn" id="btnCopyWave" type="button">📋 Copier Wave</button>
+          <button class="btn" id="btnCopyWave" type="button">Autre solution : copier Wave</button>
           <a class="btn gold" id="btnProof">📸 Envoyer preuve</a>
           <a class="btn gold" href="https://mon-commerce-pro.digiylyfe.com/">🔐 Espace pro</a>
         </div>
@@ -1000,6 +1060,12 @@
       const WAVE_SN = "Wave Sénégal : JB BEAUVILLE · +221 77 134 28 89";
       const SENDWAVE_FR = "Sendwave France → Wave Sénégal : JB BEAUVILLE · +221 77 134 28 89";
       const DEFAULT_COUNTRY = "SN";
+      const IS_IOS_OR_IPADOS =
+        /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const MOBILE_DEVICE =
+        /Android|Windows Phone|Mobile/i.test(navigator.userAgent) ||
+        IS_IOS_OR_IPADOS;
 
       const PLANS = [
         {
@@ -1499,6 +1565,91 @@
           .join("\n") || "Aucun choix sélectionné";
       }
 
+      function requiredProFields(){
+        return Object.values(proFields).filter(Boolean);
+      }
+
+      function hasValidCommerceChoice(){
+        return selected.has("5") || selected.has("56") || selected.has("FIRST");
+      }
+
+      function showFormWarning(message){
+        const warning = document.getElementById("formWarning");
+        if(!warning) return;
+        warning.textContent = message || "";
+        warning.classList.toggle("show", Boolean(message));
+      }
+
+      function validateBeforeSend(showMessage){
+        const invalidField = requiredProFields().find(
+          field => !cleanValue(field.value) || !field.checkValidity()
+        );
+
+        if(invalidField){
+          if(showMessage){
+            showFormWarning("⚠️ Renseigne d’abord le nom, le téléphone, la ville et le nom du commerce.");
+            invalidField.focus({preventScroll:true});
+            invalidField.scrollIntoView({behavior:"smooth", block:"center"});
+            invalidField.reportValidity();
+          }
+          return false;
+        }
+
+        if(!hasValidCommerceChoice()){
+          if(showMessage){
+            showFormWarning("⚠️ Choisis Code 5, Code 56 ou FIRST avant d’envoyer.");
+            document.getElementById("presenceOptions")?.scrollIntoView({behavior:"smooth", block:"center"});
+          }
+          return false;
+        }
+
+        showFormWarning("");
+        return true;
+      }
+
+      function updateSendState(){
+        const ready =
+          requiredProFields().every(
+            field => cleanValue(field.value) && field.checkValidity()
+          ) &&
+          hasValidCommerceChoice();
+
+        ["btnWa","btnSms","btnProof"].forEach(id => {
+          const el = document.getElementById(id);
+          if(!el) return;
+          el.classList.toggle("sendBlocked", !ready);
+          el.setAttribute("aria-disabled", String(!ready));
+        });
+      }
+
+      function shortText(value,maxLength){
+        const clean = cleanValue(value);
+        return clean.length > maxLength ? clean.slice(0,maxLength - 1) + "…" : clean;
+      }
+
+      function smsMessage(){
+        const codes = chosen().map(plan => plan.code).join(" + ") || "Aucun choix";
+
+        return [
+          "DEMANDE DIGIY MON COMMERCE",
+          "Pays: " + countryLabel(),
+          "Choix: " + codes,
+          "Total: " + money(selectedTotal()),
+          "Nom/responsable: " + shortText(proFields.proName?.value,55),
+          "Telephone candidat: " + shortText(proFields.proPhone?.value,28),
+          "Zone/ville: " + shortText(proFields.proZone?.value,45),
+          "Commerce: " + shortText(proFields.proBusiness?.value,75),
+          noteText() ? "Note: " + shortText(noteText(),130) : "",
+          "Je demande a etre recontacte pour valider mon activation MON COMMERCE.",
+          "0% commission DIGIY."
+        ].filter(Boolean).join("\n");
+      }
+
+      function buildSmsHref(message){
+        const separator = IS_IOS_OR_IPADOS ? "&" : "?";
+        return "sms:+" + SUPPORT_WA + separator + "body=" + encodeURIComponent(message);
+      }
+
       function buildMessage(){
         const subtotal = selectedTotal();
 
@@ -1612,25 +1763,10 @@
         benefits.innerHTML = bonus.map(item => `<li>✅ ${item}</li>`).join("");
 
         syncContact();
+        updateSendState();
 
         if(scroll && matchMedia("(max-width:860px)").matches){
           summary.scrollIntoView({behavior:"smooth", block:"start"});
-        }
-      }
-
-      function copySms(){
-        const msg = buildMessage();
-
-        if(navigator.clipboard){
-          navigator.clipboard.writeText(msg).then(() => {
-            const old = btnSms.textContent;
-            btnSms.textContent = "✅ Message SMS copié";
-            setTimeout(() => btnSms.textContent = old, 1600);
-          }).catch(() => {
-            btnSms.textContent = "📱 SMS : 77 134 28 89";
-          });
-        }else{
-          btnSms.textContent = "📱 SMS : 77 134 28 89";
         }
       }
 
@@ -1672,26 +1808,56 @@
         summary.scrollIntoView({behavior:"smooth", block:"start"});
       });
 
-      btnSms.addEventListener("click", copySms);
-      btnClear.addEventListener("click", clearChoices);
-      if(paymentNote) paymentNote.addEventListener("input", syncContact);
+      btnSms.addEventListener("click", event => {
+        event.preventDefault();
+        if(!validateBeforeSend(true)) return;
+        window.location.href = buildSmsHref(smsMessage());
+      });
+
+      btnWa.addEventListener("click", event => {
+        if(!validateBeforeSend(true)) event.preventDefault();
+      });
+
+      const proofBtn = document.getElementById("btnProof");
+      if(proofBtn){
+        proofBtn.addEventListener("click", event => {
+          if(!validateBeforeSend(true)) event.preventDefault();
+        });
+      }
+
+      btnClear.addEventListener("click", () => {
+        clearChoices();
+        clearProIdentity();
+        showFormWarning("");
+        update(true);
+      });
+
+      if(paymentNote) paymentNote.addEventListener("input", () => update(false));
 
       Object.keys(proFields).forEach(id => {
         const input = proFields[id];
-        if(input) input.addEventListener("input", saveProIdentity);
+        if(input) input.addEventListener("input", () => {
+          saveProIdentity();
+          update(false);
+        });
       });
 
       const btnClearProInfo = document.getElementById("btnClearProInfo");
       if(btnClearProInfo){
-        btnClearProInfo.addEventListener("click", clearProIdentity);
+        btnClearProInfo.addEventListener("click", () => {
+          clearProIdentity();
+          showFormWarning("");
+          update(false);
+        });
       }
 
-      document.getElementById("btnCopyWave").addEventListener("click", () => {
+      const btnCopyWave = document.getElementById("btnCopyWave");
+      btnCopyWave.hidden = MOBILE_DEVICE;
+      btnCopyWave.addEventListener("click", () => {
         if(navigator.clipboard){
           navigator.clipboard.writeText(paymentLabel()).then(() => {
-            const button = document.getElementById("btnCopyWave");
-            button.textContent = "✅ Paiement copié";
-            setTimeout(() => button.textContent = "📋 Copier Wave", 1600);
+            btnCopyWave.textContent = "✅ Paiement copié";
+            setTimeout(() => btnCopyWave.textContent = "Autre solution : copier Wave", 1600);
           });
         }
       });
@@ -1711,6 +1877,250 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
