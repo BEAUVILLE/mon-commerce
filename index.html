@@ -1,27 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <meta name="theme-color" content="#12100f"/>
-  <meta name="robots" content="index,follow"/>
-  <title>MON COMMERCE — Demande commerce local · 0% commission by DIGIYLYFE</title>
-  <meta name="description" content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : demande sans engagement, activation POS payante, contact direct, paiement direct, 0% commission."/>
-  <link rel="canonical" href="https://mon-commerce.digiylyfe.com/"/>
-  <meta name="digiy-build" content="mon-commerce-public-moule-generique-20260718"/>
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#12100f" name="theme-color"/>
+<meta content="index,follow" name="robots"/>
+<title>MON COMMERCE — Demande commerce local · 0% commission by DIGIYLYFE</title>
+<meta content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : demande sans engagement, activation POS payante, contact direct, paiement direct, 0% commission." name="description"/>
+<link href="https://mon-commerce.digiylyfe.com/" rel="canonical"/>
+<meta content="mon-commerce-public-moule-generique-20260718" name="digiy-build"/>
+<script>
     window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
     window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
     window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
-
-  <style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&amp;family=Lora:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<style>
     :root{
       --bg:#12100f;
       --bg2:#1a1512;
@@ -967,288 +965,299 @@
     }
 
 
-  </style>
+  
+    /* === MON COMMERCE · version épurée, boutiques d'abord === */
+    body{padding-bottom:0}
+    .hero{padding:24px 0 12px}
+    .hero-grid{align-items:start}
+    .hero .lead{max-width:620px}
+    .compact-chips{grid-template-columns:repeat(3,minmax(0,1fr));max-width:620px;margin-top:16px}
+    #commerces{padding:16px 0 18px}
+    #commerces .section-title{margin-bottom:12px}
+    #commerces .gallery-panel{padding:14px}
+    #commerces .gallery-status{margin-bottom:10px;padding:10px 12px}
+    #commerces .commerce-photo-link{height:180px}
+    #commerces .commerce-body{padding:13px}
+    #commerces .commerce-title{font-size:21px}
+    #commerces .commerce-bio{
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .info-drawer{
+      width:min(var(--max),calc(100% - 28px));
+      margin:2px auto 28px;
+      border:1px solid rgba(214,168,95,.28);
+      border-radius:24px;
+      background:rgba(255,255,255,.045);
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    .info-drawer>summary{
+      list-style:none;
+      min-height:72px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      cursor:pointer;
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.16),transparent 42%),
+        rgba(255,255,255,.035);
+    }
+    .info-drawer>summary::-webkit-details-marker{display:none}
+    .info-drawer>summary span{display:grid;gap:3px}
+    .info-drawer>summary b{font-size:17px;color:var(--gold2)}
+    .info-drawer>summary small{font-size:12px;color:var(--muted);font-weight:800}
+    .drawer-arrow{font-size:24px;color:var(--gold2);transition:transform .18s ease}
+    .info-drawer[open] .drawer-arrow{transform:rotate(180deg)}
+    .info-drawer-body{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:4px 14px 12px;
+    }
+    .info-drawer-body>.section{padding:16px 0}
+    .info-drawer-body .commerce-doctrine-panel,
+    .info-drawer-body .territory-panel,
+    .info-drawer-body .big-card,
+    .info-drawer-body .cta-box{
+      box-shadow:none;
+    }
+
+    @media(max-width:720px){
+      .topbar-inner{align-items:center}
+      .nav{display:grid;grid-template-columns:1fr 1fr;width:100%}
+      .nav a,.nav .cta{min-height:42px;text-align:center;display:flex;align-items:center;justify-content:center}
+      .nav .lang-switch{grid-column:1/-1}
+      .hero-grid{gap:16px}
+      .hero h1{font-size:clamp(36px,11vw,50px)}
+      .patchwork-card{display:none}
+      .compact-chips{grid-template-columns:1fr 1fr}
+      .compact-chips .chip:last-child{grid-column:1/-1}
+      #commerces .section-title{align-items:stretch}
+      #commerces .section-title .btn{width:100%}
+      #commerces .commerce-grid{grid-template-columns:1fr 1fr;gap:10px}
+      #commerces .commerce-photo-link{height:150px}
+      #commerces .commerce-body{padding:11px;gap:8px}
+      #commerces .commerce-title{font-size:18px}
+      #commerces .commerce-bio{font-size:13px;-webkit-line-clamp:2}
+      #commerces .commerce-actions .btn{min-width:100%;width:100%}
+      .info-drawer{width:min(100% - 20px,var(--max));margin-bottom:20px}
+      .info-drawer>summary{padding:13px 14px}
+      .info-drawer-body{padding:2px 10px 10px}
+    }
+    @media(max-width:480px){
+      #commerces .commerce-grid{grid-template-columns:1fr}
+      #commerces .commerce-photo-link{height:190px}
+    }
+</style>
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="https://digiylyfe.com/">
-        <div class="brand-badge">👜</div>
-        <div>
-          <strong>MON COMMERCE</strong>
-          <span>Commerce local · Afrique · France · Diaspora</span>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="https://mon-commerce.digiylyfe.com/galerie.html">Galerie partenaires</a>
-        <a href="#pour-qui">Pour qui ?</a>
-        <a href="#doctrine-commerce">Doctrine</a>
-        <a href="#territoires">Territoires</a>
-        <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Tarifs</a>
-        <a href="https://digiy-hub.digiylyfe.com/">HUB</a>
-        <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Wolof caisse</a>
-        <div class="lang-switch" aria-label="Choisir la langue">
-          <button id="langFrBtn" type="button" class="active" aria-pressed="true">🇫🇷 FR</button>
-          <button id="langEnBtn" type="button" aria-pressed="false">🇬🇧 EN</button>
-        </div>
-        <a class="cta" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande commerce</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow">🛒 MON COMMERCE · Afrique · France · Diaspora</div>
-
-          <h1>La vitrine du commerce local n’est pas réservée aux grands. <em>Elle appartient au terrain.</em></h1>
-
-          <p class="lead">
-            Cantine, kiosque, atelier, boutique, marché ou service de quartier : MON COMMERCE donne une fiche claire,
-            des photos, un QR et un contact direct. La demande commerce est sans engagement ;
-            l’activation POS / présence commerce devient payante seulement si le professionnel valide son choix.
-            Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">📝 Demande commerce</a>
-            <button class="btn btn-secondary" id="audioBtn" type="button">🎧 Écouter l’intro</button>
-            <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
-            <a class="btn btn-green" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Voir les boutiques partenaires</a>
-            <a class="btn btn-secondary" href="#commerces">🛍️ Voir les commerces</a>
-            <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">💬 Demande WhatsApp</a>
-            <a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20activer%20mon%20commerce%20sur%20MON%20COMMERCE">📩 Demande SMS</a>
-          </div>
-
-          <div class="chips" aria-label="Piliers MON COMMERCE">
-            <span class="chip gold">0% commission</span>
-            <span class="chip gold">Paiement direct</span>
-            <span class="chip">WhatsApp direct</span>
-            <span class="chip">QR boutique</span>
-            <span class="chip">Photo par URL</span>
-            <span class="chip">Afrique · France · Diaspora</span>
-            <span class="chip">Wolof caisse</span>
-            <span class="chip">Simple sur téléphone</span>
-          </div>
-
-          <div class="signup-strip">
-            <strong>Tu as un commerce ?</strong>
-            <span>La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.</span>
-            <a href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande commerce</a>
-          </div>
-
-          <div class="signup-strip media-strip">
-            <strong>🎥 Vidéo de présentation</strong>
-            <span>La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.</span>
-            <a href="#commerces">Voir les fiches</a>
-          </div>
-
-          <div class="contact-note">
-            <b>Intro simple :</b> le client voit la vitrine, comprend l’activité, puis choisit son canal humain :
-            <b>WhatsApp</b> pour discuter vite, ou <b>SMS</b> si c’est plus simple sur son téléphone.
-            Le <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607"><b>lexique Wolof caisse</b></a> reste la preuve terrain ; l’ouverture France et diaspora garde le même principe : contact direct, paiement direct, 0% commission.
-          </div>
-
-          <div class="audio-card" id="audioCard">
-            <div class="audio-top">
-              <div class="audio-title">🎧 Intro MON COMMERCE</div>
-              <div class="audio-actions" aria-label="Lecteur audio MON COMMERCE">
-                <button class="btn btn-primary" id="audioPlayBtn" type="button">▶️ Lecture</button>
-                <button class="btn btn-secondary" id="stopAudioBtn" type="button">⏹ Arrêt</button>
-              </div>
-            </div>
-            <div class="audio-text">
-              Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et ouverture Afrique · France · Diaspora.
-            </div>
-          </div>
-        </div>
-
-        <div class="patchwork-card">
-          <img
-            src="https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png"
-            alt="Patchwork circulaire de commerces locaux : cantine, kiosque, artisanat, marché, réparation, coiffure et petites boutiques"
-            loading="eager"
-          />
-          <div class="patchwork-note">
+<header class="topbar">
+<div class="wrap topbar-inner">
+<a class="brand" href="https://digiylyfe.com/">
+<div class="brand-badge">👜</div>
+<div>
+<strong>MON COMMERCE</strong>
+<span>Commerce local · Afrique · France · Diaspora</span>
+</div>
+</a>
+<nav aria-label="Navigation principale" class="nav">
+<a href="#commerces">Boutiques</a>
+<a href="#infos">Découvrir</a>
+<a href="https://mon-commerce.digiylyfe.com/galerie.html">Galerie</a>
+<div aria-label="Choisir la langue" class="lang-switch">
+<button aria-pressed="true" class="active" id="langFrBtn" type="button">🇫🇷 FR</button>
+<button aria-pressed="false" id="langEnBtn" type="button">🇬🇧 EN</button>
+</div>
+<a class="cta" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande commerce</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<div class="eyebrow">🛒 MON COMMERCE · vitrines locales</div>
+<h1>Découvre les boutiques du terrain. <em>Contacte-les directement.</em></h1>
+<p class="lead">
+  Des commerces réels, leurs photos, leurs fiches et leurs contacts.
+  Paiement direct au commerçant, 0% commission DIGIY.
+</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#commerces">🛍️ Voir les boutiques</a>
+<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Toute la galerie</a>
+<a class="btn btn-green" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">📝 Ajouter mon commerce</a>
+</div>
+<div aria-label="Piliers MON COMMERCE" class="chips compact-chips">
+<span class="chip gold">0% commission</span>
+<span class="chip gold">Paiement direct</span>
+<span class="chip">WhatsApp direct</span>
+</div>
+</div>
+<div class="patchwork-card">
+<img alt="Patchwork circulaire de commerces locaux : cantine, kiosque, artisanat, marché, réparation, coiffure et petites boutiques" loading="eager" src="https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png"/>
+<div class="patchwork-note">
             Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="doctrine-commerce">
-      <div class="wrap">
-        <div class="commerce-doctrine-panel">
-          <span class="commerce-doctrine-tag">Demande MON COMMERCE sans engagement · Activation POS payante · 0% commission</span>
-          <h2>Le commerçant vend. <em>DIGIY ouvre la porte, sans prendre la caisse.</em></h2>
-          <p>
+</div>
+</div>
+</section><section class="section" id="commerces">
+<div class="wrap">
+<div class="section-title">
+<h2>Les boutiques</h2>
+<p>Ouvre une fiche pour voir l’activité, les photos et contacter directement le commerce.</p>
+<a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Voir toute la galerie</a>
+</div>
+<div class="gallery-panel">
+<div class="gallery-status" id="galleryStatus">Chargement des commerces publiés…</div>
+<div class="commerce-grid" id="commerceGrid"></div>
+</div>
+</div>
+</section><details class="info-drawer" id="infos">
+<summary>
+<span>
+<b>☰ Découvrir MON COMMERCE</b>
+<small>Fonctionnement, métiers, territoires et activation</small>
+</span>
+<strong aria-hidden="true" class="drawer-arrow">⌄</strong>
+</summary>
+<div class="info-drawer-body"><section class="section" id="doctrine-commerce">
+<div class="wrap">
+<div class="commerce-doctrine-panel">
+<span class="commerce-doctrine-tag">Demande MON COMMERCE sans engagement · Activation POS payante · 0% commission</span>
+<h2>Le commerçant vend. <em>DIGIY ouvre la porte, sans prendre la caisse.</em></h2>
+<p>
             MON COMMERCE prépare une présence claire pour les boutiques, marchés, cantines, kiosques,
             ateliers, artisans et services. La demande initiale est sans engagement : le paiement concerne seulement
             l’activation POS, une fiche commerce, un QR, un BOOST, une galerie, une mise en valeur
             ou un pack visibilité. DIGIY ne prend aucune commission sur la vente, la caisse ou le paiement.
           </p>
-          <div class="commerce-doctrine-grid">
-            <div class="commerce-doctrine-item"><b>✅ Demande sans engagement</b><span>Le pro peut demander, comprendre et préparer avant de valider.</span></div>
-            <div class="commerce-doctrine-item"><b>🧾 Activation POS payante</b><span>La fiche, le QR, la caisse et la visibilité s’activent clairement.</span></div>
-            <div class="commerce-doctrine-item"><b>🤝 Vente et paiement directs</b><span>Le client contacte le commerce. L’argent va directement au commerçant.</span></div>
-            <div class="commerce-doctrine-item gold-glow"><b>🇫🇷 France / diaspora</b><span>Sendwave vers Wave Sénégal reste possible pour régler l’activation.</span></div>
-          </div>
-          <p class="commerce-doctrine-quote">
+<div class="commerce-doctrine-grid">
+<div class="commerce-doctrine-item"><b>✅ Demande sans engagement</b><span>Le pro peut demander, comprendre et préparer avant de valider.</span></div>
+<div class="commerce-doctrine-item"><b>🧾 Activation POS payante</b><span>La fiche, le QR, la caisse et la visibilité s’activent clairement.</span></div>
+<div class="commerce-doctrine-item"><b>🤝 Vente et paiement directs</b><span>Le client contacte le commerce. L’argent va directement au commerçant.</span></div>
+<div class="commerce-doctrine-item gold-glow"><b>🇫🇷 France / diaspora</b><span>Sendwave vers Wave Sénégal reste possible pour régler l’activation.</span></div>
+</div>
+<p class="commerce-doctrine-quote">
             DIGIY MON COMMERCE organise la route entre le client et le commerçant — sans détour, sans commission, sans dépossession.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="territoires">
-      <div class="wrap">
-        <div class="territory-panel">
-          <div class="eyebrow">🌍 Commerce local · Afrique · France · Diaspora</div>
-          <h2>Un même commerce local, plusieurs territoires.</h2>
-          <p>
+</div>
+</div>
+</section><section class="section" id="territoires">
+<div class="wrap">
+<div class="territory-panel">
+<div class="eyebrow">🌍 Commerce local · Afrique · France · Diaspora</div>
+<h2>Un même commerce local, plusieurs territoires.</h2>
+<p>
             MON COMMERCE n’est pas limité à Saly. Saly reste la preuve terrain. La France ouvre les commerces structurés.
             La diaspora peut aider à voir, partager, recommander et soutenir une activité locale sans prendre la place du commerçant.
           </p>
-          <div class="territory-grid">
-            <div class="territory-item"><b>🇸🇳 Afrique · preuve terrain</b><span>Cantines, kiosques, marchés, artisans, boutiques et services de proximité visibles par QR, fiche et contact direct.</span></div>
-            <div class="territory-item"><b>🇫🇷 France · commerces structurés</b><span>Petites boutiques, artisans, marchés, indépendants et services locaux qui veulent une présence claire sans commission.</span></div>
-            <div class="territory-item"><b>🌍 Diaspora · pont commercial</b><span>Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="pour-qui">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Ouvert au petit commerce, à l’artisan et à la diaspora.</h2>
-          <p>
+<div class="territory-grid">
+<div class="territory-item"><b>🇸🇳 Afrique · preuve terrain</b><span>Cantines, kiosques, marchés, artisans, boutiques et services de proximité visibles par QR, fiche et contact direct.</span></div>
+<div class="territory-item"><b>🇫🇷 France · commerces structurés</b><span>Petites boutiques, artisans, marchés, indépendants et services locaux qui veulent une présence claire sans commission.</span></div>
+<div class="territory-item"><b>🌍 Diaspora · pont commercial</b><span>Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.</span></div>
+</div>
+</div>
+</div>
+</section><section class="section" id="pour-qui">
+<div class="wrap">
+<div class="section-title">
+<h2>Ouvert au petit commerce, à l’artisan et à la diaspora.</h2>
+<p>
             On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.
           </p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <div class="icon">🍲</div>
-            <h3>Cantines & nourriture</h3>
-            <p>Plat du jour, jus, café, sandwich, dibiterie, petit point de vente : le client comprend vite.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🧵</div>
-            <h3>Artisans & ateliers</h3>
-            <p>Tailleur, cordonnier, réparateur, soudeur, menuisier : le savoir-faire sort de l’ombre.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🧴</div>
-            <h3>Beauté & services</h3>
-            <p>Coiffure, onglerie, cosmétique, soins, petits services de quartier : contact direct sans détour.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🛍️</div>
-            <h3>Boutiques & marchés</h3>
-            <p>Épicerie, fruits, vêtements, accessoires, téléphone, maison : une vitrine simple et vivante.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap duo">
-        <article class="big-card">
-          <h3>Démocratiser la vitrine</h3>
-          <p>
+</div>
+<div class="cards">
+<article class="card">
+<div class="icon">🍲</div>
+<h3>Cantines &amp; nourriture</h3>
+<p>Plat du jour, jus, café, sandwich, dibiterie, petit point de vente : le client comprend vite.</p>
+</article>
+<article class="card">
+<div class="icon">🧵</div>
+<h3>Artisans &amp; ateliers</h3>
+<p>Tailleur, cordonnier, réparateur, soudeur, menuisier : le savoir-faire sort de l’ombre.</p>
+</article>
+<article class="card">
+<div class="icon">🧴</div>
+<h3>Beauté &amp; services</h3>
+<p>Coiffure, onglerie, cosmétique, soins, petits services de quartier : contact direct sans détour.</p>
+</article>
+<article class="card">
+<div class="icon">🛍️</div>
+<h3>Boutiques &amp; marchés</h3>
+<p>Épicerie, fruits, vêtements, accessoires, téléphone, maison : une vitrine simple et vivante.</p>
+</article>
+</div>
+</div>
+</section><section class="section">
+<div class="wrap duo">
+<article class="big-card">
+<h3>Démocratiser la vitrine</h3>
+<p>
             Le commerce local n’a pas toujours une belle devanture. Parfois il est serré entre deux murs, posé sur une table,
             installé sous un parasol ou dans un coin de rue. Cela ne retire rien à sa valeur.
           </p>
-          <p>
+<p>
             DIGIY donne au terrain une adresse, un lien, un QR, une fiche, un contact direct et une dignité visible.
           </p>
-        </article>
-
-        <article class="big-card">
-          <h3>Pas une plateforme qui capte</h3>
-          <p>
+</article>
+<article class="big-card">
+<h3>Pas une plateforme qui capte</h3>
+<p>
             Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.
           </p>
-          <p>
+<p>
             La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.
           </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="commerces">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>Aperçu des commerces</h2>
-          <p>
-            Cette zone affiche les commerces publiés, puis quelques exemples métier pour faire comprendre l’esprit sans créer de fausse boutique active.
-          </p>
-          <a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Ouvrir la galerie partenaires</a>
-        </div>
-
-        <div class="gallery-panel">
-          <div class="gallery-status" id="galleryStatus">Chargement des commerces publiés…</div>
-          <div class="commerce-grid" id="commerceGrid"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="cta-box">
-          <div>
-            <h2>Ton commerce mérite sa présence.</h2>
-            <p>
+</article>
+</div>
+</section><section class="section">
+<div class="wrap">
+<div class="cta-box">
+<div>
+<h2>Ton commerce mérite sa présence.</h2>
+<p>
               Pas besoin d’être grand pour être visible. Il faut une fiche claire :
               ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.
             </p>
-          </div>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">📝 Demande commerce</a>
-            <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Galerie partenaires</a>
-            <a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
-            <a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Voir les tarifs</a>
-            <a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-            <a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE">📩 SMS</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">📝 Demande commerce</a>
+<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Galerie partenaires</a>
+<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
+<a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir les tarifs</a>
+<a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE" rel="noopener noreferrer" target="_blank">💬 WhatsApp</a>
+<a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE">📩 SMS</a>
+</div>
+</div>
+</div>
+</section></div>
+</details>
 
-  <footer>
-    <div class="wrap footer-row">
-      <div>MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.</div>
-      <div>
-        <a href="https://digiylyfe.com/">Site</a> ·
+
+
+
+
+
+</main>
+<footer>
+<div class="wrap footer-row">
+<div>MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.</div>
+<div>
+<a href="https://digiylyfe.com/">Site</a> ·
         <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
         <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">Wolof caisse</a> ·
         <a href="https://mon-commerce.digiylyfe.com/galerie.html">Galerie</a> ·
         <a href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande</a>
-      </div>
-    </div>
-  </footer>
+</div>
+</div>
+</footer>
 
-  <nav class="bottom-nav" aria-label="Navigation mobile MON COMMERCE">
-    <div class="bottom-nav-inner">
-      <a class="active" href="#"><span class="ico">🏠</span><span>Accueil</span></a>
-      <a href="#pour-qui"><span class="ico">🛒</span><span>Métiers</span></a>
-      <a href="#territoires"><span class="ico">🌍</span><span>Intl</span></a>
-      <a href="https://mon-commerce.digiylyfe.com/galerie.html"><span class="ico">🖼️</span><span>Galerie</span></a>
-      <a href="https://tarifs.digiylyfe.com/"><span class="ico">📦</span><span>Tarifs</span></a>
-      <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607"><span class="ico">🇸🇳</span><span>Wolof</span></a>
-      <a href="https://mon-commerce.digiylyfe.com/inscription-pos.html"><span class="ico">📝</span><span>Demande</span></a>
-    </div>
-  </nav>
-
-  <script>
+<script>
     (function(){
       "use strict";
 
@@ -1441,7 +1450,7 @@
         const grid = $("commerceGrid");
         grid.innerHTML = "";
 
-        const rows = (items && items.length ? items : DEMOS).slice(0,12);
+        const rows = (items && items.length ? items : DEMOS).slice(0,4);
 
         rows.forEach((raw) => {
           const name = pick(raw,["display_name","shop_name","store_name","name","title"],"Commerce local");
@@ -1691,7 +1700,6 @@ DIGIY opens the door. The field keeps control.`;
       loadPublicCommerces();
     })();
    </script>
-
 <script>
 (function(){
   "use strict";
@@ -1714,6 +1722,19 @@ DIGIY opens the door. The field keeps control.`;
   };
 
   const TEXT = new Map(Object.entries({
+    "Boutiques":"Shops",
+    "Découvrir":"Discover",
+    "Découvre les boutiques du terrain.":"Discover local shops.",
+    "Contacte-les directement.":"Contact them directly.",
+    "Des commerces réels, leurs photos, leurs fiches et leurs contacts.\n  Paiement direct au commerçant, 0% commission DIGIY.":"Real businesses, their photos, profiles and contacts. Direct payment to the merchant, 0% DIGIY commission.",
+    "🛍️ Voir les boutiques":"🛍️ See shops",
+    "🖼️ Toute la galerie":"🖼️ Full gallery",
+    "📝 Ajouter mon commerce":"📝 Add my business",
+    "Les boutiques":"Shops",
+    "Ouvre une fiche pour voir l’activité, les photos et contacter directement le commerce.":"Open a profile to see the activity, photos and contact the business directly.",
+    "🖼️ Voir toute la galerie":"🖼️ View full gallery",
+    "☰ Découvrir MON COMMERCE":"☰ Discover MON COMMERCE",
+    "Fonctionnement, métiers, territoires et activation":"How it works, activities, territories and activation",
     'La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.':'The request is simple: name, activity, photos, contact, QR code. It helps prepare then activate your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora, with no commitment before validation.',
     'La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.':'The storefront helps the business exist online without forcing the pro to become a technician. The request stays without commitment; activation becomes paid when the pro validates.',
     'MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.':'MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · no-commitment request · paid POS activation · direct payment · 0% commission · The field keeps control.',
@@ -2026,8 +2047,7 @@ DIGIY opens the door. The field keeps control.`;
   });
 })();
 </script>
-
-<script src="https://pro-action-digiy.digiylyfe.com/assets/js/digiy-retour-voix.js?v=retour-voix-20260606-v4" defer></script>
+<script defer="" src="https://pro-action-digiy.digiylyfe.com/assets/js/digiy-retour-voix.js?v=retour-voix-20260606-v4"></script>
 </body>
 <!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
 </html>
