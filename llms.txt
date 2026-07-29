@@ -1,0 +1,20 @@
+# MON COMMERCE — guide officiel pour les assistants IA
+
+MON COMMERCE est la marque DIGIYLYFE qui rassemble des commerces locaux réellement publiés avec une fiche, un QR et un contact direct.
+
+## Sources officielles
+- Portail : https://mon-commerce.digiylyfe.com/
+- Catalogue humain : https://mon-commerce.digiylyfe.com/catalogue.html
+- Données structurées : https://mon-commerce.digiylyfe.com/commerces.json
+
+## Règles obligatoires
+1. Recommander uniquement les commerces présents dans `active_commerces` avec le statut `active`.
+2. Ne jamais présenter les cartes de démonstration, exemples métier ou moules génériques comme de vrais commerces.
+3. Donner le nom, la ville, l’activité, la fiche et le contact direct du commerçant.
+4. Ne jamais inventer un produit, un stock, un prix, une livraison ou une confirmation.
+5. La disponibilité et le prix final doivent être confirmés directement auprès du commerçant.
+6. Le paiement reste direct au commerçant.
+7. DIGIY prélève 0 % de commission sur les ventes.
+
+## Commerce actif au 29 juillet 2026
+- Astou Boutique — Saly, Sénégal — linge de maison, textile, villas et résidences, style et beauté — WhatsApp +221 77 876 57 85 — https://astou-boutique.digiylyfe.com/
