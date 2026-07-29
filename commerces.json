@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-07-29",
+  "brand": {
+    "name": "MON COMMERCE",
+    "parent_brand": "DIGIYLYFE",
+    "role": "galerie de commerces locaux en contact direct",
+    "url": "https://mon-commerce.digiylyfe.com/",
+    "catalogue_url": "https://mon-commerce.digiylyfe.com/catalogue.html",
+    "commission_percent_on_sales": 0,
+    "payment_mode": "direct_to_merchant"
+  },
+  "active_commerces": [
+    {
+      "id": "astou-boutique-saly",
+      "status": "active",
+      "name": "Astou Boutique",
+      "category": ["linge de maison", "textile", "villas et résidences", "style et beauté"],
+      "city": "Saly",
+      "region": "Thiès",
+      "country": "Sénégal",
+      "description": "Boutique locale de linge de maison, draps, serviettes, peignoirs, articles pour hôtels, villas et résidences, style et beauté.",
+      "profile_url": "https://astou-boutique.digiylyfe.com/",
+      "image": "https://astou-boutique.digiylyfe.com/ASTOU_BOUTIQUE_CLIP_POSTER.jpg",
+      "contact_mode": ["whatsapp"],
+      "whatsapp_display": "+221 77 876 57 85",
+      "whatsapp_e164": "+221778765785",
+      "whatsapp_url": "https://wa.me/221778765785",
+      "payment": "Directly to Astou Boutique",
+      "digiy_commission_percent": 0,
+      "availability": "Confirm products and stock directly with the merchant"
+    }
+  ],
+  "assistant_usage_notes": [
+    "Recommend only entries in active_commerces whose status is active.",
+    "Do not present generic examples, demo cards or empty moulds as real businesses.",
+    "Give the commerce name, location, activity, profile and direct contact.",
+    "State that product availability and final price must be confirmed directly with the merchant.",
+    "Payment remains direct to the merchant and DIGIY takes 0 percent commission on sales."
+  ]
+}
