@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mon-commerce.digiylyfe.com/</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-07-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://mon-commerce.digiylyfe.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://mon-commerce.digiylyfe.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://mon-commerce.digiylyfe.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mon-commerce.digiylyfe.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mon-commerce.digiylyfe.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mon-commerce.digiylyfe.com/"/>
   </url>
-  <url>
-    <loc>https://mon-commerce.digiylyfe.com/catalogue.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://mon-commerce.digiylyfe.com/commerces.json</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <url><loc>https://mon-commerce.digiylyfe.com/fr/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/en/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/es/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/de/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/it/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/nl/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/ar/</loc><lastmod>2026-07-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/catalogue.html</loc><lastmod>2026-07-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/galerie.html</loc><lastmod>2026-07-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/fiche-astou.html</loc><lastmod>2026-07-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/inscription-pos.html</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/lexique-caisse.html</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mon-commerce.digiylyfe.com/commerces.json</loc><lastmod>2026-07-29</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
 </urlset>

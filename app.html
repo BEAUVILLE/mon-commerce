@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#12100f" name="theme-color"/>
+<meta content="index,follow" name="robots"/>
+<title>MON COMMERCE — Demande commerce local · 0% commission by DIGIYLYFE</title>
+<meta content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : demande sans engagement, activation POS payante, contact direct, paiement direct, 0% commission." name="description"/>
+<link href="https://mon-commerce.digiylyfe.com/" rel="canonical"/>
+<meta content="mon-commerce-public-moule-generique-20260718" name="digiy-build"/>
+<script>
+    window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+    window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
+    window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&amp;family=Lora:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root{
+      --bg:#12100f;
+      --bg2:#1a1512;
+      --card:#211c19;
+      --card2:#2a231f;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.16);
+      --text:#f8f1e8;
+      --muted:#c8b8a7;
+      --gold:#d6a85f;
+      --gold2:#f0d29a;
+      --green:#6fa27e;
+      --cream:#f3e8d8;
+      --danger:#ef4444;
+      --shadow:0 22px 64px rgba(0,0,0,.36);
+      --max:1160px;
+      --fontA:"Outfit",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --fontB:"Lora",Georgia,serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:var(--fontA);
+      background:
+        radial-gradient(900px 560px at 10% -10%,rgba(214,168,95,.13),transparent 60%),
+        radial-gradient(800px 480px at 100% 4%,rgba(111,162,126,.10),transparent 58%),
+        linear-gradient(180deg,#17120f,var(--bg));
+      line-height:1.55;
+      padding-bottom:calc(80px + env(safe-area-inset-bottom,0px));
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button,input{font:inherit}
+
+    .wrap{
+      width:min(var(--max),calc(100% - 28px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(18,16,15,.86);
+      border-bottom:1px solid rgba(255,255,255,.07);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+
+    .topbar-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      padding:10px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-badge{
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#17120e;
+      font-size:22px;
+      font-weight:1000;
+      box-shadow:0 14px 30px rgba(214,168,95,.22);
+      flex:0 0 auto;
+    }
+
+    .brand strong{
+      display:block;
+      font-weight:1000;
+      letter-spacing:.01em;
+      font-size:16px;
+      line-height:1.05;
+    }
+
+    .brand span{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      margin-top:3px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      min-height:42px;
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:850;
+    }
+
+    .nav a:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.08);
+    }
+
+    .nav .cta{
+      color:#17120e;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      border-color:transparent;
+      font-weight:1000;
+    }
+
+    .btn{
+      min-height:54px;
+      border-radius:999px;
+      border:1px solid transparent;
+      padding:0 20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      font-weight:1000;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      white-space:nowrap;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#17120e;
+      box-shadow:0 16px 38px rgba(214,168,95,.24);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.055);
+      color:var(--text);
+      border-color:rgba(255,255,255,.11);
+    }
+    .btn-green{
+      background:linear-gradient(135deg,var(--green),#99c5a7);
+      color:#101812;
+      box-shadow:0 16px 38px rgba(111,162,126,.20);
+    }
+
+    .hero{padding:36px 0 20px}
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(214,168,95,.25);
+      background:rgba(214,168,95,.10);
+      color:#f5dca8;
+      font-size:13px;
+      font-weight:950;
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0;
+      font-family:var(--fontB);
+      font-size:clamp(38px,6vw,68px);
+      line-height:.97;
+      letter-spacing:-1.5px;
+      font-weight:700;
+    }
+
+    h1 em{
+      color:var(--gold);
+      font-style:italic;
+    }
+
+    .lead{
+      margin:16px 0 0;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+      max-width:680px;
+      font-weight:700;
+    }
+
+    .hero-actions{
+      margin-top:22px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+    }
+
+    .chips{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:11px;
+      max-width:760px;
+    }
+
+    .chip{
+      min-height:58px;
+      padding:13px 14px;
+      border-radius:18px;
+      border:1px solid rgba(214,168,95,.24);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.15),transparent 40%),
+        rgba(255,255,255,.055);
+      color:#f5e8d6;
+      font-size:15px;
+      font-weight:1000;
+      line-height:1.15;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+    }
+
+    .chip.gold{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#17120e;
+      border-color:transparent;
+      box-shadow:0 16px 34px rgba(214,168,95,.23);
+    }
+
+    .patchwork-card{
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.11),transparent 40%),
+        rgba(255,255,255,.04);
+      box-shadow:var(--shadow);
+      padding:14px;
+    }
+
+    .patchwork-card img{
+      width:100%;
+      border-radius:28px;
+      box-shadow:0 20px 48px rgba(0,0,0,.25);
+      background:#211c19;
+    }
+
+    .patchwork-note{
+      padding:13px 8px 3px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      font-weight:800;
+      text-align:center;
+    }
+
+    .signup-strip{
+      margin-top:16px;
+      border-radius:22px;
+      border:1px solid rgba(111,162,126,.28);
+      background:
+        radial-gradient(circle at top right,rgba(111,162,126,.16),transparent 42%),
+        rgba(111,162,126,.09);
+      padding:14px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:12px;
+      align-items:center;
+      box-shadow:0 14px 32px rgba(0,0,0,.18);
+    }
+
+    .signup-strip strong{
+      color:#d8f3df;
+      font-weight:1000;
+      font-size:15px;
+    }
+
+    .signup-strip span{
+      color:#e2d3c3;
+      font-weight:800;
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .signup-strip a{
+      min-height:42px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--green),#99c5a7);
+      color:#101812;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 14px;
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+
+    .media-strip{
+      border-color:rgba(214,168,95,.30);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.18),transparent 42%),
+        rgba(214,168,95,.08);
+    }
+
+    .media-strip strong{
+      color:#f5dca8;
+    }
+
+    .contact-note{
+      margin-top:14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.045);
+      padding:14px;
+      color:#ead8c4;
+      font-size:14px;
+      line-height:1.65;
+      font-weight:800;
+    }
+
+    .contact-note b{
+      color:#f5dca8;
+      font-weight:1000;
+    }
+
+    .audio-card{
+      margin-top:20px;
+      border-radius:26px;
+      border:1px solid rgba(214,168,95,.30);
+      background:
+        radial-gradient(circle at top left,rgba(214,168,95,.18),transparent 42%),
+        rgba(214,168,95,.085);
+      padding:16px;
+      box-shadow:0 16px 38px rgba(0,0,0,.20);
+    }
+
+    .audio-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .audio-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .audio-actions .btn{
+      min-height:46px;
+      padding:0 16px;
+    }
+
+    .audio-actions .btn-primary{
+      min-width:150px;
+    }
+
+    .audio-title{
+      font-weight:1000;
+      color:#f5dca8;
+      font-size:20px;
+      letter-spacing:-.02em;
+    }
+
+    .audio-text{
+      margin-top:8px;
+      color:#ead8c4;
+      font-size:14px;
+      line-height:1.65;
+      font-weight:750;
+    }
+
+    .section{padding:28px 0}
+
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-family:var(--fontB);
+      font-size:clamp(28px,4vw,46px);
+      line-height:1.03;
+      letter-spacing:-1px;
+    }
+
+    .section-title p{
+      margin:0;
+      max-width:640px;
+      color:var(--muted);
+      font-weight:750;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .card{
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.028));
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      margin-bottom:14px;
+      font-size:23px;
+      background:rgba(214,168,95,.12);
+      border:1px solid rgba(214,168,95,.18);
+    }
+
+    .card h3{
+      margin:0 0 8px;
+      font-size:17px;
+      font-weight:1000;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      font-weight:700;
+    }
+
+    .duo{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .big-card{
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .big-card h3{
+      margin:0 0 10px;
+      font-family:var(--fontB);
+      font-size:26px;
+      line-height:1.05;
+    }
+
+    .big-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-weight:750;
+      line-height:1.7;
+    }
+
+    .gallery-panel{
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.10),transparent 34%),
+        radial-gradient(circle at left bottom,rgba(111,162,126,.08),transparent 30%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .gallery-status{
+      margin-bottom:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.045);
+      padding:13px 14px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:850;
+      line-height:1.65;
+    }
+
+    .commerce-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
+    }
+
+    .commerce-card{
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 16px 42px rgba(0,0,0,.24);
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .commerce-photo-link{
+      position:relative;
+      display:block;
+      width:100%;
+      height:220px;
+      overflow:hidden;
+      background:#241f1b;
+    }
+
+    .commerce-photo-link::after{
+      content:"Voir la fiche";
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.56);
+      color:#fff7d6;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:13px;
+      font-weight:1000;
+      backdrop-filter:blur(8px);
+    }
+
+    .commerce-photo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      background:#241f1b;
+    }
+
+    .commerce-body{
+      padding:15px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+
+    .commerce-title{
+      font-family:var(--fontB);
+      font-size:24px;
+      line-height:1.04;
+      font-weight:700;
+      color:var(--cream);
+    }
+
+    .commerce-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+    }
+
+    .commerce-chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:850;
+    }
+
+    .commerce-bio{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      font-weight:700;
+      flex:1;
+    }
+
+    .commerce-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .commerce-actions .btn{
+      flex:1;
+      min-width:126px;
+      min-height:44px;
+      padding:0 13px;
+      font-size:13px;
+    }
+
+    .cta-box{
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.13),transparent 32%),
+        radial-gradient(circle at left bottom,rgba(111,162,126,.10),transparent 30%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:26px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .cta-box h2{
+      margin:0 0 8px;
+      font-family:var(--fontB);
+      font-size:clamp(28px,4vw,46px);
+      line-height:1.02;
+    }
+
+    .cta-box p{
+      margin:0;
+      color:var(--muted);
+      max-width:720px;
+      font-weight:750;
+      line-height:1.7;
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.07);
+      padding:20px 0 34px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:750;
+    }
+
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .bottom-nav{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:40;
+      padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+      background:rgba(18,16,15,.94);
+      border-top:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+    }
+
+    .bottom-nav-inner{
+      width:min(100%,760px);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:6px;
+    }
+
+    .bottom-nav a{
+      min-height:54px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:2px;
+      color:rgba(246,241,235,.72);
+      font-size:11px;
+      font-weight:950;
+      text-align:center;
+      border:1px solid transparent;
+      padding:0 4px;
+    }
+
+    .bottom-nav .ico{font-size:18px;line-height:1}
+
+    .bottom-nav a.active{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#17120e;
+      box-shadow:0 12px 26px rgba(214,168,95,.18);
+    }
+
+    .hidden{display:none!important}
+
+    @media(max-width:1000px){
+      .hero-grid,.duo{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media(max-width:720px){
+      .topbar-inner{align-items:flex-start}
+      .nav{width:100%;justify-content:flex-start}
+      .hero{padding-top:24px}
+      .lead{font-size:16px}
+      .cards{grid-template-columns:1fr}
+      .signup-strip{grid-template-columns:1fr;text-align:center}
+      .signup-strip a{width:100%}
+      .chips{grid-template-columns:1fr 1fr}
+      .chip{min-height:54px;font-size:14px;padding:12px}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .patchwork-card{border-radius:26px;padding:10px}
+      .patchwork-card img{border-radius:22px}
+      .cta-box{padding:22px}
+    }
+
+    @media(max-width:460px){
+      .chips{grid-template-columns:1fr}
+      .chip{font-size:15px}
+    }
+
+
+
+    /* === MON COMMERCE · Doctrine demande / activation === */
+    .commerce-doctrine-panel{
+      border-radius:32px;
+      border:2px solid rgba(214,168,95,.30);
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.18),transparent 38%),
+        radial-gradient(circle at bottom left,rgba(111,162,126,.12),transparent 42%),
+        linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+
+    .commerce-doctrine-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      width:max-content;
+      max-width:100%;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(214,168,95,.34);
+      background:rgba(214,168,95,.11);
+      color:#f5dca8;
+      font-size:12px;
+      font-weight:1000;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .commerce-doctrine-panel h2{
+      margin:12px 0 10px;
+      font-family:var(--fontB);
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.02;
+      letter-spacing:-1px;
+    }
+
+    .commerce-doctrine-panel h2 em{
+      color:var(--gold);
+      font-style:italic;
+    }
+
+    .commerce-doctrine-panel p{
+      margin:0;
+      color:var(--muted);
+      max-width:900px;
+      font-weight:750;
+      line-height:1.7;
+    }
+
+    .commerce-doctrine-grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .commerce-doctrine-item{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.045);
+      padding:16px;
+    }
+
+    .commerce-doctrine-item b{
+      display:block;
+      color:var(--gold2);
+      font-size:15px;
+      font-weight:1000;
+      margin-bottom:7px;
+    }
+
+    .commerce-doctrine-item span{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      font-weight:730;
+    }
+
+    .commerce-doctrine-quote{
+      margin-top:16px!important;
+      padding:14px 16px;
+      border-left:4px solid var(--gold);
+      border-radius:18px;
+      background:rgba(214,168,95,.10);
+      color:#f5dca8!important;
+      font-weight:1000!important;
+    }
+
+    .gold-glow{
+      border-color:rgba(214,168,95,.44)!important;
+      background:linear-gradient(135deg,rgba(214,168,95,.18),rgba(240,210,154,.08))!important;
+      color:#f5dca8!important;
+    }
+
+    @media(max-width:720px){
+      .commerce-doctrine-grid{grid-template-columns:1fr}
+      .commerce-doctrine-panel{padding:20px}
+    }
+
+
+    /* === MON COMMERCE · Ouverture internationale === */
+    .territory-panel{
+      border-radius:32px;
+      border:1px solid rgba(214,168,95,.24);
+      background:
+        radial-gradient(circle at top left,rgba(214,168,95,.16),transparent 38%),
+        radial-gradient(circle at bottom right,rgba(111,162,126,.12),transparent 42%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .territory-panel .eyebrow{margin-bottom:12px}
+    .territory-panel h2{
+      margin:0;
+      font-family:var(--fontB);
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.02;
+      letter-spacing:-1px;
+    }
+    .territory-panel p{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width:840px;
+      font-weight:750;
+      line-height:1.7;
+    }
+    .territory-grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+    .territory-item{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.045);
+      padding:16px;
+    }
+    .territory-item b{
+      display:block;
+      color:var(--gold2);
+      font-size:16px;
+      font-weight:1000;
+      margin-bottom:7px;
+    }
+    .territory-item span{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      font-weight:730;
+    }
+    @media(max-width:720px){
+      .territory-grid{grid-template-columns:1fr}
+      .territory-panel{padding:20px}
+    }
+
+
+    /* === DIGIYLYFE · Switch FR / EN === */
+    .lang-switch{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      min-height:42px;
+      padding:3px;
+      border-radius:999px;
+      border:1px solid rgba(214,168,95,.28);
+      background:rgba(255,255,255,.055);
+      box-shadow:0 10px 24px rgba(0,0,0,.16);
+    }
+
+    .lang-switch button{
+      min-height:34px;
+      border:0;
+      border-radius:999px;
+      padding:0 10px;
+      color:var(--muted);
+      background:transparent;
+      font-size:12px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+
+    .lang-switch button.active{
+      color:#17120e;
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+    }
+
+    html[lang="en"] .commerce-photo-link::after{
+      content:"View profile";
+    }
+
+    @media(max-width:720px){
+      .lang-switch{width:100%;justify-content:center}
+      .lang-switch button{flex:1}
+    }
+
+
+  
+    /* === MON COMMERCE · version épurée, boutiques d'abord === */
+    body{padding-bottom:0}
+    .hero{padding:24px 0 12px}
+    .hero-grid{align-items:start}
+    .hero .lead{max-width:620px}
+    .compact-chips{grid-template-columns:repeat(3,minmax(0,1fr));max-width:620px;margin-top:16px}
+    #commerces{padding:16px 0 18px}
+    #commerces .section-title{margin-bottom:12px}
+    #commerces .gallery-panel{padding:14px}
+    #commerces .gallery-status{margin-bottom:10px;padding:10px 12px}
+    #commerces .commerce-photo-link{height:180px}
+    #commerces .commerce-body{padding:13px}
+    #commerces .commerce-title{font-size:21px}
+    #commerces .commerce-bio{
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .info-drawer{
+      width:min(var(--max),calc(100% - 28px));
+      margin:2px auto 28px;
+      border:1px solid rgba(214,168,95,.28);
+      border-radius:24px;
+      background:rgba(255,255,255,.045);
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    .info-drawer>summary{
+      list-style:none;
+      min-height:72px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      cursor:pointer;
+      background:
+        radial-gradient(circle at top right,rgba(214,168,95,.16),transparent 42%),
+        rgba(255,255,255,.035);
+    }
+    .info-drawer>summary::-webkit-details-marker{display:none}
+    .info-drawer>summary span{display:grid;gap:3px}
+    .info-drawer>summary b{font-size:17px;color:var(--gold2)}
+    .info-drawer>summary small{font-size:12px;color:var(--muted);font-weight:800}
+    .drawer-arrow{font-size:24px;color:var(--gold2);transition:transform .18s ease}
+    .info-drawer[open] .drawer-arrow{transform:rotate(180deg)}
+    .info-drawer-body{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:4px 14px 12px;
+    }
+    .info-drawer-body>.section{padding:16px 0}
+    .info-drawer-body .commerce-doctrine-panel,
+    .info-drawer-body .territory-panel,
+    .info-drawer-body .big-card,
+    .info-drawer-body .cta-box{
+      box-shadow:none;
+    }
+
+    @media(max-width:720px){
+      .topbar-inner{align-items:center}
+      .nav{display:grid;grid-template-columns:1fr 1fr;width:100%}
+      .nav a,.nav .cta{min-height:42px;text-align:center;display:flex;align-items:center;justify-content:center}
+      .nav .lang-switch{grid-column:1/-1}
+      .hero-grid{gap:16px}
+      .hero h1{font-size:clamp(36px,11vw,50px)}
+      .patchwork-card{display:none}
+      .compact-chips{grid-template-columns:1fr 1fr}
+      .compact-chips .chip:last-child{grid-column:1/-1}
+      #commerces .section-title{align-items:stretch}
+      #commerces .section-title .btn{width:100%}
+      #commerces .commerce-grid{grid-template-columns:1fr 1fr;gap:10px}
+      #commerces .commerce-photo-link{height:150px}
+      #commerces .commerce-body{padding:11px;gap:8px}
+      #commerces .commerce-title{font-size:18px}
+      #commerces .commerce-bio{font-size:13px;-webkit-line-clamp:2}
+      #commerces .commerce-actions .btn{min-width:100%;width:100%}
+      .info-drawer{width:min(100% - 20px,var(--max));margin-bottom:20px}
+      .info-drawer>summary{padding:13px 14px}
+      .info-drawer-body{padding:2px 10px 10px}
+    }
+    @media(max-width:480px){
+      #commerces .commerce-grid{grid-template-columns:1fr}
+      #commerces .commerce-photo-link{height:190px}
+    }
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="wrap topbar-inner">
+<a class="brand" href="https://digiylyfe.com/">
+<div class="brand-badge">👜</div>
+<div>
+<strong>MON COMMERCE</strong>
+<span>Commerce local · Afrique · France · Diaspora</span>
+</div>
+</a>
+<nav aria-label="Navigation principale" class="nav">
+<a href="#commerces">Boutiques</a>
+<a href="#infos">Découvrir</a>
+<a href="https://mon-commerce.digiylyfe.com/galerie.html">Galerie</a>
+<div aria-label="Choisir la langue" class="lang-switch">
+<button aria-pressed="true" class="active" id="langFrBtn" type="button">🇫🇷 FR</button>
+<button aria-pressed="false" id="langEnBtn" type="button">🇬🇧 EN</button>
+</div>
+<a class="cta" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande commerce</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<div class="eyebrow">🛒 MON COMMERCE · vitrines locales</div>
+<h1>Découvre les boutiques du terrain. <em>Contacte-les directement.</em></h1>
+<p class="lead">
+  Des commerces réels, leurs photos, leurs fiches et leurs contacts.
+  Paiement direct au commerçant, 0% commission DIGIY.
+</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#commerces">🛍️ Voir les boutiques</a>
+<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Toute la galerie</a>
+<a class="btn btn-green" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">📝 Ajouter mon commerce</a>
+</div>
+<div aria-label="Piliers MON COMMERCE" class="chips compact-chips">
+<span class="chip gold">0% commission</span>
+<span class="chip gold">Paiement direct</span>
+<span class="chip">WhatsApp direct</span>
+</div>
+</div>
+<div class="patchwork-card">
+<img alt="Patchwork circulaire de commerces locaux : cantine, kiosque, artisanat, marché, réparation, coiffure et petites boutiques" loading="eager" src="https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png"/>
+<div class="patchwork-note">
+            Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.
+          </div>
+</div>
+</div>
+</section><section class="section" id="commerces">
+<div class="wrap">
+<div class="section-title">
+<h2>Les boutiques</h2>
+<p>Ouvre une fiche pour voir l’activité, les photos et contacter directement le commerce.</p>
+<a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Voir toute la galerie</a>
+</div>
+<div class="gallery-panel">
+<div class="gallery-status" id="galleryStatus">Chargement des commerces publiés…</div>
+<div class="commerce-grid" id="commerceGrid"></div>
+</div>
+</div>
+</section><details class="info-drawer" id="infos">
+<summary>
+<span>
+<b>☰ Découvrir MON COMMERCE</b>
+<small>Fonctionnement, métiers, territoires et activation</small>
+</span>
+<strong aria-hidden="true" class="drawer-arrow">⌄</strong>
+</summary>
+<div class="info-drawer-body"><section class="section" id="doctrine-commerce">
+<div class="wrap">
+<div class="commerce-doctrine-panel">
+<span class="commerce-doctrine-tag">Demande MON COMMERCE sans engagement · Activation POS payante · 0% commission</span>
+<h2>Le commerçant vend. <em>DIGIY ouvre la porte, sans prendre la caisse.</em></h2>
+<p>
+            MON COMMERCE prépare une présence claire pour les boutiques, marchés, cantines, kiosques,
+            ateliers, artisans et services. La demande initiale est sans engagement : le paiement concerne seulement
+            l’activation POS, une fiche commerce, un QR, un BOOST, une galerie, une mise en valeur
+            ou un pack visibilité. DIGIY ne prend aucune commission sur la vente, la caisse ou le paiement.
+          </p>
+<div class="commerce-doctrine-grid">
+<div class="commerce-doctrine-item"><b>✅ Demande sans engagement</b><span>Le pro peut demander, comprendre et préparer avant de valider.</span></div>
+<div class="commerce-doctrine-item"><b>🧾 Activation POS payante</b><span>La fiche, le QR, la caisse et la visibilité s’activent clairement.</span></div>
+<div class="commerce-doctrine-item"><b>🤝 Vente et paiement directs</b><span>Le client contacte le commerce. L’argent va directement au commerçant.</span></div>
+<div class="commerce-doctrine-item gold-glow"><b>🇫🇷 France / diaspora</b><span>Sendwave vers Wave Sénégal reste possible pour régler l’activation.</span></div>
+</div>
+<p class="commerce-doctrine-quote">
+            DIGIY MON COMMERCE organise la route entre le client et le commerçant — sans détour, sans commission, sans dépossession.
+          </p>
+</div>
+</div>
+</section><section class="section" id="territoires">
+<div class="wrap">
+<div class="territory-panel">
+<div class="eyebrow">🌍 Commerce local · Afrique · France · Diaspora</div>
+<h2>Un même commerce local, plusieurs territoires.</h2>
+<p>
+            MON COMMERCE n’est pas limité à Saly. Saly reste la preuve terrain. La France ouvre les commerces structurés.
+            La diaspora peut aider à voir, partager, recommander et soutenir une activité locale sans prendre la place du commerçant.
+          </p>
+<div class="territory-grid">
+<div class="territory-item"><b>🇸🇳 Afrique · preuve terrain</b><span>Cantines, kiosques, marchés, artisans, boutiques et services de proximité visibles par QR, fiche et contact direct.</span></div>
+<div class="territory-item"><b>🇫🇷 France · commerces structurés</b><span>Petites boutiques, artisans, marchés, indépendants et services locaux qui veulent une présence claire sans commission.</span></div>
+<div class="territory-item"><b>🌍 Diaspora · pont commercial</b><span>Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.</span></div>
+</div>
+</div>
+</div>
+</section><section class="section" id="pour-qui">
+<div class="wrap">
+<div class="section-title">
+<h2>Ouvert au petit commerce, à l’artisan et à la diaspora.</h2>
+<p>
+            On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.
+          </p>
+</div>
+<div class="cards">
+<article class="card">
+<div class="icon">🍲</div>
+<h3>Cantines &amp; nourriture</h3>
+<p>Plat du jour, jus, café, sandwich, dibiterie, petit point de vente : le client comprend vite.</p>
+</article>
+<article class="card">
+<div class="icon">🧵</div>
+<h3>Artisans &amp; ateliers</h3>
+<p>Tailleur, cordonnier, réparateur, soudeur, menuisier : le savoir-faire sort de l’ombre.</p>
+</article>
+<article class="card">
+<div class="icon">🧴</div>
+<h3>Beauté &amp; services</h3>
+<p>Coiffure, onglerie, cosmétique, soins, petits services de quartier : contact direct sans détour.</p>
+</article>
+<article class="card">
+<div class="icon">🛍️</div>
+<h3>Boutiques &amp; marchés</h3>
+<p>Épicerie, fruits, vêtements, accessoires, téléphone, maison : une vitrine simple et vivante.</p>
+</article>
+</div>
+</div>
+</section><section class="section">
+<div class="wrap duo">
+<article class="big-card">
+<h3>Démocratiser la vitrine</h3>
+<p>
+            Le commerce local n’a pas toujours une belle devanture. Parfois il est serré entre deux murs, posé sur une table,
+            installé sous un parasol ou dans un coin de rue. Cela ne retire rien à sa valeur.
+          </p>
+<p>
+            DIGIY donne au terrain une adresse, un lien, un QR, une fiche, un contact direct et une dignité visible.
+          </p>
+</article>
+<article class="big-card">
+<h3>Pas une plateforme qui capte</h3>
+<p>
+            Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.
+          </p>
+<p>
+            La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.
+          </p>
+</article>
+</div>
+</section><section class="section">
+<div class="wrap">
+<div class="cta-box">
+<div>
+<h2>Ton commerce mérite sa présence.</h2>
+<p>
+              Pas besoin d’être grand pour être visible. Il faut une fiche claire :
+              ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.
+            </p>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">📝 Demande commerce</a>
+<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/galerie.html">🖼️ Galerie partenaires</a>
+<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">🇸🇳 Lexique Wolof caisse</a>
+<a class="btn btn-secondary" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir les tarifs</a>
+<a class="btn btn-secondary" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE" rel="noopener noreferrer" target="_blank">💬 WhatsApp</a>
+<a class="btn btn-secondary" href="sms:+221771342889?body=Bonjour%20DIGIY%2C%20je%20veux%20faire%20une%20demande%20pour%20MON%20COMMERCE">📩 SMS</a>
+</div>
+</div>
+</div>
+</section></div>
+</details>
+
+
+
+
+
+
+</main>
+<footer>
+<div class="wrap footer-row">
+<div>MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.</div>
+<div>
+<a href="https://digiylyfe.com/">Site</a> ·
+        <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
+        <a href="https://mon-commerce.digiylyfe.com/lexique-caisse.html?v=lexique-caisse-v2-mobile-20260607">Wolof caisse</a> ·
+        <a href="https://mon-commerce.digiylyfe.com/galerie.html">Galerie</a> ·
+        <a href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande</a>
+</div>
+</div>
+</footer>
+
+<script>
+    (function(){
+      "use strict";
+
+      const PATCHWORK_URL = "https://digiylyfe.net/wp-content/uploads/2026/05/DIGIY-COMMERCE.png";
+      const DIGIY_CONTACT_PHONE = "221771342889";
+      const DIGIY_CONTACT_TEXT = "Bonjour DIGIY, je veux faire une demande sans engagement pour MON COMMERCE.";
+      const DIGIY_WHATSAPP = "https://wa.me/" + DIGIY_CONTACT_PHONE + "?text=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
+      const DIGIY_SMS = "sms:+" + DIGIY_CONTACT_PHONE + "?body=" + encodeURIComponent(DIGIY_CONTACT_TEXT);
+
+      const DEMOS = [
+        {
+          display_name:"Cantine du coin",
+          category:"Cantine · plat du jour",
+          city:"Quartier",
+          description:"Petit point de nourriture, service rapide, contact direct. Même sous un abri simple, le commerce mérite sa vitrine.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Kiosque quartier",
+          category:"Boutique · petit commerce",
+          city:"Rue principale",
+          description:"Deux mètres carrés peuvent devenir une vraie présence digitale : nom, contact, produits, QR et WhatsApp direct.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Atelier tailleur",
+          category:"Artisanat · couture",
+          city:"Marché",
+          description:"Un métier de main, des tissus, des commandes, une relation humaine. DIGIY aide le client à trouver l’artisan.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Coiffure & beauté",
+          category:"Service · beauté",
+          city:"Quartier",
+          description:"Coiffeuse, barber, onglerie, cosmétique : une fiche simple pour montrer le service et recevoir le client directement.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Vendeur fruits & légumes",
+          category:"Marché · alimentaire",
+          city:"Marché local",
+          description:"Produits frais, prix du jour, disponibilité, contact WhatsApp. Le marché aussi peut avoir une porte digitale.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Réparateur du quartier",
+          category:"Réparation · artisan",
+          city:"Atelier",
+          description:"Téléphone, vélo, chaussures, petits appareils : le savoir-faire local devient trouvable et respectable.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Boutique accessoires",
+          category:"Téléphone · accessoires",
+          city:"Rue commerçante",
+          description:"Chargeurs, coques, écouteurs, petits équipements : la vitrine aide le client à voir avant de venir.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        },
+        {
+          display_name:"Petit commerce maison",
+          category:"Maison · quotidien",
+          city:"Proximité",
+          description:"Lessive, savon, eau, biscuits, produits du quotidien : même une petite boutique mérite une présence claire.",
+          photo_url:PATCHWORK_URL,
+          whatsapp:"",
+          demo:true
+        }
+      ];
+
+      const $ = (id) => document.getElementById(id);
+
+      function esc(v){
+        return String(v ?? "")
+          .replace(/&/g,"&amp;")
+          .replace(/</g,"&lt;")
+          .replace(/>/g,"&gt;")
+          .replace(/"/g,"&quot;")
+          .replace(/'/g,"&#39;");
+      }
+
+      function digits(v){
+        return String(v || "").replace(/[^\d]/g,"");
+      }
+
+      function pick(obj, keys, fallback){
+        for(const key of keys){
+          const val = obj && obj[key];
+          if(val !== undefined && val !== null && String(val).trim() !== "") return String(val).trim();
+        }
+        return fallback || "";
+      }
+
+      function safeHttpsUrl(value, fallback){
+        const raw = String(value || "").trim();
+        if(!raw) return fallback || "";
+        try{
+          const u = new URL(raw, location.href);
+          return u.protocol === "https:" ? u.href : (fallback || "");
+        }catch(_){
+          return fallback || "";
+        }
+      }
+
+      function publicRowAllowed(item){
+        if(!item || typeof item !== "object") return false;
+        if(item.is_published === false || item.published === false) return false;
+        if(item.is_active === false || item.active === false) return false;
+        return true;
+      }
+
+      function cleanSensitiveUrl(){
+        try{
+          const u = new URL(location.href);
+          let changed = false;
+          ["phone","tel","owner_phone","p_phone","wa","whatsapp","token","session_token","pin"].forEach((key)=>{
+            if(u.searchParams.has(key)){
+              u.searchParams.delete(key);
+              changed = true;
+            }
+          });
+          if(changed) history.replaceState({},document.title,u.pathname + u.search + u.hash);
+        }catch(_){}
+      }
+
+      function commerceFilter(){
+        try{
+          const q = new URL(location.href).searchParams;
+          return String(q.get("commerce") || q.get("slug") || "").trim().toLowerCase();
+        }catch(_){
+          return "";
+        }
+      }
+
+      function normText(v){
+        return String(v || "")
+          .trim()
+          .toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+      }
+
+      function isGenericCommerce(item){
+        const name = normText(pick(item,["display_name","shop_name","store_name","name","title"],""));
+        const desc = normText(pick(item,["description","bio","short_description","about"],""));
+        const city = normText(pick(item,["city","location","address_label","zone"],""));
+
+        return (
+          name === "mon commerce" &&
+          (city === "senegal" || city === "terrain" || !city) &&
+          desc.includes("commerce equipe avec mon commerce")
+        );
+      }
+
+      function preparePublicItems(items){
+        return Array.isArray(items)
+          ? items.filter(publicRowAllowed).filter(item => !isGenericCommerce(item))
+          : [];
+      }
+
+
+      function whatsappLink(phone, name){
+        const p = digits(phone);
+        if(!p) return "";
+        const text = "Bonjour, je viens de voir votre commerce sur MON COMMERCE by DIGIY.";
+        return "https://wa.me/" + p + "?text=" + encodeURIComponent(text);
+      }
+
+      function smsLink(phone, name){
+        const p = digits(phone);
+        if(!p) return "";
+        const text = "Bonjour, je viens de voir votre commerce sur MON COMMERCE by DIGIY.";
+        return "sms:+" + p + "?body=" + encodeURIComponent(text);
+      }
+
+      function renderCommerceCards(items, isDemo){
+        const grid = $("commerceGrid");
+        grid.innerHTML = "";
+
+        const rows = (items && items.length ? items : DEMOS).slice(0,4);
+
+        rows.forEach((raw) => {
+          const name = pick(raw,["display_name","shop_name","store_name","name","title"],"Commerce local");
+          const category = pick(raw,["category","business_type","type","sector"],"Commerce");
+          const city = pick(raw,["city","location","address_label","zone"],"Terrain");
+          const description = pick(raw,["description","bio","short_description","about"],"Commerce local visible avec contact direct.");
+          const photo = safeHttpsUrl(pick(raw,["photo_url","image_url","cover_url","logo_url","avatar_url"],""),PATCHWORK_URL);
+          const phone = raw.demo ? "" : pick(raw,["whatsapp_public","whatsapp","public_phone","phone"],"");
+          const publicUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["public_url","url","website"],""),"");
+          const qrUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["qr_url","qr_public_url"],""),"");
+          const wa = whatsappLink(phone,name);
+          const sms = smsLink(phone,name);
+          const demoBadge = isDemo || raw.demo
+            ? '<span class="commerce-chip">Exemple métier</span>'
+            : '<span class="commerce-chip">Publié</span>';
+
+          const photoHref = publicUrl || (raw.demo ? "https://mon-commerce.digiylyfe.com/inscription-pos.html" : "https://mon-commerce.digiylyfe.com/galerie.html");
+
+          const article = document.createElement("article");
+          article.className = "commerce-card";
+
+          article.innerHTML = `
+            <a class="commerce-photo-link" href="${esc(photoHref)}" ${publicUrl ? 'target="_blank" rel="noopener noreferrer"' : ""} aria-label="Ouvrir ${esc(name)}">
+              <img class="commerce-photo" src="${esc(photo)}" alt="${esc(name)}" loading="lazy" onerror="this.src='${PATCHWORK_URL}'">
+            </a>
+            <div class="commerce-body">
+              <div class="commerce-title">${esc(name)}</div>
+              <div class="commerce-meta">
+                <span class="commerce-chip">${esc(category)}</span>
+                <span class="commerce-chip">${esc(city)}</span>
+                ${demoBadge}
+              </div>
+              <div class="commerce-bio">${esc(description)}</div>
+              <div class="commerce-actions">
+                ${publicUrl ? `<a class="btn btn-secondary" href="${esc(publicUrl)}" target="_blank" rel="noopener noreferrer">Voir la fiche</a>` : ""}
+                ${wa ? `<a class="btn btn-green" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : ""}
+                ${sms ? `<a class="btn btn-secondary" href="${esc(sms)}">SMS</a>` : ""}
+                ${raw.demo ? `<a class="btn btn-secondary" href="https://mon-commerce.digiylyfe.com/inscription-pos.html">Demande commerce</a>` : ""}
+              </div>
+            </div>
+          `;
+
+          grid.appendChild(article);
+        });
+      }
+
+      async function loadPublicCommerces(){
+        const status = $("galleryStatus");
+
+        try{
+          if(!window.supabase || !window.supabase.createClient){
+            throw new Error("Supabase non chargé");
+          }
+
+          const client = window.supabase.createClient(
+            window.DIGIY_SUPABASE_URL,
+            window.DIGIY_SUPABASE_ANON_KEY || window.DIGIY_SUPABASE_ANON,
+            {
+              auth:{
+                persistSession:false,
+                autoRefreshToken:false,
+                detectSessionInUrl:false
+              }
+            }
+          );
+
+          const filter = commerceFilter();
+          let data = [];
+          let error = null;
+
+          try{
+            const r = await client.rpc("digiy_pos_public_gallery");
+            data = Array.isArray(r.data) ? r.data : [];
+            error = r.error || null;
+          }catch(err){
+            error = err;
+          }
+
+          let publicItems = preparePublicItems(data);
+
+          // MON COMMERCE est la galerie transversale : elle rassemble aussi les
+          // boutiques MARKET publiées, sans coder une boutique en dur dans le moule.
+          try{
+            const marketResult = await client
+              .from("digiy_market_profiles")
+              .select("id,slug,workspace_slug,last_slug,shop_name,business_name,category,categories_text,city,address_text,description,whatsapp,public_phone,phone,photo_url,logo_url,cover_url,cover_image_url,is_published,is_active,priority,updated_at")
+              .eq("is_published",true)
+              .eq("is_active",true)
+              .order("priority",{ascending:false})
+              .order("updated_at",{ascending:false})
+              .limit(12);
+
+            if(!marketResult.error && Array.isArray(marketResult.data)){
+              const marketItems = marketResult.data.map((item) => {
+                const marketSlug = pick(item,["slug","workspace_slug","last_slug"],"");
+                return Object.assign({},item,{
+                  display_name:pick(item,["shop_name","business_name"],"Boutique MARKET"),
+                  category:pick(item,["category","categories_text"],"Boutique MARKET"),
+                  whatsapp_public:pick(item,["whatsapp","public_phone","phone"],""),
+                  public_url:marketSlug
+                    ? "https://market.digiylyfe.com/fiche.html?slug=" + encodeURIComponent(marketSlug)
+                    : ""
+                });
+              });
+
+              const seen = new Set(publicItems.map((item) => String(item.id || "pos:" + pick(item,["slug","public_slug"],""))));
+              preparePublicItems(marketItems).forEach((item) => {
+                const key = String(item.id || "market:" + pick(item,["slug","workspace_slug","last_slug"],""));
+                if(!seen.has(key)){
+                  seen.add(key);
+                  publicItems.push(item);
+                }
+              });
+            }
+          }catch(_){
+            // La galerie POS reste utilisable si MARKET est momentanément indisponible.
+          }
+
+          if(filter && publicItems.length){
+            publicItems = publicItems.filter((item) => {
+              const slug = normText(pick(item,["slug","public_slug","commerce"],""));
+              return slug === filter;
+            });
+          }
+
+          if(publicItems.length){
+            if(filter){
+              status.textContent = "Commerce actif chargé depuis la galerie publique.";
+              renderCommerceCards(publicItems,false);
+              return;
+            }
+
+            const needed = Math.max(0, 4 - publicItems.length);
+            const mixed = publicItems.concat(DEMOS.slice(0, needed));
+            status.textContent = "Commerces actifs chargés depuis la galerie publique.";
+            renderCommerceCards(mixed,false);
+            return;
+          }
+
+          status.textContent = error
+            ? "Galerie publique indisponible pour l’instant. Exemples métier affichés sans fausse boutique active."
+            : "Aucun commerce actif et publié pour l’instant. Exemples métier affichés.";
+          renderCommerceCards(DEMOS.slice(0,4),true);
+        }catch(_){
+          status.textContent = "Connexion galerie indisponible. Exemples terrain affichés sans contact privé.";
+          renderCommerceCards(DEMOS.slice(0,4),true);
+        }
+      }
+
+      function bindAudio(){
+        const heroBtn = $("audioBtn");
+        const playBtn = $("audioPlayBtn");
+        const stopBtn = $("stopAudioBtn");
+        const synth = window.speechSynthesis;
+        let playing = false;
+
+        const textFr = `Bienvenue dans MON COMMERCE, par DIGIYLYFE.
+Ici, une cantine, un kiosque, un atelier, une boutique ou un service local peut avoir une présence propre, en Afrique, en France et dans la diaspora.
+La fiche montre le nom, le métier, les photos, le QR et le contact direct.
+Le client regarde, comprend, puis écrit par WhatsApp ou par SMS.
+Le lexique Wolof caisse aide aussi au terrain pour ouvrir la caisse, annoncer le total, donner le ticket, gérer une remise, signaler le stock et fermer proprement.
+Le commerçant garde son argent, son client et sa relation.
+La demande est sans engagement, puis l’activation POS devient payante seulement si le professionnel valide sa présence dans l’architecture métiers DIGIYLYFE.
+DIGIY donne la porte. Le terrain garde la main.`;
+
+        const textEn = `Welcome to MON COMMERCE, by DIGIYLYFE.
+Here, a food stall, a kiosk, a workshop, a small shop or a local service can have a clean digital presence in Africa, France and the diaspora.
+The profile shows the name, the activity, the photos, the QR code and the direct contact.
+The customer looks, understands, then writes through WhatsApp or SMS.
+The Wolof cash register lexicon also helps on the ground: opening the register, saying the total, giving the receipt, applying a discount, checking stock and closing cleanly.
+The merchant keeps the money, the customer and the relationship.
+The request is without commitment, then POS activation becomes paid only if the professional validates their presence inside the DIGIYLYFE business architecture.
+DIGIY opens the door. The field keeps control.`;
+
+        function currentLang(){
+          try{
+            if(typeof window.DIGIY_GET_COMMERCE_LANG === "function") return window.DIGIY_GET_COMMERCE_LANG();
+            return localStorage.getItem("digiy_mon_commerce_lang") || document.documentElement.lang || "fr";
+          }catch(_){
+            return document.documentElement.lang || "fr";
+          }
+        }
+
+        function setButtons(){
+          const en = currentLang() === "en";
+          if(heroBtn) heroBtn.textContent = playing ? (en ? "⏹ Stop" : "⏹ Arrêter") : (en ? "🎧 Listen to intro" : "🎧 Écouter l’intro");
+          if(playBtn) playBtn.textContent = playing ? (en ? "🔊 Playing" : "🔊 Lecture en cours") : (en ? "▶️ Play" : "▶️ Lecture");
+          if(stopBtn){
+            stopBtn.textContent = en ? "⏹ Stop" : "⏹ Arrêt";
+            stopBtn.disabled = !playing;
+          }
+        }
+
+        function stopAudio(){
+          try{ synth && synth.cancel(); }catch(_){}
+          playing = false;
+          setButtons();
+        }
+
+        function playAudio(){
+          if(!synth || typeof SpeechSynthesisUtterance === "undefined") return;
+
+          if(playing){
+            stopAudio();
+            return;
+          }
+
+          function prepareForSpeech(raw){
+            return String(raw || "")
+              /* Doctrine audio DIGIY — ordre important : DIGIYLYFE avant DIGIY */
+              .replace(/\bDIGIYLYFE\b/gi, "diji laïfe")
+              .replace(/\bDIGIY\b/gi, "diji i")
+              .replace(/\bWhatsApp\b/gi, "Ouatsap")
+              .replace(/\bSMS\b/gi, "S M S")
+              .replace(/\bQR\b/gi, "Q R")
+              .replace(/\bWave\b/gi, "Ouève")
+              .replace(/0\s*%/g, "zéro pour cent");
+          }
+
+          const lang = currentLang();
+          const rawText = lang === "en" ? textEn : textFr;
+          const u = new SpeechSynthesisUtterance(lang === "en" ? rawText : prepareForSpeech(rawText));
+          u.lang = lang === "en" ? "en-US" : "fr-FR";
+          u.rate = lang === "en" ? 0.90 : 0.86;
+          u.pitch = 1.02;
+
+          u.onstart = () => {
+            playing = true;
+            setButtons();
+          };
+          u.onend = stopAudio;
+          u.onerror = stopAudio;
+
+          synth.cancel();
+          synth.speak(u);
+        }
+
+        if(heroBtn) heroBtn.addEventListener("click", playAudio);
+        if(playBtn) playBtn.addEventListener("click", playAudio);
+        if(stopBtn) stopBtn.addEventListener("click", stopAudio);
+        window.addEventListener("beforeunload", stopAudio);
+        setButtons();
+      }
+
+      cleanSensitiveUrl();
+      bindAudio();
+      loadPublicCommerces();
+    })();
+   </script>
+<script>
+(function(){
+  "use strict";
+
+  const STORAGE_KEY = "digiy_mon_commerce_lang";
+  const originalText = new WeakMap();
+  const originalAttr = new WeakMap();
+  let observer = null;
+  let applying = false;
+
+  const meta = {
+    fr:{
+      title:"MON COMMERCE — Commerce local Afrique · France · Diaspora by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : Afrique, France, diaspora, cantines, kiosques, artisans, marchés, boutiques, services. Contact direct, paiement direct, 0% commission."
+    },
+    en:{
+      title:"MON COMMERCE — Local commerce request · 0% commission by DIGIYLYFE",
+      description:"MON COMMERCE by DIGIYLYFE makes digital storefronts accessible to local commerce: no-commitment request, paid POS activation, direct contact, direct payment, 0% commission."
+    }
+  };
+
+  const TEXT = new Map(Object.entries({
+    "Boutiques":"Shops",
+    "Découvrir":"Discover",
+    "Découvre les boutiques du terrain.":"Discover local shops.",
+    "Contacte-les directement.":"Contact them directly.",
+    "Des commerces réels, leurs photos, leurs fiches et leurs contacts.\n  Paiement direct au commerçant, 0% commission DIGIY.":"Real businesses, their photos, profiles and contacts. Direct payment to the merchant, 0% DIGIY commission.",
+    "🛍️ Voir les boutiques":"🛍️ See shops",
+    "🖼️ Toute la galerie":"🖼️ Full gallery",
+    "📝 Ajouter mon commerce":"📝 Add my business",
+    "Les boutiques":"Shops",
+    "Ouvre une fiche pour voir l’activité, les photos et contacter directement le commerce.":"Open a profile to see the activity, photos and contact the business directly.",
+    "🖼️ Voir toute la galerie":"🖼️ View full gallery",
+    "☰ Découvrir MON COMMERCE":"☰ Discover MON COMMERCE",
+    "Fonctionnement, métiers, territoires et activation":"How it works, activities, territories and activation",
+    'La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.':'The request is simple: name, activity, photos, contact, QR code. It helps prepare then activate your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora, with no commitment before validation.',
+    'La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.':'The storefront helps the business exist online without forcing the pro to become a technician. The request stays without commitment; activation becomes paid when the pro validates.',
+    'MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.':'MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · no-commitment request · paid POS activation · direct payment · 0% commission · The field keeps control.',
+    'Doctrine':'Doctrine',
+    'Demande MON COMMERCE sans engagement · Activation POS payante · 0% commission':'No-commitment MON COMMERCE request · Paid POS activation · 0% commission',
+    'Le commerçant vend.':'The merchant sells.',
+    'DIGIY ouvre la porte, sans prendre la caisse.':'DIGIY opens the door without taking the cashbox.',
+    'MON COMMERCE prépare une présence claire pour les boutiques, marchés, cantines, kiosques,\n            ateliers, artisans et services. La demande initiale est sans engagement : le paiement concerne seulement\n            l’activation POS, une fiche commerce, un QR, un BOOST, une galerie, une mise en valeur\n            ou un pack visibilité. DIGIY ne prend aucune commission sur la vente, la caisse ou le paiement.':'MON COMMERCE prepares a clear presence for shops, markets, food stalls, kiosks, workshops, artisans and services. The initial request is without commitment: payment only concerns POS activation, a commerce profile, QR code, BOOST, gallery, highlighting or visibility pack. DIGIY takes no commission on the sale, cashbox or payment.',
+    '✅ Demande sans engagement':'✅ No-commitment request',
+    'Le pro peut demander, comprendre et préparer avant de valider.':'The pro can request, understand and prepare before validating.',
+    '🧾 Activation POS payante':'🧾 Paid POS activation',
+    'La fiche, le QR, la caisse et la visibilité s’activent clairement.':'The profile, QR code, cash register and visibility are activated clearly.',
+    '🤝 Vente et paiement directs':'🤝 Direct sale and payment',
+    'Le client contacte le commerce. L’argent va directement au commerçant.':'The customer contacts the business. The money goes directly to the merchant.',
+    '🇫🇷 France / diaspora':'🇫🇷 France / diaspora',
+    'Sendwave vers Wave Sénégal reste possible pour régler l’activation.':'Sendwave to Senegal Wave remains possible to pay for activation.',
+    'DIGIY MON COMMERCE organise la route entre le client et le commerçant — sans détour, sans commission, sans dépossession.':'DIGIY MON COMMERCE organizes the road between customer and merchant — no detour, no commission, no dispossession.',
+    'Demande commerce':'Commerce request',
+    '📝 Demande commerce':'📝 Commerce request',
+    'Demande':'Request',
+
+    "Commerce local · Afrique · France · Diaspora":"Local commerce · Africa · France · Diaspora",
+    "Territoires":"Territories",
+    "🛒 MON COMMERCE · Afrique · France · Diaspora":"🛒 MON COMMERCE · Africa · France · Diaspora",
+    "La vitrine du commerce local n’est pas réservée aux grands.":"The local commerce storefront is not only for big businesses.",
+    "Cantine, kiosque, atelier, boutique, marché ou service de quartier : MON COMMERCE donne une fiche claire,\n            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client, en Afrique, en France et dans la diaspora.":"Food stall, kiosk, workshop, shop, market or neighborhood service: MON COMMERCE gives a clear profile, photos, a QR code and direct contact. The professional keeps their name, their money and their customer relationship, in Africa, France and the diaspora.",
+    "Afrique · France · Diaspora":"Africa · France · Diaspora",
+    "La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the DIGIYLYFE business architecture, from the local field to the diaspora.",
+    "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS, even from a distance.",
+    " le client voit la vitrine, comprend l’activité, puis choisit son canal humain :\n            ":" the customer sees the storefront, understands the activity, then chooses a human channel: ",
+    " reste la preuve terrain ; l’ouverture France et diaspora garde le même principe : contact direct, paiement direct, 0% commission.":" remains the field proof; the France and diaspora opening keeps the same principle: direct contact, direct payment, 0% commission.",
+    "Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et ouverture Afrique · France · Diaspora.":"A short voice introduces the prospect: clear profile, QR code, photos, direct contact, payment to the merchant, Wolof cash register lexicon and Africa · France · Diaspora opening.",
+    "Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.":"One circle, many activities, several territories. Even small businesses can be found, understood and contacted.",
+    "Un même commerce local, plusieurs territoires.":"One local commerce method, several territories.",
+    "MON COMMERCE n’est pas limité à Saly. Saly reste la preuve terrain. La France ouvre les commerces structurés.\n            La diaspora peut aider à voir, partager, recommander et soutenir une activité locale sans prendre la place du commerçant.":"MON COMMERCE is not limited to Saly. Saly remains the field proof. France opens structured commerce. The diaspora can help see, share, recommend and support a local activity without taking the merchant’s place.",
+    "🇸🇳 Afrique · preuve terrain":"🇸🇳 Africa · field proof",
+    "Cantines, kiosques, marchés, artisans, boutiques et services de proximité visibles par QR, fiche et contact direct.":"Food stalls, kiosks, markets, artisans, shops and nearby services visible through QR, profile and direct contact.",
+    "🇫🇷 France · commerces structurés":"🇫🇷 France · structured commerce",
+    "Petites boutiques, artisans, marchés, indépendants et services locaux qui veulent une présence claire sans commission.":"Small shops, artisans, markets, independents and local services that want a clear presence without commission.",
+    "🌍 Diaspora · pont commercial":"🌍 Diaspora · commerce bridge",
+    "Familles, voyageurs et clients peuvent découvrir, partager et contacter un commerce local sans plateforme qui capture la relation.":"Families, travelers and customers can discover, share and contact a local business without a platform capturing the relationship.",
+    "Ouvert au petit commerce, à l’artisan et à la diaspora.":"Open to small commerce, artisans and the diaspora.",
+    "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control, whatever the territory.",
+    "Cette zone affiche les commerces publiés, puis quelques exemples métier pour faire comprendre l’esprit sans créer de fausse boutique active.":"This area displays published businesses, followed by a few activity examples without creating a fake active shop.",
+    "Pas besoin d’être grand pour être visible. Il faut une fiche claire :\n              ton nom, ton métier, tes photos, ton contact, ton QR, et une porte directe pour ton territoire.":"You do not need to be big to be visible. You need a clear profile: your name, your activity, your photos, your contact, your QR code, and a direct door for your territory.",
+    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Africa · France · Diaspora · Direct payment · 0% commission · The field keeps control.",
+    "Intl":"Intl",
+    "Une vitrine pour le commerce réel":"A storefront for real commerce",
+    "Galerie partenaires":"Partner gallery",
+    "Pour qui ?":"Who is it for?",
+    "Tarifs":"Pricing",
+    "🇸🇳 Wolof caisse":"🇸🇳 Wolof cash register",
+    "Activer ma présence":"Activate my presence",
+    "🛒 MON COMMERCE by DIGIYLYFE":"🛒 MON COMMERCE by DIGIYLYFE",
+    "La vitrine n’est pas réservée aux grands.":"A digital storefront is not only for big businesses.",
+    "Elle appartient au terrain.":"It belongs to the field.",
+    "Cantine, kiosque, atelier, boutique ou service de quartier : MON COMMERCE donne une fiche claire,\n            des photos, un QR et un contact direct. Le professionnel garde son nom, son argent et sa relation client.":"Food stall, kiosk, workshop, shop or neighborhood service: MON COMMERCE gives a clear profile, photos, a QR code and direct contact. The professional keeps their name, their money and their customer relationship.",
+    "📝 Activer ma présence":"📝 Activate my presence",
+    "🎧 Écouter l’intro":"🎧 Listen to intro",
+    "🇸🇳 Lexique Wolof caisse":"🇸🇳 Wolof cash register lexicon",
+    "🖼️ Voir les boutiques partenaires":"🖼️ See partner shops",
+    "🛍️ Voir les commerces":"🛍️ See businesses",
+    "💬 Demande WhatsApp":"💬 WhatsApp request",
+    "📩 Demande SMS":"📩 SMS request",
+    "0% commission":"0% commission",
+    "Paiement direct":"Direct payment",
+    "WhatsApp direct":"Direct WhatsApp",
+    "QR boutique":"Shop QR",
+    "Photo par URL":"Photo by URL",
+    "Wolof caisse":"Wolof cash register",
+    "Simple sur téléphone":"Simple on phone",
+    "Tu as un commerce ?":"Do you have a business?",
+    "La demande est fluide : nom, métier, photos, contact, QR. Elle permet de préparer puis d’activer ta présence dans l’architecture métiers DIGIYLYFE, du terrain local à la diaspora, sans engagement avant validation.":"The registration form is simple: name, activity, photos, contact, QR code. It activates your presence inside the business architecture.",
+    "🎥 Vidéo de présentation":"🎥 Presentation video",
+    "La vidéo reste un bonus simple : le client voit mieux l’ambiance, comprend plus vite, puis contacte par WhatsApp ou par SMS, même à distance.":"The video stays a simple bonus: the customer sees the atmosphere, understands faster, then contacts you through WhatsApp or SMS.",
+    "Voir les fiches":"See profiles",
+    "Intro simple :":"Simple intro:",
+    " le client voit la vitrine, comprend l’activité, puis choisit son canal humain :\n            ":" the customer sees the storefront, understands the activity, then chooses a human channel: ",
+    "WhatsApp":"WhatsApp",
+    " pour discuter vite, ou ":" to talk quickly, or ",
+    "SMS":"SMS",
+    " si c’est plus simple sur son téléphone.\n            Le ":" if it is easier on the phone. The ",
+    "lexique Wolof caisse":"Wolof cash register lexicon",
+    " aide aussi au terrain : ouverture, total, ticket, remise, stock et fermeture.":" also helps on the ground: opening, total, receipt, discount, stock and closing.",
+    "🎧 Intro MON COMMERCE":"🎧 MON COMMERCE intro",
+    "▶️ Lecture":"▶️ Play",
+    "⏹ Arrêt":"⏹ Stop",
+    "Une voix courte initie le prospect : fiche claire, QR, photos, contact direct, paiement au commerçant, lexique Wolof caisse et ouverture Afrique · France · Diaspora.":"A short voice introduces the prospect: clear profile, QR code, photos, direct contact, payment to the merchant, Wolof cash register lexicon and simple registration inside the business architecture.",
+    "Un cercle, plusieurs métiers, plusieurs territoires. Même petit, chaque commerce peut être trouvé, compris et contacté.":"One circle, many activities. Even small businesses can be found, understood and contacted.",
+    "Ouvert au petit, au grand, à l’artisan.":"Open to the small shop, the bigger shop and the artisan.",
+    "On enlève le bruit. On garde l’essentiel : être visible, recevoir le client, vendre sans perdre la main, quel que soit le territoire.":"We remove the noise. We keep what matters: being visible, receiving the customer, selling without losing control.",
+    "Cantines & nourriture":"Food stalls & meals",
+    "Plat du jour, jus, café, sandwich, dibiterie, petit point de vente : le client comprend vite.":"Daily meal, juice, coffee, sandwich, grill spot, small sales point: the customer understands fast.",
+    "Artisans & ateliers":"Artisans & workshops",
+    "Tailleur, cordonnier, réparateur, soudeur, menuisier : le savoir-faire sort de l’ombre.":"Tailor, shoemaker, repairer, welder, carpenter: the know-how comes out of the shadows.",
+    "Beauté & services":"Beauty & services",
+    "Coiffure, onglerie, cosmétique, soins, petits services de quartier : contact direct sans détour.":"Hair, nails, cosmetics, care and neighborhood services: direct contact with no detour.",
+    "Boutiques & marchés":"Shops & markets",
+    "Épicerie, fruits, vêtements, accessoires, téléphone, maison : une vitrine simple et vivante.":"Groceries, fruits, clothing, accessories, phone items, home goods: a simple and living storefront.",
+    "Démocratiser la vitrine":"Make the storefront accessible",
+    "Le commerce local n’a pas toujours une belle devanture. Parfois il est serré entre deux murs, posé sur une table,\n            installé sous un parasol ou dans un coin de rue. Cela ne retire rien à sa valeur.":"Local business does not always have a beautiful shopfront. Sometimes it sits between two walls, on a table, under a parasol or on a street corner. That does not remove its value.",
+    "DIGIY donne au terrain une adresse, un lien, un QR, une fiche, un contact direct et une dignité visible.":"DIGIY gives the field an address, a link, a QR code, a profile, direct contact and visible dignity.",
+    "Pas une plateforme qui capte":"Not a platform that captures",
+    "Le client contacte le commerçant directement. Le paiement reste direct. DIGIY ne prend pas de commission sur la vente.":"The customer contacts the merchant directly. Payment stays direct. DIGIY takes no commission on the sale.",
+    "La vitrine aide le commerce à exister en ligne, sans l’obliger à devenir technicien. La demande reste sans engagement ; l’activation devient payante quand le pro valide.":"The storefront helps the business exist online without forcing the merchant to become a technician.",
+    "Aperçu des commerces":"Business preview",
+    "🖼️ Ouvrir la galerie partenaires":"🖼️ Open partner gallery",
+    "Chargement des commerces publiés…":"Loading published businesses…",
+    "Ton commerce mérite sa présence.":"Your business deserves its presence.",
+    "Pas besoin d’être grand pour être visible. Il faut une fiche claire :\n              ton nom, ton métier, tes photos, ton contact, ton QR.":"You do not need to be big to be visible. You need a clear profile: your name, your activity, your photos, your contact, your QR code.",
+    "🖼️ Galerie partenaires":"🖼️ Partner gallery",
+    "Voir les tarifs":"See pricing",
+    "💬 WhatsApp":"💬 WhatsApp",
+    "📩 SMS":"📩 SMS",
+    "MON COMMERCE by DIGIYLYFE — Afrique · France · Diaspora · demande sans engagement · activation POS payante · paiement direct · 0% commission · Le terrain garde la main.":"MON COMMERCE by DIGIYLYFE — Direct payment · 0% commission · The field keeps control.",
+    "Site":"Site",
+    "Galerie":"Gallery",
+    "Activation":"Activation",
+    "Accueil":"Home",
+    "Métiers":"Activities",
+    "Wolof":"Wolof",
+    "Activer":"Activate",
+    "Voir la fiche":"View profile",
+    "Inscription commerce":"Business registration",
+    "Exemple métier":"Activity example",
+    "Partenaire vedette":"Featured partner",
+    "Publié":"Published",
+    "Textile maison · plage · hôtel · beauté":"Home textile · beach · hotel · beauty",
+    "Cantine du coin":"Neighborhood food stall",
+    "Cantine · plat du jour":"Food stall · daily meal",
+    "Quartier":"Neighborhood",
+    "Petit point de nourriture, service rapide, contact direct. Même sous un abri simple, le commerce mérite sa vitrine.":"Small food point, quick service, direct contact. Even under a simple shelter, a business deserves its storefront.",
+    "Kiosque quartier":"Neighborhood kiosk",
+    "Boutique · petit commerce":"Shop · small business",
+    "Rue principale":"Main street",
+    "Deux mètres carrés peuvent devenir une vraie présence digitale : nom, contact, produits, QR et WhatsApp direct.":"Two square meters can become a real digital presence: name, contact, products, QR code and direct WhatsApp.",
+    "Atelier tailleur":"Tailor workshop",
+    "Artisanat · couture":"Craft · tailoring",
+    "Marché":"Market",
+    "Un métier de main, des tissus, des commandes, une relation humaine. DIGIY aide le client à trouver l’artisan.":"A handcraft, fabrics, orders and a human relationship. DIGIY helps the customer find the artisan.",
+    "Coiffure & beauté":"Hair & beauty",
+    "Service · beauté":"Service · beauty",
+    "Coiffeuse, barber, onglerie, cosmétique : une fiche simple pour montrer le service et recevoir le client directement.":"Hairdresser, barber, nails, cosmetics: a simple profile to show the service and receive the customer directly.",
+    "Vendeur fruits & légumes":"Fruit & vegetable seller",
+    "Marché · alimentaire":"Market · food",
+    "Marché local":"Local market",
+    "Produits frais, prix du jour, disponibilité, contact WhatsApp. Le marché aussi peut avoir une porte digitale.":"Fresh products, daily price, availability and WhatsApp contact. The market can also have a digital door.",
+    "Réparateur du quartier":"Neighborhood repairer",
+    "Réparation · artisan":"Repair · artisan",
+    "Atelier":"Workshop",
+    "Téléphone, vélo, chaussures, petits appareils : le savoir-faire local devient trouvable et respectable.":"Phone, bicycle, shoes, small devices: local know-how becomes findable and respected.",
+    "Boutique accessoires":"Accessories shop",
+    "Téléphone · accessoires":"Phone · accessories",
+    "Rue commerçante":"Shopping street",
+    "Chargeurs, coques, écouteurs, petits équipements : la vitrine aide le client à voir avant de venir.":"Chargers, cases, earphones, small equipment: the storefront helps the customer see before coming.",
+    "Petit commerce maison":"Small home goods shop",
+    "Maison · quotidien":"Home · daily goods",
+    "Proximité":"Nearby",
+    "Lessive, savon, eau, biscuits, produits du quotidien : même une petite boutique mérite une présence claire.":"Laundry soap, soap, water, biscuits, daily goods: even a small shop deserves a clear presence.",
+    "Commerce chargé depuis la fiche publique.":"Business loaded from the public profile.",
+    "Commerce actif chargé depuis la galerie publique.":"Active business loaded from the public gallery.",
+    "Commerces actifs chargés depuis la galerie publique.":"Active businesses loaded from the public gallery.",
+    "Galerie publique indisponible pour l’instant. Exemples métier affichés sans fausse boutique active.":"Public gallery unavailable for now. Activity examples are shown without pretending a shop is active.",
+    "Aucun commerce actif et publié pour l’instant. Exemples métier affichés.":"No active published business for now. Activity examples are displayed.",
+    "Connexion galerie indisponible. Exemples terrain affichés sans contact privé.":"Gallery connection unavailable. Field examples are displayed without private contact data.",
+    "Connexion galerie indisponible. Démonstration terrain affichée.":"Gallery connection unavailable. Field demonstration displayed."
+  }));
+
+  const ATTR = {
+    "Patchwork circulaire de commerces locaux : cantine, kiosque, artisanat, marché, réparation, coiffure et petites boutiques":"Circular patchwork of local businesses: food stall, kiosk, craft, market, repair, hair and small shops",
+    "Navigation principale":"Main navigation",
+    "Piliers MON COMMERCE":"MON COMMERCE pillars",
+    "Lecteur audio MON COMMERCE":"MON COMMERCE audio player",
+    "Navigation mobile MON COMMERCE":"MON COMMERCE mobile navigation"
+  };
+
+  function getLang(){
+    try{return localStorage.getItem(STORAGE_KEY) || "fr"}catch(_){return "fr"}
+  }
+
+  window.DIGIY_GET_COMMERCE_LANG = getLang;
+
+  function setMeta(lang){
+    const m = meta[lang] || meta.fr;
+    document.title = m.title;
+    const desc = document.querySelector('meta[name="description"]');
+    if(desc) desc.setAttribute("content", m.description);
+  }
+
+  function translateTextNode(node, lang){
+    if(!originalText.has(node)) originalText.set(node, node.nodeValue);
+    const original = originalText.get(node);
+    if(lang === "fr"){
+      node.nodeValue = original;
+      return;
+    }
+    const trimmed = original.trim();
+    if(!trimmed) return;
+    const translated = TEXT.get(trimmed);
+    if(translated){
+      node.nodeValue = original.replace(trimmed, translated);
+    }
+  }
+
+  function attrKey(el, attr){
+    let map = originalAttr.get(el);
+    if(!map){
+      map = {};
+      originalAttr.set(el, map);
+    }
+    if(!(attr in map)) map[attr] = el.getAttribute(attr) || "";
+    return map[attr];
+  }
+
+  function translateAttributes(root, lang){
+    const nodes = root.nodeType === 1 ? [root].concat(Array.from(root.querySelectorAll("*"))) : [];
+    nodes.forEach(el => {
+      ["aria-label","alt","title"].forEach(attr => {
+        if(!el.hasAttribute(attr)) return;
+        const original = attrKey(el, attr);
+        if(lang === "fr"){
+          el.setAttribute(attr, original);
+          return;
+        }
+        const translated = ATTR[original] || TEXT.get(original.trim());
+        if(translated) el.setAttribute(attr, translated);
+      });
+      if(el.tagName === "INPUT" || el.tagName === "TEXTAREA"){
+        if(el.hasAttribute("placeholder")){
+          const original = attrKey(el, "placeholder");
+          if(lang === "fr") el.setAttribute("placeholder", original);
+          else if(TEXT.get(original.trim())) el.setAttribute("placeholder", TEXT.get(original.trim()));
+        }
+      }
+    });
+  }
+
+  function translateTree(root, lang){
+    if(!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node){
+        const parent = node.parentElement;
+        if(!parent) return NodeFilter.FILTER_REJECT;
+        if(["SCRIPT","STYLE","NOSCRIPT"].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => translateTextNode(node, lang));
+    translateAttributes(root, lang);
+  }
+
+  function setSwitch(lang){
+    const fr = document.getElementById("langFrBtn");
+    const en = document.getElementById("langEnBtn");
+    if(fr){
+      fr.classList.toggle("active", lang === "fr");
+      fr.setAttribute("aria-pressed", lang === "fr" ? "true" : "false");
+    }
+    if(en){
+      en.classList.toggle("active", lang === "en");
+      en.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+    }
+  }
+
+  function applyLang(lang){
+    if(applying) return;
+    applying = true;
+    try{
+      document.documentElement.lang = lang;
+      document.documentElement.setAttribute("data-lang", lang);
+      try{localStorage.setItem(STORAGE_KEY, lang)}catch(_){}
+      setMeta(lang);
+      setSwitch(lang);
+      translateTree(document.body, lang);
+
+      if(typeof window.speechSynthesis !== "undefined"){
+        try{ window.speechSynthesis.cancel(); }catch(_){}
+      }
+
+      window.dispatchEvent(new CustomEvent("digiy-commerce-langchange", {detail:{lang}}));
+    }finally{
+      applying = false;
+    }
+  }
+
+  window.DIGIY_APPLY_COMMERCE_LANG = function(){
+    applyLang(getLang());
+  };
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const fr = document.getElementById("langFrBtn");
+    const en = document.getElementById("langEnBtn");
+    fr?.addEventListener("click", () => applyLang("fr"));
+    en?.addEventListener("click", () => applyLang("en"));
+
+    observer = new MutationObserver((mutations) => {
+      if(applying || getLang() !== "en") return;
+      mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if(node.nodeType === 1) translateTree(node, "en");
+          else if(node.nodeType === 3) translateTextNode(node, "en");
+        });
+      });
+    });
+    observer.observe(document.body, {childList:true, subtree:true});
+
+    applyLang(getLang());
+  });
+})();
+</script>
+<script defer="" src="https://pro-action-digiy.digiylyfe.com/assets/js/digiy-retour-voix.js?v=retour-voix-20260606-v4"></script>
+</body>
+<!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
