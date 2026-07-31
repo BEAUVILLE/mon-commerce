@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#f6eddc">
+  <title>MON COMMERCE — inscription multilingue</title>
+  <style>
+    html,body{margin:0;min-height:100%;background:#f6eddc;color:#173226;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+    body{display:grid;place-items:center;text-align:center}.loading{padding:24px;font-weight:900}
+  </style>
+</head>
+<body>
+  <p class="loading">MON COMMERCE — chargement…</p>
+  <script>
+  (function(){
+    var VERSION='20260731-commerce-inscription-v1';
+    var supported=/^(fr|en|es|de|it|nl|ar)$/;
+    var params=new URLSearchParams(location.search);
+    var lang=(params.get('lang')||'').toLowerCase();
+
+    try{if(!supported.test(lang))lang=(localStorage.getItem('digiy-lang')||'').toLowerCase()}catch(e){}
+    if(!supported.test(lang))lang=(navigator.language||'fr').slice(0,2).toLowerCase();
+    if(!supported.test(lang))lang='fr';
+
+    try{
+      localStorage.setItem('digiy-lang',lang);
+      localStorage.setItem('digiy_mon_commerce_lang',lang==='en'?'en':'fr');
+    }catch(e){}
+
+    fetch('./inscription-pos.html?v='+encodeURIComponent(VERSION),{cache:'no-store'})
+      .then(function(response){if(!response.ok)throw new Error('load');return response.text()})
+      .then(function(html){
+        var boot='<script>try{localStorage.setItem("digiy-lang","'+lang+'");localStorage.setItem("digiy_mon_commerce_lang","'+(lang==='en'?'en':'fr')+'") }catch(e){}<\/script>';
+        var scripts=
+          '<script src="https://resa-table-resto.digiylyfe.com/assets/js/resa-secondary-i18n-base.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="https://resa-table-resto.digiylyfe.com/assets/js/resa-secondary-i18n-en-es.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="https://resa-table-resto.digiylyfe.com/assets/js/resa-secondary-i18n-de-it.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="https://resa-table-resto.digiylyfe.com/assets/js/resa-secondary-i18n-nl-ar.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="https://market.digiylyfe.com/assets/js/market-resa-adapter-en-es.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="https://market.digiylyfe.com/assets/js/market-resa-adapter-de-it.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="https://market.digiylyfe.com/assets/js/market-resa-adapter-nl-ar.js?v=20260731-commerce" defer><\/script>'+ 
+          '<script src="./assets/js/commerce-i18n-base.js?v='+VERSION+'" defer><\/script>'+ 
+          '<script src="./assets/js/commerce-i18n-en-es.js?v='+VERSION+'" defer><\/script>'+ 
+          '<script src="./assets/js/commerce-i18n-de-it.js?v='+VERSION+'" defer><\/script>'+ 
+          '<script src="./assets/js/commerce-i18n-nl-ar.js?v='+VERSION+'" defer><\/script>'+ 
+          '<script src="https://resa-table-resto.digiylyfe.com/assets/js/resa-secondary-i18n.js?v=20260731-benefits-prefix" defer><\/script>'+ 
+          '<script src="https://resa-table-resto.digiylyfe.com/assets/js/resa-message-i18n-bridge.js?v=20260731-commerce" defer><\/script>';
+
+        html=html.replace(/<head([^>]*)>/i,'<head$1><base href="./">'+boot+scripts);
+        document.open();document.write(html);document.close();
+      })
+      .catch(function(){
+        var direct=new URL('./inscription-pos.html',location.href);
+        params.forEach(function(value,key){if(key!=='v')direct.searchParams.set(key,value)});
+        direct.searchParams.set('lang',lang);
+        location.replace(direct.toString());
+      });
+  })();
+  </script>
+</body>
+</html>
