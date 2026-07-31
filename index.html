@@ -7,7 +7,7 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#12100f">
   <meta name="description" content="MON COMMERCE rend visibles les commerces locaux en sept langues. Contact et paiement directs au commerçant, 0 % de commission DIGIY.">
-  <meta name="digiy-build" content="mon-commerce-7-langues-stable-20260730">
+  <meta name="digiy-build" content="mon-commerce-7-langues-inscription-20260731">
   <link rel="canonical" href="https://mon-commerce.digiylyfe.com/">
   <link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">
   <link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">
@@ -29,7 +29,7 @@
   <p class="loading">MON COMMERCE — chargement…</p>
   <script>
   (function(){
-    var VERSION='20260730-commerce7a';
+    var VERSION='20260731-commerce-inscription-v1';
     var allowed=/^(fr|en|es|de|it|nl|ar)$/;
     var params=new URLSearchParams(location.search);
     var lang=(params.get('lang')||'').toLowerCase();
@@ -46,7 +46,7 @@
     }).then(function(html){
       html=html.replace(/<link[^>]+rel=["']canonical["'][^>]*>/i,'');
       html=html.replace(/<meta[^>]+name=["']digiy-build["'][^>]*>/i,'');
-      var seo='<meta name="digiy-build" content="mon-commerce-7-langues-stable-20260730">'+
+      var seo='<meta name="digiy-build" content="mon-commerce-7-langues-inscription-20260731">'+
         '<link rel="canonical" href="https://mon-commerce.digiylyfe.com/">'+
         '<link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">'+
         '<link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">'+
@@ -60,6 +60,7 @@
         '<style id="commerce-language-shell">#digiy-i18n-bar{display:none!important}</style>'+
         '<script>try{localStorage.setItem("digiy-lang","'+lang+'");localStorage.setItem("digiy_mon_commerce_lang","'+(lang==='en'?'en':'fr')+'") }catch(e){}<\/script>'+
         '<script src="./commerce-i18n.js?v='+VERSION+'" defer><\/script>'+
+        '<script src="./commerce-public-route.js?v='+VERSION+'" defer><\/script>'+
         '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"MON COMMERCE","url":"https://mon-commerce.digiylyfe.com/","description":"Commerce local visible en sept langues, contact et paiement directs au commerçant."}<\/script>';
       html=html.replace(/<head([^>]*)>/i,'<head$1>'+inject);
       document.open();document.write(html);document.close();
