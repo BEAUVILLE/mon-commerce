@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "last_updated": "2026-07-29",
+  "last_updated": "2026-08-05",
   "brand": {
     "name": "MON COMMERCE",
     "parent_brand": "DIGIYLYFE",
@@ -11,6 +11,26 @@
     "payment_mode": "direct_to_merchant"
   },
   "active_commerces": [
+    {
+      "id": "fg-nails-saly",
+      "status": "active",
+      "name": "FG NAILS",
+      "category": ["onglerie", "soins de beauté", "bien-être", "produits d’hygiène"],
+      "city": "Saly",
+      "region": "Thiès",
+      "country": "Sénégal",
+      "description": "Onglerie, soins de beauté, massage modelant, lipocavitation et produits d’hygiène pour femmes et hommes à la Résidence Nafil, Saly.",
+      "profile_url": "https://f-g-nails.digiylyfe.com/",
+      "products_url": "https://f-g-nails.digiylyfe.com/hygiene-bien-etre-saly.html",
+      "image": "https://f-g-nails.digiylyfe.com/fg-nails-carte-officielle.webp",
+      "contact_mode": ["whatsapp", "phone"],
+      "whatsapp_display": "+221 78 012 70 62",
+      "whatsapp_e164": "+221780127062",
+      "whatsapp_url": "https://wa.me/221780127062",
+      "payment": "Directly to FG NAILS",
+      "digiy_commission_percent": 0,
+      "availability": "Confirm products, services, appointment times and final prices directly with FG NAILS"
+    },
     {
       "id": "astou-boutique-saly",
       "status": "active",
