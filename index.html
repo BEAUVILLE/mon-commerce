@@ -7,7 +7,7 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#12100f">
   <meta name="description" content="MON COMMERCE rend visibles les commerces locaux en sept langues. Contact et paiement directs au commerçant, 0 % de commission DIGIY.">
-  <meta name="digiy-build" content="mon-commerce-fg-nails-20260805">
+  <meta name="digiy-build" content="mon-commerce-fg-nails-7-langues-20260805">
   <link rel="canonical" href="https://mon-commerce.digiylyfe.com/">
   <link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">
   <link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">
@@ -29,7 +29,7 @@
   <p class="loading">MON COMMERCE — chargement…</p>
   <script>
   (function(){
-    var VERSION='20260805-commerce-fg-nails';
+    var VERSION='20260805-commerce-fg-nails-7l';
     var allowed=/^(fr|en|es|de|it|nl|ar)$/;
     var params=new URLSearchParams(location.search);
     var lang=(params.get('lang')||'').toLowerCase();
@@ -46,7 +46,7 @@
     }).then(function(html){
       html=html.replace(/<link[^>]+rel=["']canonical["'][^>]*>/i,'');
       html=html.replace(/<meta[^>]+name=["']digiy-build["'][^>]*>/i,'');
-      var seo='<meta name="digiy-build" content="mon-commerce-fg-nails-20260805">'+
+      var seo='<meta name="digiy-build" content="mon-commerce-fg-nails-7-langues-20260805">'+
         '<link rel="canonical" href="https://mon-commerce.digiylyfe.com/">'+
         '<link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">'+
         '<link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">'+
