@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "last_updated": "2026-08-05",
+  "last_updated": "2026-08-08",
   "brand": {
     "name": "MON COMMERCE",
     "parent_brand": "DIGIYLYFE",
@@ -40,7 +40,7 @@
       "region": "Thiès",
       "country": "Sénégal",
       "description": "Boutique locale de linge de maison, draps, serviettes, peignoirs, articles pour hôtels, villas et résidences, style et beauté.",
-      "profile_url": "https://astou-boutique.digiylyfe.com/",
+      "profile_url": "https://astou-boutique.digiylyfe.com/?lang=fr",
       "image": "https://astou-boutique.digiylyfe.com/ASTOU_BOUTIQUE_CLIP_POSTER.jpg",
       "contact_mode": ["whatsapp"],
       "whatsapp_display": "+221 77 876 57 85",

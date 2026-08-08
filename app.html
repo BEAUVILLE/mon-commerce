@@ -9,7 +9,7 @@
 <title>MON COMMERCE — Demande commerce local · 0% commission by DIGIYLYFE</title>
 <meta content="MON COMMERCE by DIGIYLYFE démocratise la vitrine digitale pour le commerce local : demande sans engagement, activation POS payante, contact direct, paiement direct, 0% commission." name="description"/>
 <link href="https://mon-commerce.digiylyfe.com/" rel="canonical"/>
-<meta content="mon-commerce-public-moule-generique-20260718" name="digiy-build"/>
+<meta content="mon-commerce-liens-bcheikh-astou-20260808" name="digiy-build"/>
 <script>
     window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
     window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
@@ -1431,6 +1431,31 @@
           : [];
       }
 
+      function canonicalCommerceUrl(item, name, phone){
+        const identity = normText(
+          name + " " + pick(item,["slug","public_slug","workspace_slug","last_slug","commerce"],"")
+        ).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+        const publicPhone = digits(phone);
+
+        if(
+          publicPhone.endsWith("786523129") ||
+          publicPhone.endsWith("771742749") ||
+          /(^|-)bcheikh($|-)/.test(identity)
+        ){
+          return "https://bcheikh.digiylyfe.com/";
+        }
+
+        if(
+          publicPhone.endsWith("778765785") ||
+          identity.includes("astou-boutique") ||
+          identity === "astou"
+        ){
+          return "https://astou-boutique.digiylyfe.com/?lang=fr";
+        }
+
+        return "";
+      }
+
 
       function whatsappLink(phone, name){
         const p = digits(phone);
@@ -1459,7 +1484,10 @@
           const description = pick(raw,["description","bio","short_description","about"],"Commerce local visible avec contact direct.");
           const photo = safeHttpsUrl(pick(raw,["photo_url","image_url","cover_url","logo_url","avatar_url"],""),PATCHWORK_URL);
           const phone = raw.demo ? "" : pick(raw,["whatsapp_public","whatsapp","public_phone","phone"],"");
-          const publicUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["public_url","url","website"],""),"");
+          const publicUrl = raw.demo ? "" : safeHttpsUrl(
+            canonicalCommerceUrl(raw,name,phone) || pick(raw,["public_url","url","website"],""),
+            ""
+          );
           const qrUrl = raw.demo ? "" : safeHttpsUrl(pick(raw,["qr_url","qr_public_url"],""),"");
           const wa = whatsappLink(phone,name);
           const sms = smsLink(phone,name);
@@ -2051,7 +2079,6 @@ DIGIY opens the door. The field keeps control.`;
 </body>
 <!-- DIGIY MON COMMERCE — intro courte + doctrine prononciation corrigée — 20260605 -->
 </html>
-
 
 
 
