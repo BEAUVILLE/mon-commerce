@@ -1,7 +1,7 @@
 /* MON COMMERCE — conserve la langue vers l'inscription et les boutiques MARKET */
 (() => {
   "use strict";
-  const SUPPORTED = ["fr","en","es","de","it","nl","ar"];
+  const SUPPORTED = ["fr","en","es","pt","de","it","nl","ar"];
 
   function currentLang(){
     try{
