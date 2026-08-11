@@ -6,13 +6,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#12100f">
-  <meta name="description" content="MON COMMERCE rend visibles les commerces locaux en huit langues. Contact et paiement directs au commerçant, 0 % de commission DIGIY.">
-  <meta name="digiy-build" content="mon-commerce-world8-20260811">
+  <meta name="description" content="MON COMMERCE rend visibles les commerces locaux en sept langues. Contact et paiement directs au commerçant, 0 % de commission DIGIY.">
+  <meta name="digiy-build" content="mon-commerce-featured-partners-20260808">
   <link rel="canonical" href="https://mon-commerce.digiylyfe.com/">
   <link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">
   <link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">
   <link rel="alternate" hreflang="es" href="https://mon-commerce.digiylyfe.com/es/">
-  <link rel="alternate" hreflang="pt" href="https://mon-commerce.digiylyfe.com/pt/">
   <link rel="alternate" hreflang="de" href="https://mon-commerce.digiylyfe.com/de/">
   <link rel="alternate" hreflang="it" href="https://mon-commerce.digiylyfe.com/it/">
   <link rel="alternate" hreflang="nl" href="https://mon-commerce.digiylyfe.com/nl/">
@@ -23,15 +22,15 @@
   <meta property="og:title" content="MON COMMERCE — Commerce local en direct">
   <meta property="og:description" content="Boutiques, artisans, marchés et services locaux visibles. Contact direct, paiement direct, 0 % de commission.">
   <meta property="og:site_name" content="DIGIYLYFE">
-  <title>MON COMMERCE — Commerce local en direct · WORLD8</title>
+  <title>MON COMMERCE — Commerce local en direct</title>
   <style>html,body{margin:0;min-height:100%;background:#12100f;color:#f8f1e8;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif}body{display:grid;place-items:center;text-align:center}.loading{padding:24px;font-weight:900}</style>
 </head>
 <body>
   <p class="loading">MON COMMERCE — chargement…</p>
   <script>
   (function(){
-    var VERSION='20260811-commerce-world8-v1';
-    var allowed=/^(fr|en|es|pt|de|it|nl|ar)$/;
+    var VERSION='20260808-commerce-featured-partners-v2';
+    var allowed=/^(fr|en|es|de|it|nl|ar)$/;
     var params=new URLSearchParams(location.search);
     var lang=(params.get('lang')||'').toLowerCase();
     try{if(!allowed.test(lang))lang=(localStorage.getItem('digiy-lang')||'').toLowerCase()}catch(e){}
@@ -39,7 +38,6 @@
     if(!allowed.test(lang))lang='fr';
     try{
       localStorage.setItem('digiy-lang',lang);
-      localStorage.setItem('digiy_lang',lang);
       localStorage.setItem('digiy_mon_commerce_lang',lang==='en'?'en':'fr');
     }catch(e){}
     fetch('./app.html?v='+VERSION,{cache:'no-store'}).then(function(r){
@@ -48,12 +46,11 @@
     }).then(function(html){
       html=html.replace(/<link[^>]+rel=["']canonical["'][^>]*>/i,'');
       html=html.replace(/<meta[^>]+name=["']digiy-build["'][^>]*>/i,'');
-      var seo='<meta name="digiy-build" content="mon-commerce-world8-20260811">'+
+      var seo='<meta name="digiy-build" content="mon-commerce-featured-partners-20260808">'+
         '<link rel="canonical" href="https://mon-commerce.digiylyfe.com/">'+
         '<link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">'+
         '<link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">'+
         '<link rel="alternate" hreflang="es" href="https://mon-commerce.digiylyfe.com/es/">'+
-        '<link rel="alternate" hreflang="pt" href="https://mon-commerce.digiylyfe.com/pt/">'+
         '<link rel="alternate" hreflang="de" href="https://mon-commerce.digiylyfe.com/de/">'+
         '<link rel="alternate" hreflang="it" href="https://mon-commerce.digiylyfe.com/it/">'+
         '<link rel="alternate" hreflang="nl" href="https://mon-commerce.digiylyfe.com/nl/">'+
@@ -61,15 +58,12 @@
         '<link rel="alternate" hreflang="x-default" href="https://mon-commerce.digiylyfe.com/">';
       var inject='<base href="./">'+seo+
         '<style id="commerce-language-shell">#digiy-i18n-bar{display:none!important}</style>'+
-        '<script>try{localStorage.setItem("digiy-lang","'+lang+'");localStorage.setItem("digiy_lang","'+lang+'");localStorage.setItem("digiy_mon_commerce_lang","'+(lang==='en'?'en':'fr')+'") }catch(e){}<\/script>'+
+        '<script>try{localStorage.setItem("digiy-lang","'+lang+'");localStorage.setItem("digiy_mon_commerce_lang","'+(lang==='en'?'en':'fr')+'") }catch(e){}<\/script>'+
         '<script src="./commerce-i18n.js?v='+VERSION+'" defer><\/script>'+
         '<script src="./commerce-public-route.js?v='+VERSION+'" defer><\/script>'+
         '<script src="./commerce-fg-nails.js?v='+VERSION+'" defer><\/script>'+
         '<script src="./commerce-featured-partners.js?v='+VERSION+'" defer><\/script>'+
-        '<script src="./world8-dict.js?v='+VERSION+'" defer><\/script>'+
-        '<script src="https://digiylyfe.com/assets/i18n/digiy-world8.js?v=20260811-world8" defer><\/script>'+
-        '<script src="https://digiylyfe.com/assets/i18n/digiy-world8-runtime.js?v=20260811-world8" defer><\/script>'+
-        '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"MON COMMERCE","url":"https://mon-commerce.digiylyfe.com/","description":"Commerce local visible en huit langues, contact et paiement directs au commerçant.","inLanguage":["fr","en","es","pt","de","it","nl","ar"]}<\/script>';
+        '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"MON COMMERCE","url":"https://mon-commerce.digiylyfe.com/","description":"Commerce local visible en sept langues, contact et paiement directs au commerçant."}<\/script>';
       html=html.replace(/<head([^>]*)>/i,'<head$1>'+inject);
       document.open();document.write(html);document.close();
     }).catch(function(){
