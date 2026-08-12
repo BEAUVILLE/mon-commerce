@@ -19,6 +19,15 @@
     });
   }
 
+  function rewriteTarifsAdherent1(anchor, target){
+    if(!/(^|\.)digiylyfe\.com$/i.test(target.hostname)) return false;
+    if(!/\/tarifs-adherents\.html$/i.test(target.pathname)) return false;
+    const url = new URL("https://digiylyfe.com/tarifs-adherents-1.html");
+    url.searchParams.set("lang", currentLang());
+    anchor.setAttribute("href", url.toString());
+    return true;
+  }
+
   function rewriteCommerceInscription(anchor, target){
     if(!/\/inscription-pos\.html$/i.test(target.pathname)) return false;
     const wrapper = new URL("./inscription-lang.html", location.href);
@@ -47,6 +56,7 @@
       const raw = anchor.getAttribute("href");
       if(!raw || /^(mailto:|tel:|sms:|javascript:|#)/i.test(raw)) return;
       const target = new URL(raw, location.href);
+      if(rewriteTarifsAdherent1(anchor,target)) return;
       if(rewriteCommerceInscription(anchor,target)) return;
       rewriteMarketShop(anchor,target);
     }catch(_){}
