@@ -45,6 +45,19 @@
       if(!r.ok)throw new Error('load');
       return r.text();
     }).then(function(html){
+      var TARIFS_ADHERENTS='https://digiylyfe.com/tarifs-adherents.html';
+
+      /* MON COMMERCE · nouvelle doctrine adhérent :
+         anciennes portes Demande/Inscription/Tarifs -> Tarifs adhérents.
+         Le moteur, les commerces, les fiches et les scripts restent inchangés. */
+      html=html
+        .replace(/https:\/\/mon-commerce\.digiylyfe\.com\/inscription-pos\.html/g,TARIFS_ADHERENTS)
+        .replace(/https:\/\/tarifs\.digiylyfe\.com\/?/g,TARIFS_ADHERENTS)
+        .replace(/📝\s*Ajouter mon commerce/g,'💳 Tarifs adhérents')
+        .replace(/📝\s*Demande commerce/g,'💳 Tarifs adhérents')
+        .replace(/>Voir les tarifs</g,'>💳 Tarifs adhérents<')
+        .replace(/>Demande</g,'>Tarifs adhérents<');
+
       html=html.replace(/<link[^>]+rel=["']canonical["'][^>]*>/i,'');
       html=html.replace(/<meta[^>]+name=["']digiy-build["'][^>]*>/i,'');
       var seo='<meta name="digiy-build" content="mon-commerce-pt-native-20260811">'+
@@ -77,3 +90,4 @@
   <noscript><a href="app.html">Ouvrir MON COMMERCE</a></noscript>
 </body>
 </html>
+
