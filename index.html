@@ -7,7 +7,7 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#12100f">
   <meta name="description" content="MON COMMERCE rend visibles les commerces locaux en huit langues. Contact et paiement directs au commerçant, 0 % de commission DIGIY.">
-  <meta name="digiy-build" content="mon-commerce-pt-native-20260811">
+  <meta name="digiy-build" content="mon-commerce-nohub-20260815">
   <link rel="canonical" href="https://mon-commerce.digiylyfe.com/">
   <link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">
   <link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">
@@ -30,7 +30,7 @@
   <p class="loading">MON COMMERCE — chargement…</p>
   <script>
   (function(){
-    var VERSION='20260811-commerce-pt-native-v1';
+    var VERSION='20260815-commerce-nohub-v1';
     var allowed=/^(fr|en|es|pt|de|it|nl|ar)$/;
     var params=new URLSearchParams(location.search);
     var lang=(params.get('lang')||'').toLowerCase();
@@ -57,9 +57,12 @@
         .replace(/>Voir les tarifs</g,'>💳 Tarifs adhérents<')
         .replace(/>Demande</g,'>Tarifs adhérents<');
 
+      /* HUB = atelier futur : retirer la porte publique générique. */
+      html=html.replace(/<a[^>]+href=["']https:\/\/digiy-hub\.digiylyfe\.com\/?["'][^>]*>[\s\S]*?<\/a>/g,'');
+
       html=html.replace(/<link[^>]+rel=["']canonical["'][^>]*>/i,'');
       html=html.replace(/<meta[^>]+name=["']digiy-build["'][^>]*>/i,'');
-      var seo='<meta name="digiy-build" content="mon-commerce-pt-native-20260811">'+
+      var seo='<meta name="digiy-build" content="mon-commerce-nohub-20260815">'+
         '<link rel="canonical" href="https://mon-commerce.digiylyfe.com/">'+
         '<link rel="alternate" hreflang="fr" href="https://mon-commerce.digiylyfe.com/fr/">'+
         '<link rel="alternate" hreflang="en" href="https://mon-commerce.digiylyfe.com/en/">'+
@@ -89,4 +92,3 @@
   <noscript><a href="app.html">Ouvrir MON COMMERCE</a></noscript>
 </body>
 </html>
-
