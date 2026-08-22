@@ -1,0 +1,32 @@
+name: Fix MON COMMERCE card links
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-commerce-card-links-20260822.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace raw-image exits with navigable presences
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('href="https://f-g-nails.digiylyfe.com/fg-nails-carte-officielle.webp"','href="https://f-g-nails.digiylyfe.com/"')
+          s=s.replace('href="https://astou-boutique.digiylyfe.com/ASTOU_BOUTIQUE_CLIP_POSTER.jpg"','href="https://mon-commerce.digiylyfe.com/fiche-astou.html"')
+          if 'href="https://f-g-nails.digiylyfe.com/fg-nails-carte-officielle.webp"' in s or 'href="https://astou-boutique.digiylyfe.com/ASTOU_BOUTIQUE_CLIP_POSTER.jpg"' in s:
+              raise SystemExit('raw image link still present')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit navigation fix
+        run: |
+          git config user.name "DIGIYLYFE"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/fix-commerce-card-links-20260822.yml
+          git add index.html
+          git diff --cached --quiet || git commit -m "UI: route MON COMMERCE cards to navigable presences"
+          git push
