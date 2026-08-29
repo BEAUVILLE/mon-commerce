@@ -84,4 +84,11 @@
   });
 
   window.dispatchEvent(new CustomEvent('digiy:commerce-master-ready',{detail:window.DIGIY_COMMERCE_MASTER.context()}));
+
+  if(!document.querySelector('script[data-digiy-commerce-territory-guard]')){
+    const guard=document.createElement('script');
+    guard.src='/commerce-territory-guard-v1.js?v=20260829-territory-v1';
+    guard.setAttribute('data-digiy-commerce-territory-guard','1');
+    document.head.appendChild(guard);
+  }
 })();
