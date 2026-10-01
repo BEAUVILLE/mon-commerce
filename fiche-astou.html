@@ -465,6 +465,33 @@
       gap:12px;
     }
 
+    .productsGrid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .productCard{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,.035);
+    }
+
+    .productImg{
+      min-height:220px;
+      background:#102019 center/cover no-repeat;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .productBody{padding:16px;display:grid;gap:8px}
+    .productName{font-size:24px;font-weight:1000;line-height:1.08}
+    .productMeta{display:flex;gap:8px;flex-wrap:wrap}
+    .productPill{display:inline-flex;min-height:34px;align-items:center;padding:0 11px;border-radius:999px;background:rgba(212,175,55,.10);border:1px solid rgba(212,175,55,.20);color:var(--gold2);font-size:14px;font-weight:1000}
+    .productDesc{color:var(--muted);font-size:16px;line-height:1.5;font-weight:800}
+    .productEmpty{color:var(--muted);font-size:17px;font-weight:850}
+
+
     .photo{
       position:relative;
       display:block;
@@ -788,6 +815,16 @@
       </aside>
     </section>
 
+    <section class="panel" id="productsSection">
+      <div class="cardBody">
+        <h2 class="sectionTitle">Produits disponibles</h2>
+        <p class="sectionSub">Ce que la boutique choisit d’afficher en ce moment. Contact direct avec Astou Boutique.</p>
+        <div id="productsGrid" class="productsGrid">
+          <div class="productEmpty">Chargement des produits…</div>
+        </div>
+      </div>
+    </section>
+
     <section class="panel">
       <div class="cardBody">
         <h2 class="sectionTitle">Ambiance en images</h2>
@@ -855,9 +892,46 @@
 
   <div class="shareToast" id="shareToast">Lien prêt à partager</div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
   <script>
     (function(){
       "use strict";
+
+      const sb = window.supabase.createClient(
+        "https://wesqmwjjtsefyjnluosj.supabase.co",
+        "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3"
+      );
+      const SITE_SLUG = "astou-boutique";
+
+      function esc(v){
+        return String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+      }
+
+      async function loadProducts(){
+        const box=document.getElementById("productsGrid");
+        if(!box) return;
+        const {data,error}=await sb
+          .from("digiy_commerce_products")
+          .select("id,name,description,price_label,stock_label,image_url,position,is_active")
+          .eq("site_slug",SITE_SLUG)
+          .eq("is_active",true)
+          .order("position",{ascending:true});
+        if(error){
+          box.innerHTML='<div class="productEmpty">Produits momentanément indisponibles.</div>';
+          return;
+        }
+        if(!data || !data.length){
+          box.innerHTML='<div class="productEmpty">Aucun produit publié pour le moment. Contacte directement Astou Boutique pour voir les nouveautés.</div>';
+          return;
+        }
+        box.innerHTML=data.map(p=>{
+          const img=p.image_url?'<div class="productImg" style="background-image:url(\''+esc(p.image_url)+'\')"></div>':'';
+          const pills=[p.price_label,p.stock_label].filter(Boolean).map(v=>'<span class="productPill">'+esc(v)+'</span>').join('');
+          const desc=p.description?'<div class="productDesc">'+esc(p.description)+'</div>':'';
+          const wa='https://wa.me/221771342889?text='+encodeURIComponent('Bonjour Astou Boutique, je souhaite des informations sur : '+(p.name||'un produit')+'.');
+          return '<article class="productCard">'+img+'<div class="productBody"><div class="productName">'+esc(p.name||'Produit')+'</div><div class="productMeta">'+pills+'</div>'+desc+'<a class="btn primary" href="'+wa+'" target="_blank" rel="noopener">💬 Demander ce produit</a></div></article>';
+        }).join('');
+      }
 
       const PUBLIC_URL = "https://mon-commerce.digiylyfe.com/fiche-astou.html";
       const SHARE_TEXT = "Astou Boutique · MON COMMERCE DIGIYLYFE\\n\\nBoutique à Saly · textile maison, plage, hôtel, beauté.\\nContact direct, 0% commission.\\n\\n👉 " + PUBLIC_URL;
@@ -921,6 +995,7 @@
 
       if(fastShare) fastShare.addEventListener("click", share);
       if(bottomShare) bottomShare.addEventListener("click", share);
+      loadProducts();
     })();
   </script>
   <!-- DIGIY MON COMMERCE — FICHE PUBLIQUE ASTOU : aucune porte PRO, aucun guard, aucun PIN — 20260516 -->
