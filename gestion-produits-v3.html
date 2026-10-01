@@ -1,6 +1,6 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>MON COMMERCE · Mes produits V3</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script><style>
-*{box-sizing:border-box}body{margin:0;background:#f5efe7;color:#2b211b;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(780px,calc(100% - 24px));margin:22px auto}.card{background:white;border:1px solid #e5d8ca;border-radius:20px;padding:16px;margin-bottom:12px}.row{display:flex;gap:8px;flex-wrap:wrap}input,textarea,button{font:inherit}input,textarea{width:100%;padding:10px;border:1px solid #e5d8ca;border-radius:10px}.half{flex:1;min-width:180px}.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:900;background:#173b31;color:white}.ghost{background:white;color:#2b211b;border:1px solid #e5d8ca}.danger{background:#8a2a2a}.product{display:grid;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #eee}.product img{width:86px;height:86px;object-fit:cover;border-radius:12px;border:1px solid #e5d8ca}.productHead{display:flex;gap:10px;align-items:flex-start}.productInfo{display:grid;gap:4px}.msg{font-size:12px;color:#79695d}.bad{color:#8a2a2a}
-</style></head><body><main class="wrap"><div class="card"><strong>🛍️ MON COMMERCE · Gestion propriétaire</strong><p id="status" class="msg">Vérification de votre accès…</p><div class="row"><a id="back" class="btn ghost" href="./index.html">← Retour à la fiche</a><button id="logout" class="btn ghost">Déconnexion</button></div></div><section id="editor" class="card" hidden><h2>Produits</h2><div class="row"><input class="half" id="name" placeholder="Nom du produit"><input class="half" id="price" placeholder="Prix affiché"><input class="half" id="stock" placeholder="Disponibilité / stock"></div><textarea id="description" rows="3" placeholder="Description"></textarea><input id="image" placeholder="URL image publique"><div class="row"><input class="half" id="position" type="number" min="0" step="10" placeholder="Ordre d’affichage (auto si vide)"><select class="half" id="active" style="padding:10px;border:1px solid #e5d8ca;border-radius:10px;background:white"><option value="true">Publié</option><option value="false">Masqué</option></select></div><button id="add" class="btn">Ajouter le produit</button><div id="products"></div></section></main><script>
+*{box-sizing:border-box}body{margin:0;background:#f5efe7;color:#2b211b;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(780px,calc(100% - 24px));margin:22px auto}.card{background:white;border:1px solid #e5d8ca;border-radius:20px;padding:16px;margin-bottom:12px}.row{display:flex;gap:8px;flex-wrap:wrap}input,textarea,button{font:inherit}input,textarea{width:100%;padding:10px;border:1px solid #e5d8ca;border-radius:10px}.half{flex:1;min-width:180px}.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:900;background:#173b31;color:white}.ghost{background:white;color:#2b211b;border:1px solid #e5d8ca}.danger{background:#8a2a2a}.product{display:grid;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #eee}.product img{width:86px;height:86px;object-fit:cover;border-radius:12px;border:1px solid #e5d8ca}.productHead{display:flex;gap:10px;align-items:flex-start}.productInfo{display:grid;gap:4px}.msg{font-size:12px;color:#79695d}.bad{color:#8a2a2a}.order{display:grid;gap:8px;margin-top:12px;padding:12px;border:1px solid #e5d8ca;border-radius:14px}.order strong{font-size:16px}.orderStatus{font-weight:900}.orderMeta{font-size:13px;color:#79695d}
+</style></head><body><main class="wrap"><div class="card"><strong>🛍️ MON COMMERCE · Gestion propriétaire</strong><p id="status" class="msg">Vérification de votre accès…</p><div class="row"><a id="back" class="btn ghost" href="./index.html">← Retour à la fiche</a><button id="logout" class="btn ghost">Déconnexion</button></div></div><section id="editor" class="card" hidden><h2>Produits</h2><div class="row"><input class="half" id="name" placeholder="Nom du produit"><input class="half" id="price" placeholder="Prix affiché"><input class="half" id="stock" placeholder="Disponibilité / stock"></div><textarea id="description" rows="3" placeholder="Description"></textarea><input id="image" placeholder="URL image publique"><div class="row"><input class="half" id="position" type="number" min="0" step="10" placeholder="Ordre d’affichage (auto si vide)"><select class="half" id="active" style="padding:10px;border:1px solid #e5d8ca;border-radius:10px;background:white"><option value="true">Publié</option><option value="false">Masqué</option></select></div><button id="add" class="btn">Ajouter le produit</button><div id="products"></div></section><section id="ordersCard" class="card" hidden><h2>Commandes</h2><p class="msg">Demandes directes reçues depuis la fiche publique. Paiement direct commerçant · Wave Pro · 0 % commission DIGIY.</p><div id="orders"></div></section></main><script>
 (async()=>{
   const $=id=>document.getElementById(id);
   const status=$("status");
@@ -67,6 +67,7 @@
 
     status.textContent="Accès confirmé · "+shop.name;
     $("editor").hidden=false;
+    $("ordersCard").hidden=false;
 
     async function load(){
       const {data,error}=await sb
@@ -149,12 +150,55 @@
       }
     };
 
+    async function loadOrders(){
+      const {data,error}=await sb
+        .from("digiy_commerce_orders")
+        .select("id,product_name,quantity,customer_name,customer_phone,message,status,created_at")
+        .eq("site_slug",site)
+        .order("created_at",{ascending:false});
+      if(error) throw error;
+      const box=$("orders");
+      box.innerHTML="";
+      if(!data?.length){
+        box.innerHTML='<div class="msg">Aucune commande reçue pour le moment.</div>';
+        return;
+      }
+      const labels={request:"Nouvelle",confirmed:"Confirmée",paid:"Payée · Wave Pro",refused:"Refusée",completed:"Terminée"};
+      for(const o of data){
+        const d=document.createElement("div");
+        d.className="order";
+        const waText="Bonjour "+o.customer_name+", concernant votre commande "+o.product_name+" x"+o.quantity+" chez Astou Boutique.";
+        const wa="https://wa.me/"+String(o.customer_phone||"").replace(/\D/g,"")+"?text="+encodeURIComponent(waText);
+        d.innerHTML='<strong></strong><div class="orderMeta meta"></div><div class="orderMeta note"></div><div class="orderStatus"></div><div class="row"><a class="btn ghost wa" target="_blank" rel="noopener">WhatsApp client</a><button class="btn ghost confirm">Confirmer</button><button class="btn ghost paid">Payée Wave Pro</button><button class="btn ghost complete">Terminer</button><button class="btn ghost refuse">Refuser</button><button class="btn danger remove">Effacer</button></div>';
+        d.querySelector("strong").textContent=o.product_name+" × "+o.quantity+" — "+o.customer_name;
+        d.querySelector(".meta").textContent=o.customer_phone+" · "+new Date(o.created_at).toLocaleString("fr-FR");
+        d.querySelector(".note").textContent=o.message||"";
+        d.querySelector(".orderStatus").textContent=labels[o.status]||o.status;
+        d.querySelector(".wa").href=wa;
+        async function setStatus(next){
+          const {error}=await sb.from("digiy_commerce_orders").update({status:next,updated_at:new Date().toISOString()}).eq("id",o.id);
+          if(error) alert(error.message); else loadOrders();
+        }
+        d.querySelector(".confirm").onclick=()=>setStatus("confirmed");
+        d.querySelector(".paid").onclick=()=>setStatus("paid");
+        d.querySelector(".complete").onclick=()=>setStatus("completed");
+        d.querySelector(".refuse").onclick=()=>setStatus("refused");
+        d.querySelector(".remove").onclick=async()=>{
+          if(!confirm("Effacer cette commande du carnet DIGIY ?")) return;
+          const {error}=await sb.from("digiy_commerce_orders").delete().eq("id",o.id);
+          if(error) alert(error.message); else loadOrders();
+        };
+        box.appendChild(d);
+      }
+    }
+
     $("logout").onclick=async()=>{
       await sb.auth.signOut();
       location.href=$("back").href;
     };
 
     await load();
+    await loadOrders();
   }catch(err){
     console.error(err);
     status.textContent="Erreur de gestion : "+(err?.message||String(err));
