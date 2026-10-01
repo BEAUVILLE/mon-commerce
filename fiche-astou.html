@@ -931,9 +931,50 @@
           const img=p.image_url?'<div class="productImg" style="background-image:url(\''+esc(p.image_url)+'\')"></div>':'';
           const pills=[p.price_label,p.stock_label].filter(Boolean).map(v=>'<span class="productPill">'+esc(v)+'</span>').join('');
           const desc=p.description?'<div class="productDesc">'+esc(p.description)+'</div>':'';
-          const wa='https://wa.me/221771342889?text='+encodeURIComponent('Bonjour Astou Boutique, je souhaite des informations sur : '+(p.name||'un produit')+'.');
-          return '<article class="productCard">'+img+'<div class="productBody"><div class="productName">'+esc(p.name||'Produit')+'</div><div class="productMeta">'+pills+'</div>'+desc+'<a class="btn primary" href="'+wa+'" target="_blank" rel="noopener">💬 Demander ce produit</a></div></article>';
+          return '<article class="productCard">'+img+'<div class="productBody"><div class="productName">'+esc(p.name||'Produit')+'</div><div class="productMeta">'+pills+'</div>'+desc+'<button class="btn primary orderBtn" type="button" data-id="'+esc(p.id)+'" data-name="'+esc(p.name||'Produit')+'">🧾 Commander directement</button></div></article>';
         }).join('');
+        box.querySelectorAll(".orderBtn").forEach(btn=>{
+          btn.addEventListener("click",async()=>{
+            const productId=btn.dataset.id||null;
+            const productName=btn.dataset.name||"Produit";
+            const customerName=(prompt("Votre nom")||"").trim();
+            if(!customerName) return;
+            const customerPhone=(prompt("Votre téléphone / WhatsApp")||"").trim();
+            if(!customerPhone) return;
+            const qtyRaw=(prompt("Quantité","1")||"1").trim();
+            const quantity=Math.max(1,Math.min(99,parseInt(qtyRaw,10)||1));
+            const message=(prompt("Message pour Astou (facultatif)","")||"").trim();
+            btn.disabled=true;
+            const {error}=await sb.from("digiy_commerce_orders").insert({
+              site_slug:SITE_SLUG,
+              product_id:productId,
+              product_name:productName,
+              quantity,
+              customer_name:customerName,
+              customer_phone:customerPhone,
+              message:message||null,
+              status:"request"
+            });
+            btn.disabled=false;
+            if(error){
+              alert("Impossible d’enregistrer la demande : "+error.message);
+              return;
+            }
+            const waText=[
+              "Bonjour Astou Boutique,",
+              "Je souhaite commander : "+productName,
+              "Quantité : "+quantity,
+              "Nom : "+customerName,
+              "Téléphone : "+customerPhone,
+              message?"Message : "+message:"",
+              "",
+              "Demande enregistrée dans MON COMMERCE DIGIYLYFE.",
+              "Paiement direct avec Astou via Wave Pro · 0 % commission DIGIY."
+            ].filter(Boolean).join("\n");
+            alert("Demande enregistrée. WhatsApp va s’ouvrir pour envoyer le même récapitulatif à Astou.");
+            window.open("https://wa.me/221771342889?text="+encodeURIComponent(waText),"_blank","noopener");
+          });
+        });
       }
 
       const PUBLIC_URL = "https://mon-commerce.digiylyfe.com/fiche-astou.html";
