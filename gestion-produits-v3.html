@@ -248,8 +248,22 @@
     }
 
     $("logout").onclick=async()=>{
-      await sb.auth.signOut();
-      location.href=$("back").href;
+      const button=$("logout");
+      if(button.disabled)return;
+      button.disabled=true;
+      try{
+        const {error}=await sb.auth.signOut();
+        if(error)throw error;
+        // Immediately hide personal data; a new email login is required.
+        $("editor").hidden=true;
+        $("ordersCard").hidden=true;
+        $("orders").textContent="";
+        status.textContent="Déconnecté. Utilisez votre email pour accéder à nouveau à la gestion.";
+        location.href=$("back").href;
+      }catch(err){
+        status.textContent="Déconnexion impossible : "+(err?.message||String(err));
+        status.classList.add("bad");
+      }finally{button.disabled=false}
     };
 
     await load();
