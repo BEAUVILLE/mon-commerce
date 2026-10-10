@@ -15,8 +15,8 @@ function fakeNode(){
    this.q??={};return this.q[sel]??(this.q[sel]=fakeNode());
   },set innerHTML(x){this._innerHTML=x},get innerHTML(){return this._innerHTML}};
 }
-async function run({guardPresent=true,guardAllows=false,withOrder=false,ordersVerified=true}={}){
- const byId=new Map(),created=[],calls=[],guardCalls=[];
+async function run({guardPresent=true,guardAllows=false,withOrder=false,ordersVerified=true,signOutError=false}={}){
+ const byId=new Map(),created=[],calls=[],guardCalls=[],authState={active:true,signOutCalls:0};
  const $=id=>{if(!byId.has(id))byId.set(id,fakeNode());return byId.get(id)};
  const document={getElementById:$,createElement:()=>{const n=fakeNode();created.push(n);return n}};
  const sampleOrder={
@@ -41,8 +41,8 @@ async function run({guardPresent=true,guardAllows=false,withOrder=false,ordersVe
  };
  const sb={
   auth:{
-    getUser:async()=>({data:{user:{id:'auth-user-fixture'}},error:null}),
-    signOut:async()=>{},
+    getUser:async()=>({data:{user:authState.active?{id:'auth-user-fixture'}:null},error:null}),
+    signOut:async()=>{authState.signOutCalls++;if(signOutError)return {error:{message:'Sign-out rejected'}};authState.active=false;return {error:null}},
     mfa:{getAuthenticatorAssuranceLevel:async()=>({data:{currentLevel:ordersVerified?'aal2':'aal1'},error:null})}
   },
   rpc:async function(){return {data:{ok:true,required:ordersVerified,matching_phone_factor_verified:ordersVerified},error:null}},
@@ -53,7 +53,7 @@ async function run({guardPresent=true,guardAllows=false,withOrder=false,ordersVe
  const location={origin:'https://mon-commerce.digiylyfe.com',href:'https://mon-commerce.digiylyfe.com/gestion-produits-v3.html?site=sample-shop'};
  const ctx={window:fakeWindow,document,location,URL,console,setTimeout};
  await vm.runInNewContext(match[1],ctx,{timeout:1000});
- return {byId:$,calls,guardCalls,created,helper,order:sampleOrder};
+ return {byId:$,calls,guardCalls,created,helper,order:sampleOrder,authState,location};
 }
 test('COMMERCE owner session never reads shop or orders when phone MFA denied',async()=>{
  const r=await run({guardAllows:false});
@@ -98,6 +98,27 @@ test('COMMERCE still denies private order access when existing owner guard rejec
  const r=await run({guardAllows:false,withOrder:true});
  assert.ok(!r.calls.includes('digiy_commerce_orders'));
  assert.equal(r.byId('ordersCard').hidden,true);
+});
+test('COMMERCE: logout clears private order display and invalidates owner session',async()=>{
+ const r=await run({guardAllows:true,withOrder:true});
+ assert.equal(r.byId('ordersCard').hidden,false);
+ r.byId('back').href='https://mon-commerce.digiylyfe.com/fiche-astou.html';
+ await r.byId('logout').onclick();
+ assert.equal(r.authState.signOutCalls,1);
+ assert.equal(r.authState.active,false);
+ assert.equal(r.byId('editor').hidden,true);
+ assert.equal(r.byId('ordersCard').hidden,true);
+ assert.equal(r.byId('orders').textContent,'');
+ assert.equal(r.location.href,'https://mon-commerce.digiylyfe.com/fiche-astou.html');
+});
+test('COMMERCE: logout failure does not claim success or navigate away',async()=>{
+ const r=await run({guardAllows:true,withOrder:true,signOutError:true});
+ const prior=r.location.href;
+ await r.byId('logout').onclick();
+ assert.equal(r.authState.signOutCalls,1);
+ assert.equal(r.authState.active,true);
+ assert.equal(r.location.href,prior);
+ assert.match(r.byId('status').textContent,/Déconnexion impossible/);
 });
 test('MFA helper requires real Supabase Auth MFA and no client-side bypass',()=>{
  assert.match(file,/<script src="\.\/owner-phone-mfa-v1\.js"><\/script>/);
