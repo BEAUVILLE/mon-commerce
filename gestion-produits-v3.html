@@ -1,6 +1,6 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>MON COMMERCE · Mes produits V3</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script><script src="./owner-phone-mfa-v1.js"></script><style>
 *{box-sizing:border-box}body{margin:0;background:#f5efe7;color:#2b211b;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(780px,calc(100% - 24px));margin:22px auto}.card{background:white;border:1px solid #e5d8ca;border-radius:20px;padding:16px;margin-bottom:12px}.row{display:flex;gap:8px;flex-wrap:wrap}input,textarea,button{font:inherit}input,textarea{width:100%;padding:10px;border:1px solid #e5d8ca;border-radius:10px}.half{flex:1;min-width:180px}.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:900;background:#173b31;color:white}.ghost{background:white;color:#2b211b;border:1px solid #e5d8ca}.danger{background:#8a2a2a}.product{display:grid;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #eee}.product img{width:86px;height:86px;object-fit:cover;border-radius:12px;border:1px solid #e5d8ca}.productHead{display:flex;gap:10px;align-items:flex-start}.productInfo{display:grid;gap:4px}.msg{font-size:12px;color:#79695d}.bad{color:#8a2a2a}.order{display:grid;gap:8px;margin-top:12px;padding:12px;border:1px solid #e5d8ca;border-radius:14px}.order strong{font-size:16px}.orderStatus{display:inline-flex;width:max-content;align-items:center;padding:6px 10px;border-radius:999px;font-weight:950;font-size:12px}.orderStatus.request{background:#fff1c9;color:#7a4b00}.orderStatus.confirmed{background:#e8f1ff;color:#234b8a}.orderStatus.paid{background:#e9f8ef;color:#126b42}.orderStatus.refused{background:#fdecec;color:#9b1c1c}.orderStatus.completed{background:#efefef;color:#4e4e4e}.orderMeta{font-size:13px;color:#79695d}.orderTotal{font-weight:950;color:#173b31}.orderCount{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:#173b31;color:white;font-size:12px;font-weight:950;margin-left:6px}.btn.confirm{background:#e8f1ff;color:#234b8a}.btn.paid{background:#e9f8ef;color:#126b42}.btn.complete{background:#efefef;color:#333}.btn.refuse{background:#fdecec;color:#9b1c1c}
-</style></head><body><main class="wrap"><div class="card"><strong>🛍️ MON COMMERCE · Gestion propriétaire</strong><p id="status" class="msg">Vérification de votre accès…</p><div class="row"><a id="back" class="btn ghost" href="./index.html">← Retour à la fiche</a><button id="logout" class="btn ghost">Déconnexion</button></div></div><section id="editor" class="card" hidden><h2>Produits</h2><div class="row"><input class="half" id="name" placeholder="Nom du produit"><input class="half" id="price" placeholder="Prix affiché"><input class="half" id="stock" placeholder="Disponibilité / stock"></div><textarea id="description" rows="3" placeholder="Description"></textarea><input id="image" placeholder="URL image publique"><div class="row"><input class="half" id="position" type="number" min="0" step="10" placeholder="Ordre d’affichage (auto si vide)"><select class="half" id="active" style="padding:10px;border:1px solid #e5d8ca;border-radius:10px;background:white"><option value="true">Publié</option><option value="false">Masqué</option></select></div><button id="add" class="btn">Ajouter le produit</button><div id="products"></div></section><section id="ordersCard" class="card" hidden><h2>Commandes <span id="newOrderCount" class="orderCount" hidden>0</span></h2><p class="msg">Commandes reçues depuis la boutique et le panier MON COMMERCE. Paiement direct commerçant · Wave Pro / Sendwave · 0 % commission DIGIY.</p><div id="orders"></div></section></main><script>
+</style></head><body><main class="wrap"><div class="card"><strong>🛍️ MON COMMERCE · Gestion propriétaire</strong><p id="status" class="msg">Vérification de votre accès…</p><div class="row"><a id="back" class="btn ghost" href="./index.html">← Retour à la fiche</a><button id="logout" class="btn ghost">Déconnexion</button></div></div><section id="editor" class="card" hidden><h2>Produits</h2><div class="row"><input class="half" id="name" placeholder="Nom du produit"><input class="half" id="price" placeholder="Prix affiché"><input class="half" id="stock" placeholder="Disponibilité / stock"></div><textarea id="description" rows="3" placeholder="Description"></textarea><input id="image" placeholder="URL image publique"><div class="row"><input class="half" id="position" type="number" min="0" step="10" placeholder="Ordre d’affichage (auto si vide)"><select class="half" id="active" style="padding:10px;border:1px solid #e5d8ca;border-radius:10px;background:white"><option value="true">Publié</option><option value="false">Masqué</option></select></div><button id="add" class="btn">Ajouter le produit</button><div id="products"></div></section><section id="ordersLocked" class="card" hidden><h2>🔐 Commandes · téléphone requis</h2><p class="msg">Pour protéger les coordonnées des clients, activez la double sécurité téléphone proposée au-dessus. Si aucun bouton d’activation n’apparaît, contactez l’atelier DIGIYLYFE. Vos commandes sont conservées dans CORE.</p></section><section id="ordersCard" class="card" hidden><h2>Commandes <span id="newOrderCount" class="orderCount" hidden>0</span></h2><p class="msg">Commandes reçues depuis la boutique et le panier MON COMMERCE. Paiement direct commerçant · Wave Pro / Sendwave · 0 % commission DIGIY.</p><div id="orders"></div></section></main><script>
 (async()=>{
   const $=id=>document.getElementById(id);
   const status=$("status");
@@ -80,7 +80,17 @@
 
     status.textContent="Accès confirmé · "+shop.name;
     $("editor").hidden=false;
-    $("ordersCard").hidden=false;
+
+    // A verified second factor must protect customer order PII, not just the login UI.
+    // The phone helper offers the owner a safe enrollment flow when MFA is not yet required.
+    const {data:phoneContext,error:phoneContextError}=await sb.rpc("digiy_owner_mfa_context");
+    const {data:assurance,error:assuranceError}=await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+    const ordersUnlocked=!phoneContextError && !assuranceError
+      && phoneContext?.ok===true && phoneContext?.required===true
+      && phoneContext?.matching_phone_factor_verified===true
+      && assurance?.currentLevel==="aal2";
+    $("ordersCard").hidden=!ordersUnlocked;
+    $("ordersLocked").hidden=ordersUnlocked;
 
     async function load(){
       const {data,error}=await sb
@@ -243,7 +253,7 @@
     };
 
     await load();
-    await loadOrders();
+    if(ordersUnlocked) await loadOrders();
   }catch(err){
     console.error(err);
     status.textContent="Erreur de gestion : "+(err?.message||String(err));
