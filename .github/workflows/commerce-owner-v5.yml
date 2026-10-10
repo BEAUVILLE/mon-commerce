@@ -1,0 +1,32 @@
+name: COMMERCE V5 — téléphone propriétaire et panier sûr
+on:
+  pull_request:
+    paths:
+      - 'gestion-produits-v3.html'
+      - 'owner-phone-mfa-v1.js'
+      - 'commerce-owner-v5.test.cjs'
+      - '.github/workflows/commerce-owner-v5.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'gestion-produits-v3.html'
+      - 'owner-phone-mfa-v1.js'
+      - 'commerce-owner-v5.test.cjs'
+      - '.github/workflows/commerce-owner-v5.yml'
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier helper propriétaire et code de test
+        run: |
+          node --check owner-phone-mfa-v1.js
+          node --check commerce-owner-v5.test.cjs
+      - name: Contrôler le refus MFA et panier client non exécutable
+        run: node --test commerce-owner-v5.test.cjs
