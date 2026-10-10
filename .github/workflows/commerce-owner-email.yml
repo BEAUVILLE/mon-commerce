@@ -1,0 +1,37 @@
+name: MON COMMERCE — propriétaire par email, sans SMS
+on:
+  pull_request:
+    paths:
+      - 'acces-proprietaire-v4.html'
+      - 'gestion-produits-v3.html'
+      - 'owner-phone-mfa-v1.js'
+      - 'commerce-owner-v5.test.cjs'
+      - 'commerce-owner-email-otp.test.cjs'
+      - '.github/workflows/commerce-owner-email.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'acces-proprietaire-v4.html'
+      - 'gestion-produits-v3.html'
+      - 'owner-phone-mfa-v1.js'
+      - 'commerce-owner-v5.test.cjs'
+      - 'commerce-owner-email-otp.test.cjs'
+      - '.github/workflows/commerce-owner-email.yml'
+permissions:
+  contents: read
+jobs:
+  email-owner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les tests
+        run: |
+          node --check commerce-owner-v5.test.cjs
+          node --check commerce-owner-email-otp.test.cjs
+          node --check owner-phone-mfa-v1.js
+      - name: Magic link, code email et accès commandes propriétaires
+        run: node --test commerce-owner-v5.test.cjs commerce-owner-email-otp.test.cjs
