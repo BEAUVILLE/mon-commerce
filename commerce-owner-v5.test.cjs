@@ -71,6 +71,7 @@ test('missing MFA helper fails closed instead of opening products',async()=>{
 test('owner MFA precedes merchant reads; all cart text rendered as text',async()=>{
  const r=await run({guardAllows:true,withOrder:true});
  assert.equal(r.guardCalls.length,1);
+ assert.equal(r.guardCalls[0].offerEnrollment,false,'no SMS prompt for email-only account');
  assert.ok(r.calls.includes('digiy_commerce_sites'));
  assert.ok(r.calls.includes('digiy_commerce_order_items'));
  const entries=r.created.flatMap(x=>[...x.children,...Object.values(x.q||{}).flatMap(y=>y.children||[])]);
@@ -83,24 +84,26 @@ test('owner MFA precedes merchant reads; all cart text rendered as text',async()
  assert.match(decodeURIComponent(wa.href),/chez Sample Shop/);
  assert.doesNotMatch(decodeURIComponent(wa.href),/chez Astou Boutique/);
 });
-test('COMMERCE V6: phone enrollment not required means private order content stays hidden',async()=>{
+test('COMMERCE email-only: the real authenticated owner can read orders without SMS',async()=>{
  const r=await run({guardAllows:true,withOrder:true,ordersVerified:false});
  assert.ok(r.calls.includes('digiy_commerce_sites'));
  assert.ok(r.calls.includes('digiy_commerce_products'));
- assert.ok(!r.calls.includes('digiy_commerce_orders'));
- assert.ok(!r.calls.includes('digiy_commerce_order_items'));
- assert.equal(r.byId('ordersCard').hidden,true);
- assert.equal(r.byId('ordersLocked').hidden,false);
-});
-test('COMMERCE V6: verified phone AAL2 unlocks the real order query',async()=>{
- const r=await run({guardAllows:true,withOrder:true,ordersVerified:true});
- assert.equal(r.byId('ordersCard').hidden,false);
- assert.equal(r.byId('ordersLocked').hidden,true);
  assert.ok(r.calls.includes('digiy_commerce_orders'));
+ assert.ok(r.calls.includes('digiy_commerce_order_items'));
+ assert.equal(r.byId('ordersCard').hidden,false);
+ assert.equal(r.guardCalls[0].offerEnrollment,false);
+ assert.equal(r.byId('ordersLocked').hidden,true);
+});
+test('COMMERCE still denies private order access when existing owner guard rejects',async()=>{
+ const r=await run({guardAllows:false,withOrder:true});
+ assert.ok(!r.calls.includes('digiy_commerce_orders'));
+ assert.equal(r.byId('ordersCard').hidden,true);
 });
 test('MFA helper requires real Supabase Auth MFA and no client-side bypass',()=>{
  assert.match(file,/<script src="\.\/owner-phone-mfa-v1\.js"><\/script>/);
  assert.match(file,/DIGIY_OWNER_PHONE_MFA\.guard/);
+ assert.match(file,/offerEnrollment:false/);
+ assert.doesNotMatch(file,/ordersUnlocked|phoneContextError|\.from\("digiy_core_private/);
  assert.match(helper,/mfa\.getAuthenticatorAssuranceLevel/);
  assert.match(helper,/mfa\.challenge/);
  assert.match(helper,/mfa\.verify/);
