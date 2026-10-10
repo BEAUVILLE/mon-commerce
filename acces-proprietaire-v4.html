@@ -33,7 +33,7 @@ msg(tr(4),"ok")
 $("verifyOtp").onclick=async()=>{
   if(!site){msg(tr(5));return}
   const email=$("email").value.trim(),token=$("otpToken").value.trim();
-  if(!email || !/^\\d{6,10}$/.test(token)){msg(OTP[lang][2]);return}
+  if(!email || !/^\d{6,10}$/.test(token)){msg(OTP[lang][2]);return}
   $("verifyOtp").disabled=true;
   try{
     const {error}=await sb.auth.verifyOtp({email,token,type:"email"});
