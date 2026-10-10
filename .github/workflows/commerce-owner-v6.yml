@@ -1,0 +1,69 @@
+name: COMMERCE V6 — commandes privées, téléphone AAL2
+on:
+  pull_request:
+    paths:
+      - 'gestion-produits-v3.html'
+      - 'commerce-owner-v5.test.cjs'
+      - 'supabase/20261010_commerce_v6_owner_orders_phone_mfa.sql'
+      - 'tests/commerce-v6-owner-mfa-*.sql'
+      - '.github/workflows/commerce-owner-v6.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'gestion-produits-v3.html'
+      - 'commerce-owner-v5.test.cjs'
+      - 'supabase/20261010_commerce_v6_owner_orders_phone_mfa.sql'
+      - 'tests/commerce-v6-owner-mfa-*.sql'
+      - '.github/workflows/commerce-owner-v6.yml'
+permissions:
+  contents: read
+jobs:
+  commerce-owner-mfa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: commerce_fixture
+          POSTGRES_PASSWORD: fixture_password_not_production
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d commerce_fixture"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGDATABASE: commerce_fixture
+      PGPASSWORD: fixture_password_not_production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier l'accès privé et l'interface
+        run: |
+          node --check commerce-owner-v5.test.cjs
+          node --test commerce-owner-v5.test.cjs
+      - name: Installer psql
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y postgresql-client
+      - name: Créer uniquement la fixture synthétique
+        run: psql -X -v ON_ERROR_STOP=1 -f tests/commerce-v6-owner-mfa-fixture.sql
+      - name: Appliquer la migration RLS sur PostgreSQL 17 isolé
+        run: psql -X -v ON_ERROR_STOP=1 -f supabase/20261010_commerce_v6_owner_orders_phone_mfa.sql
+      - name: Vérifier AAL1 refusé, AAL2 autorisé, client public préservé
+        run: psql -X -v ON_ERROR_STOP=1 -f tests/commerce-v6-owner-mfa-smoke.sql
+      - name: Un second déploiement implicite doit échouer
+        run: |
+          if psql -X -v ON_ERROR_STOP=1 -f supabase/20261010_commerce_v6_owner_orders_phone_mfa.sql; then
+            echo "::error::Non reviewed replay unexpectedly succeeded"
+            exit 1
+          fi
+          echo COMMERCE_V6_REPLAY_FAIL_CLOSED_OK
