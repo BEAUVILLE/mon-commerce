@@ -15,7 +15,7 @@ function fakeNode(){
    this.q??={};return this.q[sel]??(this.q[sel]=fakeNode());
   },set innerHTML(x){this._innerHTML=x},get innerHTML(){return this._innerHTML}};
 }
-async function run({guardPresent=true,guardAllows=false,withOrder=false}={}){
+async function run({guardPresent=true,guardAllows=false,withOrder=false,ordersVerified=true}={}){
  const byId=new Map(),created=[],calls=[],guardCalls=[];
  const $=id=>{if(!byId.has(id))byId.set(id,fakeNode());return byId.get(id)};
  const document={getElementById:$,createElement:()=>{const n=fakeNode();created.push(n);return n}};
@@ -39,7 +39,15 @@ async function run({guardPresent=true,guardAllows=false,withOrder=false}={}){
    return q;
   }
  };
- const sb={auth:{getUser:async()=>({data:{user:{id:'auth-user-fixture'}},error:null}),signOut:async()=>{}},...mockDb};
+ const sb={
+  auth:{
+    getUser:async()=>({data:{user:{id:'auth-user-fixture'}},error:null}),
+    signOut:async()=>{},
+    mfa:{getAuthenticatorAssuranceLevel:async()=>({data:{currentLevel:ordersVerified?'aal2':'aal1'},error:null})}
+  },
+  rpc:async function(){return {data:{ok:true,required:ordersVerified,matching_phone_factor_verified:ordersVerified},error:null}},
+  ...mockDb
+ };
  const fakeWindow={supabase:{createClient:()=>sb}};
  if(guardPresent)fakeWindow.DIGIY_OWNER_PHONE_MFA={guard:async x=>{guardCalls.push(x);return guardAllows}};
  const location={origin:'https://mon-commerce.digiylyfe.com',href:'https://mon-commerce.digiylyfe.com/gestion-produits-v3.html?site=sample-shop'};
@@ -74,6 +82,21 @@ test('owner MFA precedes merchant reads; all cart text rendered as text',async()
  const wa=box.querySelector('.wa');
  assert.match(decodeURIComponent(wa.href),/chez Sample Shop/);
  assert.doesNotMatch(decodeURIComponent(wa.href),/chez Astou Boutique/);
+});
+test('COMMERCE V6: phone enrollment not required means private order content stays hidden',async()=>{
+ const r=await run({guardAllows:true,withOrder:true,ordersVerified:false});
+ assert.ok(r.calls.includes('digiy_commerce_sites'));
+ assert.ok(r.calls.includes('digiy_commerce_products'));
+ assert.ok(!r.calls.includes('digiy_commerce_orders'));
+ assert.ok(!r.calls.includes('digiy_commerce_order_items'));
+ assert.equal(r.byId('ordersCard').hidden,true);
+ assert.equal(r.byId('ordersLocked').hidden,false);
+});
+test('COMMERCE V6: verified phone AAL2 unlocks the real order query',async()=>{
+ const r=await run({guardAllows:true,withOrder:true,ordersVerified:true});
+ assert.equal(r.byId('ordersCard').hidden,false);
+ assert.equal(r.byId('ordersLocked').hidden,true);
+ assert.ok(r.calls.includes('digiy_commerce_orders'));
 });
 test('MFA helper requires real Supabase Auth MFA and no client-side bypass',()=>{
  assert.match(file,/<script src="\.\/owner-phone-mfa-v1\.js"><\/script>/);
