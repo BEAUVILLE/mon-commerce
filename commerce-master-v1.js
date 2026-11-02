@@ -5,7 +5,7 @@
 (()=>{
   'use strict';
 
-  const LANGS=['fr','en','es','pt','de','it','nl','ar'];
+  const LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];
   const DEFAULT_TERRITORY='petite-cote';
   const TERRITORY_NAMES={
     'petite-cote':'PETITE CÔTE',
@@ -87,7 +87,7 @@
 
   if(!document.querySelector('script[data-digiy-commerce-territory-guard]')){
     const guard=document.createElement('script');
-    guard.src='/commerce-territory-guard-v1.js?v=20260829-territory-v1';
+    guard.src='/commerce-territory-guard-v1.js?v=20261102-com10-v1';
     guard.setAttribute('data-digiy-commerce-territory-guard','1');
     document.head.appendChild(guard);
   }
