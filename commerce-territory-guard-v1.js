@@ -29,7 +29,7 @@ function filterReal(c){
 }
 function patchPrice(c){
  if(!EUROPE.has(c.territory))return;
- const l=LANGS.includes(c.lang)?c.lang:'fr',x=COPY[l]||COPY.fr;
+ const picked=(document.documentElement.lang||c.lang||'fr').slice(0,2).toLowerCase();const l=LANGS.includes(picked)?picked:'fr',x=COPY[l]||COPY.fr;
  const head=document.querySelector('.join a[data-i18n="join"]');if(head)head.textContent=x.head;
  document.querySelectorAll('#digiy-commerce-open-places .op-meta').forEach(el=>{el.textContent=x.price+' · QR · 0 %'});
  document.querySelectorAll('#digiy-commerce-open-places .op-join').forEach(el=>{el.textContent=x.join});
