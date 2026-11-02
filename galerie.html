@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Galerie des commerces — MON COMMERCE DIGIYLYFE</title>
   <meta name="description" content="Galerie publique générique des commerces publiés dans MON COMMERCE.">
-  <meta http-equiv="refresh" content="0;url=./index.html#commerces">
+  <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="https://mon-commerce.digiylyfe.com/#commerces">
   <style>body{font-family:system-ui,sans-serif;background:#071d15;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0;text-align:center}a{color:#f4cf64}</style>
 </head>
@@ -13,8 +13,17 @@
   <main>
     <h1>Galerie MON COMMERCE</h1>
     <p>Ouverture de la galerie des commerces publiés…</p>
-    <p><a href="./index.html#commerces">Ouvrir la galerie</a></p>
+    <p><a id="galleryOpen" href="./index.html#commerces">Ouvrir la galerie</a></p>
   </main>
-  <script>location.replace("./index.html#commerces");</script>
+  <script>
+(function(){
+  var query=new URLSearchParams(location.search),allowed=['fr','en','es','pt','de','it','nl','ar','wo','zh'];
+  var lang=(query.get('lang')||'').toLowerCase().slice(0,2);
+  if(allowed.includes(lang))query.set('lang',lang);else query.delete('lang');
+  var target='./index.html'+(query.toString()?'?'+query.toString():'')+'#commerces';
+  document.getElementById('galleryOpen').href=target;
+  location.replace(target);
+})();
+</script>
 </body>
 </html>
