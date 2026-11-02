@@ -5,9 +5,11 @@
  */
 (()=>{
 'use strict';
-const LANGS=['fr','en','es','pt','de','it','nl','ar'];
+const LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];
 const EUROPE=new Set(['vallee-dordogne','bordeaux']);
 const COPY={
+ wo:{price:'45 € / weer',join:'JËL SA BARAB · 45 € / weer →',head:'LAJ BOKK CI MON COMMERCE · 45 € / weer'},
+ zh:{price:'每月 45 欧元',join:'申请入驻 · 每月 45 欧元 →',head:'入驻申请 · 每月 45 欧元起'},
  fr:{price:'45 € / mois',join:'PRENDRE MA PLACE · 45 € / mois →',head:'DEMANDE D’ADHÉSION · À PARTIR DE 45 € / mois'},
  en:{price:'€45 / month',join:'TAKE MY PLACE · €45 / month →',head:'MEMBERSHIP REQUEST · FROM €45 / month'},
  es:{price:'45 € / mes',join:'OCUPAR MI LUGAR · 45 € / mes →',head:'SOLICITUD DE ADHESIÓN · DESDE 45 € / mes'},
@@ -27,7 +29,7 @@ function filterReal(c){
 }
 function patchPrice(c){
  if(!EUROPE.has(c.territory))return;
- const l=LANGS.includes(c.lang)?c.lang:'fr',x=COPY[l]||COPY.fr;
+ const picked=(document.documentElement.lang||c.lang||'fr').slice(0,2).toLowerCase();const l=LANGS.includes(picked)?picked:'fr',x=COPY[l]||COPY.fr;
  const head=document.querySelector('.join a[data-i18n="join"]');if(head)head.textContent=x.head;
  document.querySelectorAll('#digiy-commerce-open-places .op-meta').forEach(el=>{el.textContent=x.price+' · QR · 0 %'});
  document.querySelectorAll('#digiy-commerce-open-places .op-join').forEach(el=>{el.textContent=x.join});

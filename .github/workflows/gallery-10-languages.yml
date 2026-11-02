@@ -1,0 +1,23 @@
+name: MON COMMERCE — galerie 10 langues
+on:
+  pull_request:
+    paths:
+      - index.html
+      - galerie.html
+      - lang.html
+      - commerce-gallery-cards-10.js
+      - commerce-open-places-v1.js
+      - commerce-master-v1.js
+      - commerce-public-route.js
+      - commerce-territory-guard-v1.js
+      - tests/test_gallery_10_languages.py
+      - .github/workflows/gallery-10-languages.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify translated commerce gallery, URLs, contacts and JS
+        run: python3 -m unittest discover -s tests -p 'test_gallery_10_languages.py' -v

@@ -1,7 +1,7 @@
 /* MON COMMERCE — conserve la langue vers l'inscription et les boutiques MARKET */
 (() => {
   "use strict";
-  const SUPPORTED = ["fr","en","es","pt","de","it","nl","ar"];
+  const SUPPORTED = ["fr","en","es","pt","de","it","nl","ar","wo","zh"];
 
   function currentLang(){
     try{
@@ -23,7 +23,7 @@
     if(!/(^|\.)digiylyfe\.com$/i.test(target.hostname)) return false;
     if(!/\/tarifs-adherents\.html$/i.test(target.pathname)) return false;
     const url = new URL("https://digiylyfe.com/tarifs-adherents-1.html");
-    url.searchParams.set("lang", currentLang());
+    url.searchParams.set("lang", ["wo","zh"].includes(currentLang()) ? "fr" : currentLang());
     anchor.setAttribute("href", url.toString());
     return true;
   }
