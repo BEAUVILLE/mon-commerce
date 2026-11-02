@@ -5,9 +5,11 @@
  */
 (()=>{
 'use strict';
-const LANGS=['fr','en','es','pt','de','it','nl','ar'];
+const LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];
 const EUROPE=new Set(['vallee-dordogne','bordeaux']);
 const COPY={
+ wo:{price:'45 € / weer',join:'JËL SA BARAB · 45 € / weer →',head:'LAJ BOKK CI MON COMMERCE · 45 € / weer'},
+ zh:{price:'每月 45 欧元',join:'申请入驻 · 每月 45 欧元 →',head:'入驻申请 · 每月 45 欧元起'},
  fr:{price:'45 € / mois',join:'PRENDRE MA PLACE · 45 € / mois →',head:'DEMANDE D’ADHÉSION · À PARTIR DE 45 € / mois'},
  en:{price:'€45 / month',join:'TAKE MY PLACE · €45 / month →',head:'MEMBERSHIP REQUEST · FROM €45 / month'},
  es:{price:'45 € / mes',join:'OCUPAR MI LUGAR · 45 € / mes →',head:'SOLICITUD DE ADHESIÓN · DESDE 45 € / mes'},
