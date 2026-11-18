@@ -1,6 +1,43 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>MON COMMERCE · Mes produits V3</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script><script src="./owner-phone-mfa-v1.js"></script><style>
 *{box-sizing:border-box}body{margin:0;background:#f5efe7;color:#2b211b;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(780px,calc(100% - 24px));margin:22px auto}.card{background:white;border:1px solid #e5d8ca;border-radius:20px;padding:16px;margin-bottom:12px}.row{display:flex;gap:8px;flex-wrap:wrap}input,textarea,button{font:inherit}input,textarea{width:100%;padding:10px;border:1px solid #e5d8ca;border-radius:10px}.half{flex:1;min-width:180px}.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:900;background:#173b31;color:white}.ghost{background:white;color:#2b211b;border:1px solid #e5d8ca}.danger{background:#8a2a2a}.product{display:grid;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #eee}.product img{width:86px;height:86px;object-fit:cover;border-radius:12px;border:1px solid #e5d8ca}.productHead{display:flex;gap:10px;align-items:flex-start}.productInfo{display:grid;gap:4px}.msg{font-size:12px;color:#79695d}.bad{color:#8a2a2a}.order{display:grid;gap:8px;margin-top:12px;padding:12px;border:1px solid #e5d8ca;border-radius:14px}.order strong{font-size:16px}.orderStatus{display:inline-flex;width:max-content;align-items:center;padding:6px 10px;border-radius:999px;font-weight:950;font-size:12px}.orderStatus.request{background:#fff1c9;color:#7a4b00}.orderStatus.confirmed{background:#e8f1ff;color:#234b8a}.orderStatus.paid{background:#e9f8ef;color:#126b42}.orderStatus.refused{background:#fdecec;color:#9b1c1c}.orderStatus.completed{background:#efefef;color:#4e4e4e}.orderMeta{font-size:13px;color:#79695d}.orderTotal{font-weight:950;color:#173b31}.orderCount{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:#173b31;color:white;font-size:12px;font-weight:950;margin-left:6px}.btn.confirm{background:#e8f1ff;color:#234b8a}.btn.paid{background:#e9f8ef;color:#126b42}.btn.complete{background:#efefef;color:#333}.btn.refuse{background:#fdecec;color:#9b1c1c}
-</style></head><body><main class="wrap"><div class="card"><strong>🛍️ MON COMMERCE · Gestion propriétaire</strong><p id="status" class="msg">Vérification de votre accès…</p><div class="row"><a id="back" class="btn ghost" href="./index.html">← Retour à la fiche</a><button id="logout" class="btn ghost">Déconnexion</button></div></div><section id="editor" class="card" hidden><h2>Produits</h2><div class="row"><input class="half" id="name" placeholder="Nom du produit"><input class="half" id="price" placeholder="Prix affiché"><input class="half" id="stock" placeholder="Disponibilité / stock"></div><textarea id="description" rows="3" placeholder="Description"></textarea><input id="image" placeholder="URL image publique"><div class="row"><input class="half" id="position" type="number" min="0" step="10" placeholder="Ordre d’affichage (auto si vide)"><select class="half" id="active" style="padding:10px;border:1px solid #e5d8ca;border-radius:10px;background:white"><option value="true">Publié</option><option value="false">Masqué</option></select></div><button id="add" class="btn">Ajouter le produit</button><div id="products"></div></section><section id="ordersCard" class="card" hidden><h2>Commandes <span id="newOrderCount" class="orderCount" hidden>0</span></h2><p class="msg">Commandes reçues depuis la boutique et le panier MON COMMERCE. Paiement direct commerçant · Wave Pro / Sendwave · 0 % commission DIGIY.</p><div id="orders"></div></section></main><script>
+</style></head><body><main class="wrap"><p><label for="commerceLanguage">🌐 Langue / Language</label> <select id="commerceLanguage"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="pt">PT</option><option value="it">IT</option><option value="de">DE</option><option value="nl">NL</option><option value="ar">AR</option><option value="wo">WO</option><option value="zh">ZH</option></select></p><div class="card"><strong data-commerce-copy="0">🛍️ MON COMMERCE · Gestion propriétaire</strong><p id="status" data-commerce-copy="1" class="msg">Vérification de votre accès…</p><div class="row"><a id="back" data-commerce-copy="2" class="btn ghost" href="./index.html">← Retour à la fiche</a><button id="logout" data-commerce-copy="3" class="btn ghost">Déconnexion</button></div></div><section id="editor" class="card" hidden><h2 data-commerce-copy="4">Produits</h2><div class="row"><input class="half" id="name" data-commerce-placeholder="5" placeholder="Nom du produit"><input class="half" id="price" data-commerce-placeholder="6" placeholder="Prix affiché"><input class="half" id="stock" data-commerce-placeholder="7" placeholder="Disponibilité / stock"></div><textarea id="description" data-commerce-placeholder="8" rows="3" placeholder="Description"></textarea><input id="image" data-commerce-placeholder="9" placeholder="URL image publique"><div class="row"><input class="half" id="position" data-commerce-placeholder="10" type="number" min="0" step="10" placeholder="Ordre d’affichage (auto si vide)"><select class="half" id="active" style="padding:10px;border:1px solid #e5d8ca;border-radius:10px;background:white"><option value="true" data-commerce-copy="11">Publié</option><option value="false" data-commerce-copy="12">Masqué</option></select></div><button id="add" data-commerce-copy="13" class="btn">Ajouter le produit</button><div id="products"></div></section><section id="ordersCard" class="card" hidden><h2><span data-commerce-copy="14">Commandes</span> <span id="newOrderCount" class="orderCount" hidden>0</span></h2><p class="msg">Commandes reçues depuis la boutique et le panier MON COMMERCE. Paiement direct commerçant · Wave Pro / Sendwave · 0 % commission DIGIY.</p><div id="orders"></div></section></main><script>
+const commerceProductLanguages={
+  "en": "Shop management|Checking your access…|Back to shop|Sign out|Products|Product name|Displayed price|Availability / stock|Description|Public image URL|Display order (optional)|Published|Hidden|Add product|Orders|Hide|Publish",
+  "es": "Gestión de la tienda|Verificando tu acceso…|Volver a la tienda|Cerrar sesión|Productos|Nombre del producto|Precio mostrado|Disponibilidad / existencias|Descripción|URL pública de la imagen|Orden de presentación (opcional)|Publicado|Oculto|Añadir producto|Pedidos|Ocultar|Publicar",
+  "pt": "Gestão da loja|A verificar o acesso…|Voltar à loja|Terminar sessão|Produtos|Nome do produto|Preço apresentado|Disponibilidade / stock|Descrição|URL pública da imagem|Ordem de apresentação (opcional)|Publicado|Oculto|Adicionar produto|Encomendas|Ocultar|Publicar",
+  "it": "Gestione negozio|Verifica dell’accesso…|Torna al negozio|Esci|Prodotti|Nome del prodotto|Prezzo esposto|Disponibilità / scorte|Descrizione|URL pubblica dell’immagine|Ordine di visualizzazione (facoltativo)|Pubblicato|Nascosto|Aggiungi prodotto|Ordini|Nascondi|Pubblica",
+  "de": "Shopverwaltung|Zugang wird geprüft…|Zurück zum Shop|Abmelden|Produkte|Produktname|Angezeigter Preis|Verfügbarkeit / Bestand|Beschreibung|Öffentliche Bild-URL|Anzeigereihenfolge (optional)|Veröffentlicht|Ausgeblendet|Produkt hinzufügen|Bestellungen|Ausblenden|Veröffentlichen",
+  "nl": "Winkelbeheer|Toegang wordt gecontroleerd…|Terug naar de winkel|Afmelden|Producten|Productnaam|Getoonde prijs|Beschikbaarheid / voorraad|Beschrijving|Openbare afbeeldings-URL|Weergavevolgorde (optioneel)|Gepubliceerd|Verborgen|Product toevoegen|Bestellingen|Verbergen|Publiceren",
+  "ar": "إدارة المتجر|جارٍ التحقق من الوصول…|العودة إلى المتجر|تسجيل الخروج|المنتجات|اسم المنتج|السعر المعروض|التوفر / المخزون|الوصف|رابط الصورة العام|ترتيب العرض (اختياري)|منشور|مخفي|إضافة المنتج|الطلبات|إخفاء|نشر",
+  "wo": "Saytu bitig bi|Ñu ngi seet sa sañ-sañu dugg…|Dellu ci bitig bi|Génn|Yëfi jaay yi|Turu yëf bi|Njëg bi ñu wone|Féex gi / stock|Leeral|Lëkkalekaayu nataal bu ñépp di gis|Toppante wu feeñ (boo bëggee)|Siiw na|Nëbbu na|Yokk yëf bi|Ndigal yi|Nëbb|Siiwal",
+  "zh": "店铺管理|正在验证访问权限…|返回店铺|退出登录|商品|商品名称|展示价格|可用状态 / 库存|描述|公开图片网址|展示顺序（选填）|已发布|已隐藏|添加商品|订单|隐藏|发布"
+};
+const commercePageUrl=new URL(location.href);
+let commerceRequested=commercePageUrl.searchParams.get('lang');
+if(!commerceRequested){try{commerceRequested=localStorage.getItem('digiy_commerce_owner_lang')}catch(_){}}
+const commerceProductLang=Object.hasOwn(commerceProductLanguages,commerceRequested)?commerceRequested:'fr';
+const commerceProductCopy=commerceProductLanguages[commerceProductLang]?.split('|');
+const commerceProductText=(index,french)=>commerceProductCopy?.[index]??french;
+document.documentElement.lang=commerceProductLang;
+document.documentElement.dir=commerceProductLang==='ar'?'rtl':'ltr';
+const commerceLanguageSelect=document.getElementById('commerceLanguage');
+commerceLanguageSelect.value=commerceProductLang;
+commerceLanguageSelect.addEventListener('change',()=>{
+  commercePageUrl.searchParams.set('lang',commerceLanguageSelect.value);
+  try{localStorage.setItem('digiy_commerce_owner_lang',commerceLanguageSelect.value)}catch(_){}
+  location.assign(commercePageUrl.href);
+});
+if(commerceProductCopy){
+  document.querySelectorAll('[data-commerce-copy]').forEach(el=>{
+    const i=Number(el.dataset.commerceCopy);
+    el.textContent=(i===0?'🛍️ MON COMMERCE · ':i===2?'← ':'')+commerceProductCopy[i];
+  });
+  document.querySelectorAll('[data-commerce-placeholder]').forEach(el=>{
+    el.placeholder=commerceProductCopy[Number(el.dataset.commercePlaceholder)];
+  });
+}
+</script>
+<script>
 (async()=>{
   const $=id=>document.getElementById(id);
   const status=$("status");
@@ -105,10 +142,10 @@
         d.className="product";
         d.innerHTML='<div class="productHead"><div class="thumb"></div><div class="productInfo"><strong></strong><div class="msg meta"></div><div class="msg desc"></div></div></div><div class="row"><button class="btn ghost edit">Modifier</button><button class="btn ghost toggle"></button><button class="btn danger del">Supprimer</button></div>';
         d.querySelector("strong").textContent=x.name;
-        d.querySelector(".meta").textContent=[x.price_label,x.stock_label,"Ordre "+x.position,(x.is_active?"Publié":"Masqué")].filter(Boolean).join(" · ");
+        d.querySelector(".meta").textContent=[x.price_label,x.stock_label,"Ordre "+x.position,(x.is_active?commerceProductText(11,"Publié"):commerceProductText(12,"Masqué"))].filter(Boolean).join(" · ");
         d.querySelector(".desc").textContent=x.description||"";
         if(x.image_url){const img=document.createElement("img");img.src=x.image_url;img.alt=x.name||"Produit";img.loading="lazy";d.querySelector(".thumb").appendChild(img)}
-        d.querySelector(".toggle").textContent=x.is_active?"Masquer":"Publier";
+        d.querySelector(".toggle").textContent=x.is_active?commerceProductText(15,"Masquer"):commerceProductText(16,"Publier");
         d.querySelector(".edit").onclick=async()=>{
           const name=prompt("Nom",x.name);
           if(name===null)return;
