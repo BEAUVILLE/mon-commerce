@@ -118,7 +118,10 @@ if(commerceProductCopy){
 
     try{
       const u=new URL(ret,location.origin);
-      if(u.origin===location.origin||u.hostname.endsWith(".digiylyfe.com")) $("back").href=u.href;
+      if(u.origin===location.origin||u.hostname.endsWith(".digiylyfe.com")){
+        u.searchParams.set("lang",commerceProductLang);
+        $("back").href=u.href;
+      }
     }catch(_){}
 
     status.textContent="Accès confirmé · "+shop.name;
